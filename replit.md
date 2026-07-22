@@ -1,45 +1,66 @@
-# [Project name]
+# Pizza Ride
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A pizza delivery web app — pnpm monorepo with a React/Vite landing page and an Express API server backed by PostgreSQL.
 
-## Run & Operate
+## Project Structure
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+```
+artifacts/
+  pizza-ride/       # React + Vite frontend (Tailwind, Radix UI, shadcn, wouter)
+  api-server/       # Express 5 + TypeScript API server
+  mockup-sandbox/   # Design/mockup preview sandbox (internal tool)
+lib/
+  db/               # Drizzle ORM + PostgreSQL schema (empty schema, ready to extend)
+  api-spec/         # OpenAPI 3.1 spec (orval code-gen)
+  api-client-react/ # Generated React Query hooks (from openapi.yaml)
+  api-zod/          # Generated Zod schemas (from openapi.yaml)
+```
 
-## Stack
+## How to Run
 
-- pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+Dependencies are managed with pnpm. Install once from the workspace root:
 
-## Where things live
+```bash
+pnpm install
+```
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+Workflows are pre-configured in Replit:
 
-## Architecture decisions
+| Workflow | Command | URL |
+|---|---|---|
+| Pizza Ride (frontend) | `pnpm --filter @workspace/pizza-ride run dev` | `/` |
+| API Server | `pnpm --filter @workspace/api-server run dev` | `/api` |
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+## Environment Variables
 
-## Product
+| Variable | Source | Notes |
+|---|---|---|
+| `DATABASE_URL` | Replit built-in PostgreSQL | Auto-injected |
+| `PORT` | Replit | Auto-injected per artifact |
+| `SESSION_SECRET` | Replit Secret | Set in Secrets panel |
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+## Database
 
-## User preferences
+Replit's built-in PostgreSQL is provisioned and connected. The Drizzle schema is in `lib/db/src/schema/index.ts` — currently empty (no tables defined yet).
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+To push schema changes to the database:
 
-## Gotchas
+```bash
+pnpm --filter @workspace/db run push
+```
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+## API
 
-## Pointers
+The API is served at `/api`. Currently only a health-check endpoint exists:
 
-- See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
+- `GET /api/healthz` — returns `{ status: "ok" }`
+
+The OpenAPI spec lives at `lib/api-spec/openapi.yaml`. After editing it, regenerate the client and Zod schemas:
+
+```bash
+pnpm --filter @workspace/api-spec run generate
+```
+
+## User Preferences
+
+_No preferences recorded yet._
