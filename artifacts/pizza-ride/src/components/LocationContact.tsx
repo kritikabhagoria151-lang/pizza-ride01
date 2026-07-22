@@ -56,7 +56,7 @@ export default function LocationContact() {
                 <div>
                   <h4 className="font-bold text-lg text-foreground mb-1">Call to Order</h4>
                   <p className="text-muted-foreground text-xl font-display font-bold">
-                    +91 98765 43210
+                    +91 99926 98180
                   </p>
                 </div>
               </div>
@@ -68,8 +68,7 @@ export default function LocationContact() {
                 <div>
                   <h4 className="font-bold text-lg text-foreground mb-1">Opening Hours</h4>
                   <p className="text-muted-foreground">
-                    Mon - Sun: 11:00 AM - 11:00 PM<br />
-                    <span className="text-primary font-medium text-sm">Late night delivery available till 1 AM on weekends</span>
+                    Mon - Sun: 12:00 AM – 12:00 PM
                   </p>
                 </div>
               </div>
