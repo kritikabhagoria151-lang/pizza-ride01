@@ -56,7 +56,7 @@ export default function LocationContact() {
                 <div>
                   <h4 className="font-bold text-lg text-foreground mb-1">Call to Order</h4>
                   <p className="text-muted-foreground text-xl font-display font-bold">
-                    +91 99926 98180
+                    +91 72068 87688
                   </p>
                 </div>
               </div>
