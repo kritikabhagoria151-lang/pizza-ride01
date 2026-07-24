@@ -87,126 +87,35 @@ type Category = {
 
 const categories: Category[] = [
   {
-    id: "veg1",
-    label: "Veg 1 Pizzas",
+    id: "pizzas",
+    label: "Pizzas",
     emoji: "🍕",
     items: [
-      {
-        name: "Farm House",
-        description: "Onion, Capsicum, Corn, Mushroom — classic loaded veg.",
-        price: 160,
-        sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }],
-        badge: "Bestseller",
-        image: farmhouseImg,
-      },
-      {
-        name: "Tandoori Paneer",
-        description: "Onion, Paneer, Red Paprika — spiced tandoori flavour.",
-        price: 160,
-        sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }],
-        image: tandooriPaneerImg,
-      },
-      {
-        name: "Zesty Tangy Pizza",
-        description: "Onion, Corn, Paneer — tangy and fresh every bite.",
-        price: 160,
-        sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }],
-        image: zestyTangyImg,
-      },
-      {
-        name: "Makhani Pizza",
-        description: "Makhani Sauce, Capsicum, Paneer — rich and creamy.",
-        price: 160,
-        sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }],
-        badge: "Local Favorite",
-        image: makhaniImg,
-      },
-    ],
-  },
-  {
-    id: "veg2",
-    label: "Veg 2 Pizzas",
-    emoji: "🧀",
-    items: [
-      {
-        name: "Classical Pizza",
-        description: "Onion, Capsicum, Corn, Mushroom, Paneer — the full veg combo.",
-        price: 210,
-        sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }],
-        image: classicalImg,
-      },
-      {
-        name: "Spicy Paneer",
-        description: "Onion, Paneer, Red Paprika — bold and spicy.",
-        price: 210,
-        sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }],
-        badge: "Spicy 🌶️",
-        image: spicyPaneerImg,
-      },
-      {
-        name: "Delight Extra Cheese",
-        description: "Capsicum, Mushroom, Jalapeno — loaded with extra cheese.",
-        price: 210,
-        sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }],
-        image: delightImg,
-      },
-      {
-        name: "Tikki Crush Pizza",
-        description: "Mushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush — a flavour bomb.",
-        price: 210,
-        sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }],
-        badge: "Must Try",
-        image: tikkiCrushImg,
-      },
-    ],
-  },
-  {
-    id: "toppings",
-    label: "Toppings Pizzas",
-    emoji: "🫙",
-    items: [
-      { name: "Tomato Pizza", description: "Single topping — fresh tomato base.", price: 59, image: margheritaImg },
-      { name: "Onion Pizza", description: "Single topping — golden caramelised onion.", price: 70, image: pepperoniImg },
-      { name: "Capsicum Pizza", description: "Single topping — crisp green capsicum.", price: 70, image: paneerTikkaImg },
-      { name: "Corn Pizza", description: "Single topping — sweet golden corn.", price: 80, image: farmhouseImg },
-      { name: "Onion & Corn", description: "Double topping — onion with sweet corn.", price: 90, image: zestyTangyImg },
-      { name: "Onion & Capsicum", description: "Double topping — classic combo.", price: 90, image: chickTikkaImg },
-      { name: "Onion & Paneer", description: "Double topping — onion with soft paneer.", price: 100, image: tandooriPaneerImg },
-      { name: "Corn & Paneer", description: "Double topping — corn with paneer.", price: 100, image: makhaniImg },
-      { name: "Paneer & Corn", description: "Double topping — paneer with corn.", price: 100, image: classicalImg },
-    ],
-  },
-  {
-    id: "special",
-    label: "Pizza Special",
-    emoji: "⭐",
-    items: [
-      {
-        name: "Single Cheese (Veg Treat)",
-        description: "All veggies with single cheese — Veg Treat special.",
-        price: 110,
-        image: classicalImg,
-      },
-      {
-        name: "Cheese & Corn (Veg Treat)",
-        description: "All veggies with cheese & corn — Veg Treat special.",
-        price: 130,
-        image: zestyTangyImg,
-      },
-      {
-        name: "Double Cheese (Veg Treat)",
-        description: "All veggies with double cheese — Veg Treat special.",
-        price: 150,
-        image: delightImg,
-      },
-      {
-        name: "Pizza Ride Special",
-        description: "All Veggies with Loaded Cheese — our signature special.",
-        price: 259,
-        sizes: [{ label: "Reg", price: 259 }, { label: "Med", price: 349 }, { label: "Large", price: 449 }],
-        badge: "🌟 Signature",
-        image: tikkiCrushImg,
-      },
+      // — Veg 1 —
+      { name: "Farm House", description: "Onion, Capsicum, Corn, Mushroom", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Bestseller", image: farmhouseImg },
+      { name: "Tandoori Paneer", description: "Onion, Paneer, Red Paprika", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: tandooriPaneerImg },
+      { name: "Zesty Tangy Pizza", description: "Onion, Corn, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: zestyTangyImg },
+      { name: "Makhani Pizza", description: "Makhani Sauce, Capsicum, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Local Fav", image: makhaniImg },
+      // — Veg 2 —
+      { name: "Classical Pizza", description: "Onion, Capsicum, Corn, Mushroom, Paneer", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: classicalImg },
+      { name: "Spicy Paneer", description: "Onion, Paneer, Red Paprika", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Spicy 🌶️", image: spicyPaneerImg },
+      { name: "Delight Extra Cheese", description: "Capsicum, Mushroom, Jalapeno", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: delightImg },
+      { name: "Tikki Crush Pizza", description: "Mushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Must Try", image: tikkiCrushImg },
+      // — Toppings —
+      { name: "Tomato Pizza", description: "Single topping — fresh tomato", price: 59, image: margheritaImg },
+      { name: "Onion Pizza", description: "Single topping — golden onion", price: 70, image: pepperoniImg },
+      { name: "Capsicum Pizza", description: "Single topping — crisp capsicum", price: 70, image: paneerTikkaImg },
+      { name: "Corn Pizza", description: "Single topping — sweet corn", price: 80, image: farmhouseImg },
+      { name: "Onion & Corn", description: "Double topping", price: 90, image: zestyTangyImg },
+      { name: "Onion & Capsicum", description: "Double topping", price: 90, image: chickTikkaImg },
+      { name: "Onion & Paneer", description: "Double topping", price: 100, image: tandooriPaneerImg },
+      { name: "Corn & Paneer", description: "Double topping", price: 100, image: makhaniImg },
+      { name: "Paneer & Corn", description: "Double topping", price: 100, image: classicalImg },
+      // — Veg Treat & Special —
+      { name: "Single Cheese", description: "Veg Treat — all veggies with single cheese", price: 110, image: bbqChickenImg },
+      { name: "Cheese & Corn", description: "Veg Treat — all veggies with cheese & corn", price: 130, image: meatLoversImg },
+      { name: "Double Cheese", description: "Veg Treat — all veggies with double cheese", price: 150, image: delightImg },
+      { name: "Pizza Ride Special", description: "All Veggies with Loaded Cheese", price: 259, sizes: [{ label: "Reg", price: 259 }, { label: "Med", price: 349 }, { label: "Large", price: 449 }], badge: "🌟 Signature", image: tikkiCrushImg },
     ],
   },
   {
@@ -290,7 +199,7 @@ const categories: Category[] = [
 
 export default function Menu() {
   const { toast } = useToast();
-  const [activeCategory, setActiveCategory] = useState("veg1");
+  const [activeCategory, setActiveCategory] = useState("pizzas");
 
   const handleAddToOrder = (name: string) => {
     toast({
