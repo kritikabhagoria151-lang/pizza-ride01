@@ -17,6 +17,7 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
+    { name: "Home", href: "#" },
     { name: "Menu", href: "#menu" },
     { name: "Why Us", href: "#why-us" },
     { name: "Gallery", href: "#gallery" },
