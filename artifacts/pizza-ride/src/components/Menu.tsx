@@ -125,7 +125,7 @@ const categories: Category[] = [
     items: [
       { name: "Veg Grill Sandwich", description: "Grilled with cheese, cucumber, tomato, and green chutney.", price: 70, image: vegGrillSandwichImg },
       { name: "Spicy Paneer Sandwich", description: "Spicy paneer stuffing with fresh veggies in toasted bread.", price: 90, image: spicySandwichImg },
-      { name: "Cheese Grill Sandwich", description: "Simple, delicious cheese grilled sandwich.", price: 30, badge: "Best Value", image: eggCheeseSandwichImg },
+      { name: "Cheese Grill Sandwich", description: "Simple, delicious cheese grilled sandwich.", price: 90, image: eggCheeseSandwichImg },
     ],
   },
   {
@@ -146,7 +146,7 @@ const categories: Category[] = [
       { name: "Red Sauce Pasta", description: "Penne in rich spiced tomato red sauce.", price: 109, image: redSauceImg },
       { name: "White Sauce Pasta", description: "Creamy béchamel white sauce pasta.", price: 109, image: whiteSauceImg },
       { name: "Tandoori Sauce Pasta", description: "Smoky tandoori flavoured sauce pasta.", price: 119, badge: "Chef's Pick", image: tandooriPastaImg },
-      { name: "Makhani Sauce Pasta", description: "Rich makhani sauce — buttery and aromatic.", price: 115, image: makhaniPastaImg },
+      { name: "Makhani Sauce Pasta", description: "Rich makhani sauce — buttery and aromatic.", price: 119, image: makhaniPastaImg },
       { name: "Mix Sauce Pasta", description: "Best of all sauces mixed together.", price: 149, badge: "Loaded", image: mixSauceImg },
     ],
   },
@@ -169,7 +169,8 @@ const categories: Category[] = [
       { name: "Butterscotch Shake", description: "Rich butterscotch milkshake.", price: 90, image: butterscotchShakeImg },
       { name: "Vanilla Shake", description: "Classic smooth vanilla milkshake.", price: 90, image: vanillaShakeImg },
       { name: "Choco Oreo Shake", description: "Crushed Oreos blended in chocolate shake.", price: 90, badge: "Fan Fav", image: chocoOreoShakeImg },
-      { name: "Special Shake", description: "Our special house-blend milkshake.", price: 120, image: lemonadeImg },
+      { name: "Black Current Shake", description: "Refreshing black currant flavoured milkshake.", price: 90, image: lemonadeImg },
+      { name: "Soft Drink", description: "Chilled soft drink — Pepsi, 7Up, Mirinda & more.", price: 30, image: orangeJuiceImg },
     ],
   },
   {
