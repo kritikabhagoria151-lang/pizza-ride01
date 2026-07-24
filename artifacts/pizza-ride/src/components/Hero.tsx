@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Flame } from "lucide-react";
-import heroImg from "@/assets/hero.jpg";
+import heroImg from "@/assets/pizza-ride-logo.jpg";
 
 export default function Hero() {
   return (
