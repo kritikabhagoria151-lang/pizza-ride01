@@ -2,15 +2,13 @@ import { motion } from "framer-motion";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import galleryBurgerImg from "@/assets/gallery-burger.webp";
 import galleryShakeImg from "@/assets/gallery-shake.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
+import galleryFriesImg from "@/assets/gallery-fries.jpg";
 
 const photos = [
   { src: galleryPizzaImg, alt: "Fresh Pizza", span: "lg:col-span-2", delay: 0 },
   { src: galleryBurgerImg, alt: "Juicy Burger", span: "", delay: 0.1 },
   { src: galleryShakeImg, alt: "Creamy Shake", span: "", delay: 0.2 },
-  { src: gallery3, alt: "Fresh Ingredients", span: "", delay: 0.3 },
-  { src: gallery4, alt: "Steaming Hot Pizza", span: "lg:col-span-2", delay: 0.4 },
+  { src: galleryFriesImg, alt: "French Fries", span: "lg:col-span-3", delay: 0.3 },
 ];
 
 export default function Gallery() {
