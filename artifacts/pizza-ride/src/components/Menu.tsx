@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
-// Veg 1 & 2 Pizza images
+// Pizza images
 import farmhouseImg from "@/assets/menu-farmhouse.jpg";
 import tandooriPaneerImg from "@/assets/menu-veg-tandoori-paneer.jpg";
 import zestyTangyImg from "@/assets/menu-veg-cheese-corn.jpg";
@@ -68,22 +67,15 @@ import { Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 type MenuItemSize = { label: string; price: number };
-
 type MenuItem = {
   name: string;
   description: string;
   price: number;
   sizes?: MenuItemSize[];
   badge?: string;
-  image?: string;
+  image: string;
 };
-
-type Category = {
-  id: string;
-  label: string;
-  emoji: string;
-  items: MenuItem[];
-};
+type Category = { id: string; label: string; emoji: string; items: MenuItem[] };
 
 const categories: Category[] = [
   {
@@ -91,17 +83,14 @@ const categories: Category[] = [
     label: "Pizzas",
     emoji: "🍕",
     items: [
-      // — Veg 1 —
       { name: "Farm House", description: "Onion, Capsicum, Corn, Mushroom", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Bestseller", image: farmhouseImg },
       { name: "Tandoori Paneer", description: "Onion, Paneer, Red Paprika", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: tandooriPaneerImg },
       { name: "Zesty Tangy Pizza", description: "Onion, Corn, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: zestyTangyImg },
       { name: "Makhani Pizza", description: "Makhani Sauce, Capsicum, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Local Fav", image: makhaniImg },
-      // — Veg 2 —
       { name: "Classical Pizza", description: "Onion, Capsicum, Corn, Mushroom, Paneer", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: classicalImg },
       { name: "Spicy Paneer", description: "Onion, Paneer, Red Paprika", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Spicy 🌶️", image: spicyPaneerImg },
       { name: "Delight Extra Cheese", description: "Capsicum, Mushroom, Jalapeno", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: delightImg },
       { name: "Tikki Crush Pizza", description: "Mushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Must Try", image: tikkiCrushImg },
-      // — Toppings —
       { name: "Tomato Pizza", description: "Single topping — fresh tomato", price: 59, image: margheritaImg },
       { name: "Onion Pizza", description: "Single topping — golden onion", price: 70, image: pepperoniImg },
       { name: "Capsicum Pizza", description: "Single topping — crisp capsicum", price: 70, image: paneerTikkaImg },
@@ -111,7 +100,6 @@ const categories: Category[] = [
       { name: "Onion & Paneer", description: "Double topping", price: 100, image: tandooriPaneerImg },
       { name: "Corn & Paneer", description: "Double topping", price: 100, image: makhaniImg },
       { name: "Paneer & Corn", description: "Double topping", price: 100, image: classicalImg },
-      // — Veg Treat & Special —
       { name: "Single Cheese", description: "Veg Treat — all veggies with single cheese", price: 110, image: bbqChickenImg },
       { name: "Cheese & Corn", description: "Veg Treat — all veggies with cheese & corn", price: 130, image: meatLoversImg },
       { name: "Double Cheese", description: "Veg Treat — all veggies with double cheese", price: 150, image: delightImg },
@@ -123,24 +111,31 @@ const categories: Category[] = [
     label: "Burgers",
     emoji: "🍔",
     items: [
-      { name: "Allo Tikki Burger", description: "Crispy spiced potato tikki patty with fresh veggies and chutney.", price: 40, badge: "Budget Pick", image: allotikkiBurgerImg },
-      { name: "Veggi Burger", description: "Classic veggie patty burger with fresh toppings.", price: 50, image: veggiBurgerImg },
-      { name: "Cheese Spicy Burger", description: "Spicy veggie patty loaded with gooey cheese.", price: 70, image: cheesyBurgerImg },
-      { name: "Paneer Burger", description: "Juicy paneer patty with mint mayo and fresh veggies.", price: 70, image: chickenBurgerImg },
-      { name: "Jumbo Burger", description: "Our biggest burger — stacked high with double patty and extra cheese.", price: 99, badge: "Bestseller", image: jumboBurgerImg },
+      { name: "Allo Tikki Burger", description: "Crispy spiced potato tikki patty with fresh veggies.", price: 40, badge: "Budget Pick", image: allotikkiBurgerImg },
+      { name: "Veggi Burger", description: "Classic veggie patty with fresh toppings.", price: 50, image: veggiBurgerImg },
+      { name: "Cheese Spicy Burger", description: "Spicy patty loaded with gooey cheese.", price: 70, image: cheesyBurgerImg },
+      { name: "Paneer Burger", description: "Juicy paneer patty with mint mayo.", price: 70, image: chickenBurgerImg },
+      { name: "Jumbo Burger", description: "Double patty, extra cheese, fully loaded.", price: 99, badge: "Bestseller", image: jumboBurgerImg },
     ],
   },
   {
-    id: "sandwich-wraps",
-    label: "Sandwich & Wraps",
+    id: "sandwich",
+    label: "Sandwich",
     emoji: "🥪",
     items: [
       { name: "Veg Grill Sandwich", description: "Grilled with cheese, cucumber, tomato, and green chutney.", price: 70, image: vegGrillSandwichImg },
       { name: "Spicy Paneer Sandwich", description: "Spicy paneer stuffing with fresh veggies in toasted bread.", price: 90, image: spicySandwichImg },
       { name: "Cheese Grill Sandwich", description: "Simple, delicious cheese grilled sandwich.", price: 30, badge: "Best Value", image: eggCheeseSandwichImg },
+    ],
+  },
+  {
+    id: "wraps",
+    label: "Wraps",
+    emoji: "🌯",
+    items: [
       { name: "Allo Tikki Wrap", description: "Spiced potato tikki in a soft wrap with chutneys.", price: 60, image: allotikkiWrapImg },
-      { name: "Cheese Spicy Wrap", description: "Spicy filling with melted cheese wrapped up fresh.", price: 90, image: cheeseWrapImg },
-      { name: "Paneer Wrap", description: "Soft paneer with mint chutney, onions, and veggies in a wrap.", price: 110, image: paneerWrapImg },
+      { name: "Cheese Spicy Wrap", description: "Spicy filling with melted cheese in a fresh wrap.", price: 90, image: cheeseWrapImg },
+      { name: "Paneer Wrap", description: "Soft paneer with mint chutney, onions, and veggies.", price: 110, image: paneerWrapImg },
     ],
   },
   {
@@ -148,11 +143,11 @@ const categories: Category[] = [
     label: "Pasta",
     emoji: "🍝",
     items: [
-      { name: "Red Sauce Pasta", description: "Penne in a rich spiced tomato red sauce.", price: 109, image: redSauceImg },
+      { name: "Red Sauce Pasta", description: "Penne in rich spiced tomato red sauce.", price: 109, image: redSauceImg },
       { name: "White Sauce Pasta", description: "Creamy béchamel white sauce pasta.", price: 109, image: whiteSauceImg },
       { name: "Tandoori Sauce Pasta", description: "Smoky tandoori flavoured sauce pasta.", price: 119, badge: "Chef's Pick", image: tandooriPastaImg },
       { name: "Makhani Sauce Pasta", description: "Rich makhani sauce — buttery and aromatic.", price: 115, image: makhaniPastaImg },
-      { name: "Mix Sauce Pasta", description: "Best of all sauces mixed together for maximum flavour.", price: 149, badge: "Loaded", image: mixSauceImg },
+      { name: "Mix Sauce Pasta", description: "Best of all sauces mixed together.", price: 149, badge: "Loaded", image: mixSauceImg },
     ],
   },
   {
@@ -160,9 +155,9 @@ const categories: Category[] = [
     label: "Garlic Breads",
     emoji: "🧄",
     items: [
-      { name: "Plain Garlic Bread", description: "Soft bread loaded with garlic butter — simple and satisfying.", price: 81, image: plainGarlicImg },
-      { name: "Veg Loaded Garlic Bread", description: "Garlic bread stuffed with veg filling and melted cheese.", price: 110, badge: "Must Try", image: vegLoadedGarlicImg },
-      { name: "Laden Garlic Bread", description: "Generously loaded garlic bread with extra toppings.", price: 120, image: ladenGarlicImg },
+      { name: "Plain Garlic Bread", description: "Soft bread with garlic butter.", price: 81, image: plainGarlicImg },
+      { name: "Veg Loaded Garlic Bread", description: "Garlic bread with veg filling and melted cheese.", price: 110, badge: "Must Try", image: vegLoadedGarlicImg },
+      { name: "Laden Garlic Bread", description: "Generously loaded with extra toppings.", price: 120, image: ladenGarlicImg },
     ],
   },
   {
@@ -171,136 +166,123 @@ const categories: Category[] = [
     emoji: "🥤",
     items: [
       { name: "Strawberry Shake", description: "Thick creamy strawberry milkshake.", price: 90, image: strawberryShakeImg },
-      { name: "Butterscotch Shake", description: "Rich butterscotch flavoured milkshake.", price: 90, image: butterscotchShakeImg },
+      { name: "Butterscotch Shake", description: "Rich butterscotch milkshake.", price: 90, image: butterscotchShakeImg },
       { name: "Vanilla Shake", description: "Classic smooth vanilla milkshake.", price: 90, image: vanillaShakeImg },
-      { name: "Choco Oreo Shake", description: "Crushed Oreos blended in a chocolate shake.", price: 90, badge: "Fan Fav", image: chocoOreoShakeImg },
+      { name: "Choco Oreo Shake", description: "Crushed Oreos blended in chocolate shake.", price: 90, badge: "Fan Fav", image: chocoOreoShakeImg },
       { name: "Special Shake", description: "Our special house-blend milkshake.", price: 120, image: lemonadeImg },
     ],
   },
   {
-    id: "sides",
+    id: "fries",
     label: "Fries & Sides",
     emoji: "🍟",
     items: [
       { name: "Salted Fries", description: "Golden crispy fries with sea salt.", price: 65, image: saltedFriesImg },
       { name: "Peri Peri Fries", description: "Fries tossed in bold peri-peri spice.", price: 69, image: periPeriFriesImg },
-      { name: "Masala Fries", description: "Fries dusted with chaat masala and spices.", price: 69, image: masalaFriesImg },
+      { name: "Masala Fries", description: "Fries dusted with chaat masala.", price: 69, image: masalaFriesImg },
       { name: "Cheese Peri Peri Fries", description: "Peri peri fries topped with cheese sauce.", price: 99, badge: "Popular", image: cheeseFriesImg },
       { name: "Veg Pocket", description: "Crispy pocket filled with spiced veggies.", price: 59, image: onionRingsImg },
       { name: "Cheese Pocket", description: "Crispy pocket with gooey cheese filling.", price: 89, image: garlicBreadSticksImg },
       { name: "Cheese Dip", description: "Creamy cheese dipping sauce.", price: 30, image: coleslawImg },
       { name: "Spice Dip", description: "Spicy tangy dipping sauce.", price: 30, image: garlicBreadPaneerImg },
-      { name: "Tandoori Dip", description: "Smoky tandoori flavoured dip.", price: 30, image: pestoImg },
+      { name: "Tandoori Dip", description: "Smoky tandoori dip.", price: 30, image: pestoImg },
       { name: "Chilly Dip", description: "Hot chilly sauce dip.", price: 30, image: chickenWingsImg },
       { name: "Paneer Salad", description: "Fresh salad with paneer, onion, and veggies.", price: 100, image: orangeJuiceImg },
     ],
   },
 ];
 
+function ItemCard({ item, index, onAdd }: { item: MenuItem; index: number; onAdd: (name: string) => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.4, delay: (index % 6) * 0.06 }}
+      className="group flex flex-col bg-background rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-lg transition-all duration-300"
+    >
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        {item.badge && (
+          <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow">
+            {item.badge}
+          </span>
+        )}
+      </div>
+      <div className="p-4 flex flex-col flex-grow">
+        <div className="flex justify-between items-start mb-1 gap-2">
+          <h5 className="font-bold text-foreground text-base leading-snug">{item.name}</h5>
+          <span className="font-bold text-primary text-sm shrink-0">
+            {item.sizes ? `from ₹${item.price}` : `₹${item.price}`}
+          </span>
+        </div>
+        <p className="text-muted-foreground text-xs flex-grow mb-3">{item.description}</p>
+        {item.sizes && (
+          <div className="flex gap-1 mb-3">
+            {item.sizes.map((s) => (
+              <span key={s.label} className="flex-1 text-center text-[10px] bg-secondary/10 text-secondary-foreground rounded-lg py-1 font-semibold leading-tight">
+                {s.label}<br />
+                <span className="font-bold text-primary">₹{s.price}</span>
+              </span>
+            ))}
+          </div>
+        )}
+        <button
+          onClick={() => onAdd(item.name)}
+          className="w-full flex items-center justify-center gap-1.5 py-2 bg-secondary/10 hover:bg-secondary text-secondary-foreground font-bold rounded-xl transition-colors text-xs"
+        >
+          <Plus size={14} /> Add to Order
+        </button>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Menu() {
   const { toast } = useToast();
-  const [activeCategory, setActiveCategory] = useState("pizzas");
 
-  const handleAddToOrder = (name: string) => {
-    toast({
-      title: "Added to Order!",
-      description: `${name} has been added to your cart.`,
-    });
+  const handleAdd = (name: string) => {
+    toast({ title: "Added to Order!", description: `${name} has been added to your cart.` });
   };
-
-  const current = categories.find((c) => c.id === activeCategory)!;
 
   return (
     <section id="menu" className="py-24 bg-card">
       <div className="container mx-auto px-4 md:px-6">
         {/* Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-secondary font-bold tracking-widest uppercase text-sm mb-3">Our Menu</h2>
-          <h3 className="text-4xl md:text-5xl font-display font-black text-foreground mb-6">
+          <h3 className="text-4xl md:text-5xl font-display font-black text-foreground mb-4">
             Fast. Fresh. <br /> Delicious.
           </h3>
           <p className="text-muted-foreground text-lg">
-            Real Pizza Ride menu — wood-fired flavours, made fresh every order.
+            Real Pizza Ride menu — every item made fresh to order in Samalkha.
           </p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        {/* All categories stacked */}
+        <div className="space-y-20">
           {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm transition-all duration-200 border ${
-                activeCategory === cat.id
-                  ? "bg-primary text-primary-foreground border-primary shadow-md scale-105"
-                  : "bg-background text-foreground border-border hover:border-primary hover:text-primary"
-              }`}
-            >
-              <span>{cat.emoji}</span>
-              {cat.label}
-            </button>
+            <div key={cat.id} id={`cat-${cat.id}`}>
+              {/* Category heading */}
+              <div className="flex items-center gap-3 mb-8">
+                <span className="text-3xl">{cat.emoji}</span>
+                <h4 className="text-2xl md:text-3xl font-display font-black text-foreground">{cat.label}</h4>
+                <div className="flex-1 h-px bg-border ml-2" />
+              </div>
+
+              {/* Items grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                {cat.items.map((item, idx) => (
+                  <ItemCard key={item.name} item={item} index={idx} onAdd={handleAdd} />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
-
-        {/* Items Grid — all items now have images */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-          >
-            {current.items.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.06 }}
-                className="group flex flex-col bg-background rounded-3xl overflow-hidden border border-border shadow-sm hover:shadow-xl transition-all duration-300"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  {item.badge && (
-                    <div className="absolute top-4 left-4 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md">
-                      {item.badge}
-                    </div>
-                  )}
-                </div>
-                <div className="p-5 flex flex-col flex-grow">
-                  <div className="flex justify-between items-start mb-1">
-                    <h4 className="font-display font-bold text-lg text-foreground leading-tight">{item.name}</h4>
-                    <span className="font-bold text-primary text-base ml-2 shrink-0">
-                      {item.sizes ? `from ₹${item.price}` : `₹${item.price}`}
-                    </span>
-                  </div>
-                  <p className="text-muted-foreground text-sm flex-grow mb-3">{item.description}</p>
-                  {item.sizes && (
-                    <div className="flex gap-1.5 mb-3">
-                      {item.sizes.map((s) => (
-                        <span key={s.label} className="flex-1 text-center text-xs bg-secondary/10 text-secondary-foreground rounded-lg py-1.5 font-semibold">
-                          {s.label}<br />
-                          <span className="font-bold text-primary">₹{s.price}</span>
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  <button
-                    onClick={() => handleAddToOrder(item.name)}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 bg-secondary/10 hover:bg-secondary text-secondary-foreground font-bold rounded-xl transition-colors text-sm"
-                  >
-                    <Plus size={16} /> Add to Order
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
       </div>
     </section>
   );
