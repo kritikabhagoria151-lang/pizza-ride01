@@ -1,4 +1,4 @@
-import { MapPin, Phone, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Clock, Send, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
@@ -43,7 +43,7 @@ export default function LocationContact() {
                 <div>
                   <h4 className="font-bold text-lg text-foreground mb-1">Samalkha Location</h4>
                   <p className="text-muted-foreground">
-                    Main Market Road, Near Panipat<br />
+                    NH-44, Near PIET College<br />
                     Samalkha, Haryana 132101, India
                   </p>
                 </div>
@@ -68,9 +68,46 @@ export default function LocationContact() {
                 <div>
                   <h4 className="font-bold text-lg text-foreground mb-1">Opening Hours</h4>
                   <p className="text-muted-foreground">
-                    Mon - Sun: 12:00 AM – 12:00 PM
+                    Mon - Sun: 12:00 PM – 12:00 AM
                   </p>
                 </div>
+              </div>
+
+              {/* PIET Special */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-yellow-400/20 text-yellow-500 flex items-center justify-center shrink-0">
+                  <Star size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg text-foreground mb-1">Special FREE Delivery 🎉</h4>
+                  <p className="text-muted-foreground">
+                    Free delivery for <span className="font-bold text-primary">PIET College Students!</span><br />
+                    Every Bite is a Joy Ride 🍕
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Order Online */}
+            <div className="bg-card p-6 md:p-8 rounded-3xl border border-border shadow-sm mb-6">
+              <h4 className="font-bold text-xl text-foreground mb-4">Order Online</h4>
+              <div className="flex gap-4">
+                <a
+                  href="https://www.zomato.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 bg-red-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-red-600 transition-colors text-sm"
+                >
+                  🍽️ Zomato
+                </a>
+                <a
+                  href="https://www.swiggy.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 bg-orange-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-orange-600 transition-colors text-sm"
+                >
+                  🛵 Swiggy
+                </a>
               </div>
             </div>
 
