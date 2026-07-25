@@ -3,12 +3,14 @@ import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import galleryBurgerImg from "@/assets/gallery-burger.webp";
 import galleryShakeImg from "@/assets/gallery-shake.jpg";
 import galleryFriesImg from "@/assets/gallery-fries.jpg";
+import galleryPromoImg from "@/assets/gallery-promo.jpg";
 
 const photos = [
-  { src: galleryPizzaImg, alt: "Fresh Pizza", span: "lg:col-span-2", delay: 0 },
-  { src: galleryBurgerImg, alt: "Juicy Burger", span: "", delay: 0.1 },
-  { src: galleryShakeImg, alt: "Creamy Shake", span: "", delay: 0.2 },
-  { src: galleryFriesImg, alt: "French Fries", span: "lg:col-span-3", delay: 0.3 },
+  { src: galleryPromoImg, alt: "Pizza Ride Promo", span: "lg:col-span-2", delay: 0 },
+  { src: galleryPizzaImg, alt: "Fresh Pizza", span: "", delay: 0.1 },
+  { src: galleryBurgerImg, alt: "Juicy Burger", span: "", delay: 0.2 },
+  { src: galleryShakeImg, alt: "Creamy Shake", span: "", delay: 0.3 },
+  { src: galleryFriesImg, alt: "French Fries", span: "lg:col-span-2", delay: 0.4 },
 ];
 
 export default function Gallery() {
