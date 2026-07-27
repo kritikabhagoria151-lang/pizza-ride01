@@ -1,10 +1,19 @@
 import { motion } from "framer-motion";
+import { Plus } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 // Real food photos (uploaded by restaurant)
 import pizzaImg from "@/assets/feature-pizza.avif";
 import burgerImg from "@/assets/feature-burger.webp";
 import shakeImg from "@/assets/feature-shake.jpg";
 import friesImg from "@/assets/gallery-fries.jpg";
+
+// Burger images
+import allotikkiBurgerImg from "@/assets/menu-burger-aloo-tikki.jpg";
+import veggiBurgerImg from "@/assets/menu-burger-double-cheese-veg.jpg";
+import cheesyBurgerImg from "@/assets/menu-burger-paneer-zinger.jpg";
+import chickenBurgerImg from "@/assets/menu-burger-chicken.jpg";
+import jumboBurgerImg from "@/assets/menu-burger-bbq-smash.jpg";
 
 // Sandwich & wrap images
 import vegGrillSandwichImg from "@/assets/menu-sandwich-veg-grilled.jpg";
@@ -28,6 +37,23 @@ import ladenGarlicImg from "@/assets/menu-garlic-bread-stuffed.jpg";
 
 // Drink images
 import orangeJuiceImg from "@/assets/menu-drink-orange-juice.jpg";
+import strawberryShakeImg from "@/assets/menu-drink-strawberry-shake.jpg";
+import butterscotchShakeImg from "@/assets/menu-drink-cold-coffee.jpg";
+import vanillaShakeImg from "@/assets/menu-drink-mango-lassi.jpg";
+import chocoOreoShakeImg from "@/assets/menu-drink-oreo-shake.jpg";
+import lemonadeImg from "@/assets/menu-drink-masala-lemonade.jpg";
+
+// Fries & sides images
+import saltedFriesImg from "@/assets/menu-fries-classic.jpg";
+import periPeriFriesImg from "@/assets/menu-fries-peri-peri.jpg";
+import masalaFriesImg from "@/assets/menu-fries-masala.jpg";
+import cheeseFriesImg from "@/assets/menu-fries-cheese.jpg";
+import onionRingsImg from "@/assets/menu-sides-onion-rings.jpg";
+import garlicBreadSticksImg from "@/assets/menu-garlic-breadsticks.jpg";
+import coleslawImg from "@/assets/menu-sides-coleslaw.jpg";
+import garlicBreadPaneerImg from "@/assets/menu-garlic-bread-paneer.jpg";
+import pestoImg from "@/assets/menu-pasta-chicken-pesto.jpg";
+import chickenWingsImg from "@/assets/menu-sides-chicken-wings.jpg";
 
 type MenuItemSize = { label: string; price: number };
 type MenuItem = {
