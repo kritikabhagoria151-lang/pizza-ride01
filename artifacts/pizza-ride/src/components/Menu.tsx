@@ -1,27 +1,10 @@
 import { motion } from "framer-motion";
 
-// Pizza images
-import farmhouseImg from "@/assets/menu-farmhouse.jpg";
-import tandooriPaneerImg from "@/assets/menu-veg-tandoori-paneer.jpg";
-import zestyTangyImg from "@/assets/menu-veg-cheese-corn.jpg";
-import makhaniImg from "@/assets/menu-veg-paneer-makhani.jpg";
-import classicalImg from "@/assets/menu-veg-garden-fresh.jpg";
-import spicyPaneerImg from "@/assets/menu-spicy-veggie.jpg";
-import delightImg from "@/assets/menu-veg-mushroom.jpg";
-import tikkiCrushImg from "@/assets/menu-veg-veggie-supreme.jpg";
-import margheritaImg from "@/assets/menu-margherita.jpg";
-import pepperoniImg from "@/assets/menu-pepperoni.jpg";
-import paneerTikkaImg from "@/assets/menu-paneer-tikka.jpg";
-import chickTikkaImg from "@/assets/menu-chicken-tikka-pizza.jpg";
-import meatLoversImg from "@/assets/menu-meat-lovers.jpg";
-import bbqChickenImg from "@/assets/menu-bbq-chicken.jpg";
-
-// Burger images
-import allotikkiBurgerImg from "@/assets/menu-burger-aloo-tikki.jpg";
-import veggiBurgerImg from "@/assets/menu-burger-double-cheese-veg.jpg";
-import cheesyBurgerImg from "@/assets/menu-burger-paneer-zinger.jpg";
-import jumboBurgerImg from "@/assets/menu-burger-bbq-smash.jpg";
-import chickenBurgerImg from "@/assets/menu-burger-chicken.jpg";
+// Real food photos (uploaded by restaurant)
+import pizzaImg from "@/assets/feature-pizza.avif";
+import burgerImg from "@/assets/feature-burger.webp";
+import shakeImg from "@/assets/feature-shake.jpg";
+import friesImg from "@/assets/gallery-fries.jpg";
 
 // Sandwich & wrap images
 import vegGrillSandwichImg from "@/assets/menu-sandwich-veg-grilled.jpg";
@@ -37,34 +20,14 @@ import whiteSauceImg from "@/assets/menu-pasta-alfredo.jpg";
 import tandooriPastaImg from "@/assets/menu-pasta-pink-sauce.jpg";
 import makhaniPastaImg from "@/assets/menu-pasta-bolognese.jpg";
 import mixSauceImg from "@/assets/menu-pasta-mac-cheese.jpg";
-import pestoImg from "@/assets/menu-pasta-chicken-pesto.jpg";
 
 // Garlic bread images
 import plainGarlicImg from "@/assets/menu-garlic-bread-classic.jpg";
 import vegLoadedGarlicImg from "@/assets/menu-garlic-bread-cheese.jpg";
 import ladenGarlicImg from "@/assets/menu-garlic-bread-stuffed.jpg";
-import garlicBreadPaneerImg from "@/assets/menu-garlic-bread-paneer.jpg";
-import garlicBreadSticksImg from "@/assets/menu-garlic-breadsticks.jpg";
 
 // Drink images
-import strawberryShakeImg from "@/assets/menu-drink-strawberry-shake.jpg";
-import butterscotchShakeImg from "@/assets/menu-drink-mango-lassi.jpg";
-import vanillaShakeImg from "@/assets/menu-drink-cold-coffee.jpg";
-import chocoOreoShakeImg from "@/assets/menu-drink-oreo-shake.jpg";
-import lemonadeImg from "@/assets/menu-drink-masala-lemonade.jpg";
 import orangeJuiceImg from "@/assets/menu-drink-orange-juice.jpg";
-
-// Fries & sides images
-import saltedFriesImg from "@/assets/menu-fries-classic.jpg";
-import periPeriFriesImg from "@/assets/menu-fries-peri-peri.jpg";
-import masalaFriesImg from "@/assets/menu-fries-masala.jpg";
-import cheeseFriesImg from "@/assets/menu-fries-cheese.jpg";
-import onionRingsImg from "@/assets/menu-sides-onion-rings.jpg";
-import coleslawImg from "@/assets/menu-sides-coleslaw.jpg";
-import chickenWingsImg from "@/assets/menu-sides-chicken-wings.jpg";
-
-import { Plus } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 
 type MenuItemSize = { label: string; price: number };
 type MenuItem = {
@@ -83,27 +46,27 @@ const categories: Category[] = [
     label: "Pizzas",
     emoji: "🍕",
     items: [
-      { name: "Farm House", description: "Onion, Capsicum, Corn, Mushroom", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Bestseller", image: farmhouseImg },
-      { name: "Tandoori Paneer", description: "Onion, Paneer, Red Paprika", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: tandooriPaneerImg },
-      { name: "Zesty Tangy Pizza", description: "Onion, Corn, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: zestyTangyImg },
-      { name: "Makhani Pizza", description: "Makhani Sauce, Capsicum, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Local Fav", image: makhaniImg },
-      { name: "Classical Pizza", description: "Onion, Capsicum, Corn, Mushroom, Paneer", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: classicalImg },
-      { name: "Spicy Paneer", description: "Onion, Paneer, Red Paprika", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Spicy 🌶️", image: spicyPaneerImg },
-      { name: "Delight Extra Cheese", description: "Capsicum, Mushroom, Jalapeno", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: delightImg },
-      { name: "Tikki Crush Pizza", description: "Mushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Must Try", image: tikkiCrushImg },
-      { name: "Tomato Pizza", description: "Single topping — fresh tomato", price: 59, image: margheritaImg },
-      { name: "Onion Pizza", description: "Single topping — golden onion", price: 70, image: pepperoniImg },
-      { name: "Capsicum Pizza", description: "Single topping — crisp capsicum", price: 70, image: paneerTikkaImg },
-      { name: "Corn Pizza", description: "Single topping — sweet corn", price: 80, image: farmhouseImg },
-      { name: "Onion & Corn", description: "Double topping", price: 90, image: zestyTangyImg },
-      { name: "Onion & Capsicum", description: "Double topping", price: 90, image: chickTikkaImg },
-      { name: "Onion & Paneer", description: "Double topping", price: 100, image: tandooriPaneerImg },
-      { name: "Corn & Paneer", description: "Double topping", price: 100, image: makhaniImg },
-      { name: "Paneer & Corn", description: "Double topping", price: 100, image: classicalImg },
-      { name: "Single Cheese", description: "Veg Treat — all veggies with single cheese", price: 110, image: bbqChickenImg },
-      { name: "Cheese & Corn", description: "Veg Treat — all veggies with cheese & corn", price: 130, image: meatLoversImg },
-      { name: "Double Cheese", description: "Veg Treat — all veggies with double cheese", price: 150, image: delightImg },
-      { name: "Pizza Ride Special", description: "All Veggies with Loaded Cheese", price: 259, sizes: [{ label: "Reg", price: 259 }, { label: "Med", price: 349 }, { label: "Large", price: 449 }], badge: "🌟 Signature", image: tikkiCrushImg },
+      { name: "Farm House", description: "Onion, Capsicum, Corn, Mushroom", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Bestseller", image: pizzaImg },
+      { name: "Tandoori Paneer", description: "Onion, Paneer, Red Paprika", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: pizzaImg },
+      { name: "Zesty Tangy Pizza", description: "Onion, Corn, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: pizzaImg },
+      { name: "Makhani Pizza", description: "Makhani Sauce, Capsicum, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Local Fav", image: pizzaImg },
+      { name: "Classical Pizza", description: "Onion, Capsicum, Corn, Mushroom, Paneer", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: pizzaImg },
+      { name: "Spicy Paneer", description: "Onion, Paneer, Red Paprika", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Spicy 🌶️", image: pizzaImg },
+      { name: "Delight Extra Cheese", description: "Capsicum, Mushroom, Jalapeno", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: pizzaImg },
+      { name: "Tikki Crush Pizza", description: "Mushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Must Try", image: pizzaImg },
+      { name: "Tomato Pizza", description: "Single topping — fresh tomato", price: 59, image: pizzaImg },
+      { name: "Onion Pizza", description: "Single topping — golden onion", price: 70, image: pizzaImg },
+      { name: "Capsicum Pizza", description: "Single topping — crisp capsicum", price: 70, image: pizzaImg },
+      { name: "Corn Pizza", description: "Single topping — sweet corn", price: 80, image: pizzaImg },
+      { name: "Onion & Corn", description: "Double topping", price: 90, image: pizzaImg },
+      { name: "Onion & Capsicum", description: "Double topping", price: 90, image: pizzaImg },
+      { name: "Onion & Paneer", description: "Double topping", price: 100, image: pizzaImg },
+      { name: "Corn & Paneer", description: "Double topping", price: 100, image: pizzaImg },
+      { name: "Paneer & Corn", description: "Double topping", price: 100, image: pizzaImg },
+      { name: "Single Cheese", description: "Veg Treat — all veggies with single cheese", price: 110, image: pizzaImg },
+      { name: "Cheese & Corn", description: "Veg Treat — all veggies with cheese & corn", price: 130, image: pizzaImg },
+      { name: "Double Cheese", description: "Veg Treat — all veggies with double cheese", price: 150, image: pizzaImg },
+      { name: "Pizza Ride Special", description: "All Veggies with Loaded Cheese", price: 259, sizes: [{ label: "Reg", price: 259 }, { label: "Med", price: 349 }, { label: "Large", price: 449 }], badge: "🌟 Signature", image: pizzaImg },
     ],
   },
   {
