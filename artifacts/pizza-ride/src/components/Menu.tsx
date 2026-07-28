@@ -14,6 +14,7 @@ import tikkiCrushImg from "@/assets/menu-pizza-tikki-crush.jpg";
 import margheritaImg from "@/assets/menu-margherita.jpg";
 import tomatoPizzaImg from "@/assets/menu-pizza-tomato.jpg";
 import onionPizzaImg from "@/assets/menu-pizza-onion.jpg";
+import capsicumPizzaImg from "@/assets/menu-pizza-capsicum.jpg";
 import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import signaturePizzaImg from "@/assets/feature-pizza.avif";
@@ -96,7 +97,7 @@ const categories: Category[] = [
       { name: "Tikki Crush Pizza", description: "Mushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Must Try", image: tikkiCrushImg },
       { name: "Tomato Pizza", description: "Single topping — fresh tomato", price: 59, image: tomatoPizzaImg },
       { name: "Onion Pizza", description: "Single topping — golden onion", price: 70, image: onionPizzaImg },
-      { name: "Capsicum Pizza", description: "Single topping — crisp capsicum", price: 70, image: gardenFreshImg },
+      { name: "Capsicum Pizza", description: "Single topping — crisp capsicum", price: 70, image: capsicumPizzaImg },
       { name: "Corn Pizza", description: "Single topping — sweet corn", price: 80, image: galleryPizzaImg },
       { name: "Onion & Corn", description: "Double topping", price: 90, image: farmhouseImg },
       { name: "Onion & Capsicum", description: "Double topping", price: 90, image: gardenFreshImg },
