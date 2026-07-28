@@ -5,12 +5,12 @@ import { useToast } from "@/hooks/use-toast";
 // Pizza images
 import farmhouseImg from "@/assets/menu-farmhouse.jpg";
 import tandooriPaneerPizzaImg from "@/assets/menu-veg-tandoori-paneer.jpg";
-import zestyTangyImg from "@/assets/menu-spicy-veggie.jpg";
+import zestyTangyImg from "@/assets/menu-pizza-zesty-tangy.jpg";
 import makhaniPizzaImg from "@/assets/menu-veg-paneer-makhani.jpg";
 import classicalPizzaImg from "@/assets/menu-veg-veggie-supreme.jpg";
 import spicyPaneerPizzaImg from "@/assets/menu-paneer-tikka.jpg";
-import delightCheeseImg from "@/assets/menu-veg-mushroom.jpg";
-import tikkiCrushImg from "@/assets/menu-veg-cheese-corn.jpg";
+import delightCheeseImg from "@/assets/menu-pizza-delight-cheese.jpg";
+import tikkiCrushImg from "@/assets/menu-pizza-tikki-crush.jpg";
 import margheritaImg from "@/assets/menu-margherita.jpg";
 import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
@@ -20,7 +20,7 @@ import signaturePizzaImg from "@/assets/feature-pizza.avif";
 import allotikkiBurgerImg from "@/assets/menu-burger-aloo-tikki.jpg";
 import veggiBurgerImg from "@/assets/menu-burger-double-cheese-veg.jpg";
 import cheesyBurgerImg from "@/assets/menu-burger-paneer-zinger.jpg";
-import paneerBurgerImg from "@/assets/menu-burger-chicken-tikka.jpg";
+import paneerBurgerImg from "@/assets/menu-burger-paneer.jpg";
 import jumboBurgerImg from "@/assets/menu-burger-bbq-smash.jpg";
 
 // Sandwich & wrap images
@@ -46,22 +46,23 @@ import ladenGarlicImg from "@/assets/menu-garlic-bread-stuffed.jpg";
 // Drink images
 import orangeJuiceImg from "@/assets/menu-drink-orange-juice.jpg";
 import strawberryShakeImg from "@/assets/menu-drink-strawberry-shake.jpg";
-import butterscotchShakeImg from "@/assets/menu-drink-cold-coffee.jpg";
-import vanillaShakeImg from "@/assets/menu-drink-mango-lassi.jpg";
+import butterscotchShakeImg from "@/assets/menu-drink-butterscotch-shake.jpg";
+import vanillaShakeImg from "@/assets/menu-drink-vanilla-shake.jpg";
 import chocoOreoShakeImg from "@/assets/menu-drink-oreo-shake.jpg";
-import lemonadeImg from "@/assets/menu-drink-masala-lemonade.jpg";
+import blackCurrantImg from "@/assets/menu-drink-black-currant.jpg";
 
 // Fries & sides images
 import saltedFriesImg from "@/assets/menu-fries-classic.jpg";
 import periPeriFriesImg from "@/assets/menu-fries-peri-peri.jpg";
 import masalaFriesImg from "@/assets/menu-fries-masala.jpg";
 import cheeseFriesImg from "@/assets/menu-fries-cheese.jpg";
-import onionRingsImg from "@/assets/menu-sides-onion-rings.jpg";
-import garlicBreadSticksImg from "@/assets/menu-garlic-breadsticks.jpg";
-import coleslawImg from "@/assets/menu-sides-coleslaw.jpg";
-import garlicBreadPaneerImg from "@/assets/menu-garlic-bread-paneer.jpg";
-import pestoImg from "@/assets/menu-pasta-chicken-pesto.jpg";
-import chickenWingsImg from "@/assets/menu-sides-chicken-wings.jpg";
+import vegPocketImg from "@/assets/menu-sides-veg-pocket.jpg";
+import cheesePocketImg from "@/assets/menu-sides-cheese-pocket.jpg";
+import cheeseDipImg from "@/assets/menu-dip-cheese.jpg";
+import spiceDipImg from "@/assets/menu-dip-spice.jpg";
+import tandooriDipImg from "@/assets/menu-dip-tandoori.jpg";
+import chillyDipImg from "@/assets/menu-dip-chilly.jpg";
+import paneerSaladImg from "@/assets/menu-sides-paneer-salad.jpg";
 
 type MenuItemSize = { label: string; price: number };
 type MenuItem = {
@@ -166,7 +167,7 @@ const categories: Category[] = [
       { name: "Butterscotch Shake", description: "Rich butterscotch milkshake.", price: 90, image: butterscotchShakeImg },
       { name: "Vanilla Shake", description: "Classic smooth vanilla milkshake.", price: 90, image: vanillaShakeImg },
       { name: "Choco Oreo Shake", description: "Crushed Oreos blended in chocolate shake.", price: 90, badge: "Fan Fav", image: chocoOreoShakeImg },
-      { name: "Black Current Shake", description: "Refreshing black currant flavoured milkshake.", price: 90, image: lemonadeImg },
+      { name: "Black Current Shake", description: "Refreshing black currant flavoured milkshake.", price: 90, image: blackCurrantImg },
       { name: "Soft Drink", description: "Chilled soft drink — Pepsi, 7Up, Mirinda & more.", price: 30, image: orangeJuiceImg },
     ],
   },
@@ -179,13 +180,13 @@ const categories: Category[] = [
       { name: "Peri Peri Fries", description: "Fries tossed in bold peri-peri spice.", price: 69, image: periPeriFriesImg },
       { name: "Masala Fries", description: "Fries dusted with chaat masala.", price: 69, image: masalaFriesImg },
       { name: "Cheese Peri Peri Fries", description: "Peri peri fries topped with cheese sauce.", price: 99, badge: "Popular", image: cheeseFriesImg },
-      { name: "Veg Pocket", description: "Crispy pocket filled with spiced veggies.", price: 59, image: onionRingsImg },
-      { name: "Cheese Pocket", description: "Crispy pocket with gooey cheese filling.", price: 89, image: garlicBreadSticksImg },
-      { name: "Cheese Dip", description: "Creamy cheese dipping sauce.", price: 30, image: coleslawImg },
-      { name: "Spice Dip", description: "Spicy tangy dipping sauce.", price: 30, image: garlicBreadPaneerImg },
-      { name: "Tandoori Dip", description: "Smoky tandoori dip.", price: 30, image: pestoImg },
-      { name: "Chilly Dip", description: "Hot chilly sauce dip.", price: 30, image: chickenWingsImg },
-      { name: "Paneer Salad", description: "Fresh salad with paneer, onion, and veggies.", price: 100, image: orangeJuiceImg },
+      { name: "Veg Pocket", description: "Crispy pocket filled with spiced veggies.", price: 59, image: vegPocketImg },
+      { name: "Cheese Pocket", description: "Crispy pocket with gooey cheese filling.", price: 89, image: cheesePocketImg },
+      { name: "Cheese Dip", description: "Creamy cheese dipping sauce.", price: 30, image: cheeseDipImg },
+      { name: "Spice Dip", description: "Spicy tangy dipping sauce.", price: 30, image: spiceDipImg },
+      { name: "Tandoori Dip", description: "Smoky tandoori dip.", price: 30, image: tandooriDipImg },
+      { name: "Chilly Dip", description: "Hot chilly sauce dip.", price: 30, image: chillyDipImg },
+      { name: "Paneer Salad", description: "Fresh salad with paneer, onion, and veggies.", price: 100, image: paneerSaladImg },
     ],
   },
 ];
