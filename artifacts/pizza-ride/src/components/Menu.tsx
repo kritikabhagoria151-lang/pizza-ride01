@@ -162,7 +162,7 @@ const categories: Category[] = [
       { name: "Vanilla Shake", description: "Classic smooth vanilla milkshake.", price: 90, image: vanillaShakeImg },
       { name: "Choco Oreo Shake", description: "Crushed Oreos blended in chocolate shake.", price: 90, badge: "Fan Fav", image: chocoOreoShakeImg },
       { name: "Black Current Shake", description: "Refreshing black currant flavoured milkshake.", price: 90, image: blackCurrantImg },
-      { name: "Cold Coffee", description: "Chilled creamy cold coffee blended to perfection.", price: 90, image: coldCoffeeImg },
+      { name: "Cold Coffee", description: "Chilled creamy cold coffee blended to perfection.", price: 120, image: coldCoffeeImg },
       { name: "Soft Drink", description: "Chilled soft drink — Pepsi, 7Up, Mirinda & more.", price: 30, image: orangeJuiceImg },
     ],
   },
