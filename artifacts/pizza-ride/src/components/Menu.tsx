@@ -50,6 +50,7 @@ import butterscotchShakeImg from "@/assets/menu-drink-butterscotch-shake.jpg";
 import vanillaShakeImg from "@/assets/menu-drink-vanilla-shake.jpg";
 import chocoOreoShakeImg from "@/assets/menu-drink-oreo-shake.jpg";
 import blackCurrantImg from "@/assets/menu-drink-black-currant.jpg";
+import coldCoffeeImg from "@/assets/menu-drink-cold-coffee.jpg";
 
 // Fries & sides images
 import saltedFriesImg from "@/assets/menu-fries-classic.jpg";
@@ -161,6 +162,7 @@ const categories: Category[] = [
       { name: "Vanilla Shake", description: "Classic smooth vanilla milkshake.", price: 90, image: vanillaShakeImg },
       { name: "Choco Oreo Shake", description: "Crushed Oreos blended in chocolate shake.", price: 90, badge: "Fan Fav", image: chocoOreoShakeImg },
       { name: "Black Current Shake", description: "Refreshing black currant flavoured milkshake.", price: 90, image: blackCurrantImg },
+      { name: "Cold Coffee", description: "Chilled creamy cold coffee blended to perfection.", price: 90, image: coldCoffeeImg },
       { name: "Soft Drink", description: "Chilled soft drink — Pepsi, 7Up, Mirinda & more.", price: 30, image: orangeJuiceImg },
     ],
   },
