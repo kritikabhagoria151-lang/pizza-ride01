@@ -18,7 +18,7 @@ const contactItems = [
   {
     icon: Phone,
     color: "bg-primary/10 text-primary",
-    title: "Call to Order",
+    title: "Call Us",
     content: (
       <p className="text-muted-foreground text-xl font-display font-bold">
         +91 72068 87688
@@ -113,39 +113,6 @@ export default function LocationContact() {
                 </motion.div>
               ))}
             </div>
-
-            {/* Order Online */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.55 }}
-              className="bg-card p-6 md:p-8 rounded-3xl border border-border shadow-sm mb-6"
-            >
-              <h4 className="font-bold text-xl text-foreground mb-4">Order Online</h4>
-              <div className="flex gap-4">
-                <motion.a
-                  href="https://www.zomato.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.04, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="flex-1 flex items-center justify-center gap-2 bg-red-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-red-600 transition-colors text-sm shadow-md"
-                >
-                  🍽️ Zomato
-                </motion.a>
-                <motion.a
-                  href="https://www.swiggy.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.04, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="flex-1 flex items-center justify-center gap-2 bg-orange-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-orange-600 transition-colors text-sm shadow-md"
-                >
-                  🛵 Swiggy
-                </motion.a>
-              </div>
-            </motion.div>
 
             {/* Subscribe */}
             <motion.div

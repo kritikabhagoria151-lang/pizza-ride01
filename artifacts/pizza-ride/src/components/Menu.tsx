@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { Plus } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 
 // Pizza images
 import farmhouseImg from "@/assets/menu-farmhouse.jpg";
@@ -199,7 +197,7 @@ const categories: Category[] = [
   },
 ];
 
-function ItemCard({ item, index, onAdd }: { item: MenuItem; index: number; onAdd: (name: string) => void }) {
+function ItemCard({ item, index }: { item: MenuItem; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -238,24 +236,12 @@ function ItemCard({ item, index, onAdd }: { item: MenuItem; index: number; onAdd
             ))}
           </div>
         )}
-        <button
-          onClick={() => onAdd(item.name)}
-          className="w-full flex items-center justify-center gap-1.5 py-2 bg-secondary/10 hover:bg-secondary text-secondary-foreground font-bold rounded-xl transition-colors text-xs"
-        >
-          <Plus size={14} /> Add to Order
-        </button>
       </div>
     </motion.div>
   );
 }
 
 export default function Menu() {
-  const { toast } = useToast();
-
-  const handleAdd = (name: string) => {
-    toast({ title: "Added to Order!", description: `${name} has been added to your cart.` });
-  };
-
   return (
     <section id="menu" className="py-24 bg-card">
       <div className="container mx-auto px-4 md:px-6">
@@ -284,7 +270,7 @@ export default function Menu() {
               {/* Items grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                 {cat.items.map((item, idx) => (
-                  <ItemCard key={item.name} item={item} index={idx} onAdd={handleAdd} />
+                  <ItemCard key={item.name} item={item} index={idx} />
                 ))}
               </div>
             </div>
