@@ -53,6 +53,15 @@ import blackCurrantImg from "@/assets/menu-drink-black-currant.jpg";
 import coldCoffeeImg from "@/assets/menu-drink-cold-coffee.jpg";
 
 // Fries & sides images
+import vegPocketImg from "@/assets/menu-sides-veg-pocket.jpg";
+import paneerPocketImg from "@/assets/menu-sides-cheese-pocket.jpg";
+import cheeseDipImg from "@/assets/menu-dip-cheese.jpg";
+import spiceDipImg from "@/assets/menu-dip-spice.jpg";
+import tandooriDipImg from "@/assets/menu-dip-tandoori.jpg";
+import chillyDipImg from "@/assets/menu-dip-chilly.jpg";
+import paneerSaladImg from "@/assets/menu-sides-paneer-salad.jpg";
+
+// Fries & sides images
 import saltedFriesImg from "@/assets/menu-fries-classic.jpg";
 import periPeriFriesImg from "@/assets/menu-fries-peri-peri.jpg";
 import masalaFriesImg from "@/assets/menu-fries-masala.jpg";
@@ -175,6 +184,13 @@ const categories: Category[] = [
       { name: "Peri Peri Fries", description: "Fries tossed in bold peri-peri spice.", price: 69, image: periPeriFriesImg },
       { name: "Masala Fries", description: "Fries dusted with chaat masala.", price: 69, image: masalaFriesImg },
       { name: "Cheese Peri Peri Fries", description: "Peri peri fries topped with cheese sauce.", price: 99, badge: "Popular", image: cheeseFriesImg },
+      { name: "Veg Pocket", description: "Crispy pocket filled with spiced veggies.", price: 59, image: vegPocketImg },
+      { name: "Paneer Pocket", description: "Crispy pocket with gooey paneer filling.", price: 89, image: paneerPocketImg },
+      { name: "Cheese Dip", description: "Creamy cheese dipping sauce.", price: 30, image: cheeseDipImg },
+      { name: "Spice Dip", description: "Spicy tangy dipping sauce.", price: 30, image: spiceDipImg },
+      { name: "Tandoori Dip", description: "Smoky tandoori dip.", price: 30, image: tandooriDipImg },
+      { name: "Chilly Dip", description: "Hot chilly sauce dip.", price: 30, image: chillyDipImg },
+      { name: "Paneer Salad", description: "Fresh salad with paneer, onion, and veggies.", price: 100, image: paneerSaladImg },
     ],
   },
 ];
