@@ -15,6 +15,7 @@ import onionPizzaImg from "@/assets/menu-pizza-onion.jpg";
 import capsicumPizzaImg from "@/assets/menu-pizza-capsicum.jpg";
 import cornPizzaImg from "@/assets/menu-pizza-corn.jpg";
 import onionCornPizzaImg from "@/assets/menu-pizza-onion-corn.png";
+import cornPaneerPizzaImg from "@/assets/menu-pizza-corn-paneer.jpg";
 import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import signaturePizzaImg from "@/assets/feature-pizza.avif";
@@ -102,7 +103,7 @@ const categories: Category[] = [
       { name: "Onion & Corn", description: "Double topping", price: 90, image: onionCornPizzaImg },
       { name: "Onion & Capsicum", description: "Double topping", price: 90, image: gardenFreshImg },
       { name: "Onion & Paneer", description: "Double topping", price: 100, image: tandooriPaneerPizzaImg },
-      { name: "Corn & Paneer", description: "Double topping", price: 100, image: tikkiCrushImg },
+      { name: "Corn & Paneer", description: "Double topping", price: 100, image: cornPaneerPizzaImg },
       { name: "Paneer & Corn", description: "Double topping", price: 100, image: spicyPaneerPizzaImg },
       { name: "Single Cheese", description: "Veg Treat — all veggies with single cheese", price: 110, image: margheritaImg },
       { name: "Cheese & Corn", description: "Veg Treat — all veggies with cheese & corn", price: 130, image: delightCheeseImg },
