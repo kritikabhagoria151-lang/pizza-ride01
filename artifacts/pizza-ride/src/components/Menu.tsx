@@ -19,6 +19,7 @@ import cornPaneerPizzaImg from "@/assets/menu-pizza-corn-paneer.jpg";
 import paneerCornPizzaImg from "@/assets/menu-pizza-paneer-corn.jpg";
 import singleCheeseImg from "@/assets/menu-pizza-single-cheese.jpg";
 import cheeseCornPizzaImg from "@/assets/menu-pizza-cheese-corn.jpg";
+import doubleCheeseImg from "@/assets/menu-pizza-double-cheese.jpg";
 import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import signaturePizzaImg from "@/assets/feature-pizza.avif";
@@ -110,7 +111,7 @@ const categories: Category[] = [
       { name: "Paneer & Corn", description: "Double topping", price: 100, image: paneerCornPizzaImg },
       { name: "Single Cheese", description: "Veg Treat — all veggies with single cheese", price: 110, image: singleCheeseImg },
       { name: "Cheese & Corn", description: "Veg Treat — all veggies with cheese & corn", price: 130, image: cheeseCornPizzaImg },
-      { name: "Double Cheese", description: "Veg Treat — all veggies with double cheese", price: 150, image: classicalPizzaImg },
+      { name: "Double Cheese", description: "Veg Treat — all veggies with double cheese", price: 150, image: doubleCheeseImg },
       { name: "Pizza Ride Special", description: "All Veggies with Loaded Cheese", price: 259, sizes: [{ label: "Reg", price: 259 }, { label: "Med", price: 349 }, { label: "Large", price: 449 }], badge: "🌟 Signature", image: signaturePizzaImg },
     ],
   },
