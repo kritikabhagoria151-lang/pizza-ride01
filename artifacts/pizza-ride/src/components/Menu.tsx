@@ -14,6 +14,7 @@ import tomatoPizzaImg from "@/assets/menu-pizza-tomato.jpg";
 import onionPizzaImg from "@/assets/menu-pizza-onion.jpg";
 import capsicumPizzaImg from "@/assets/menu-pizza-capsicum.jpg";
 import cornPizzaImg from "@/assets/menu-pizza-corn.jpg";
+import onionCornPizzaImg from "@/assets/menu-pizza-onion-corn.png";
 import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import signaturePizzaImg from "@/assets/feature-pizza.avif";
@@ -98,7 +99,7 @@ const categories: Category[] = [
       { name: "Onion Pizza", description: "Single topping — golden onion", price: 70, image: onionPizzaImg },
       { name: "Capsicum Pizza", description: "Single topping — crisp capsicum", price: 70, image: capsicumPizzaImg },
       { name: "Corn Pizza", description: "Single topping — sweet corn", price: 80, image: cornPizzaImg },
-      { name: "Onion & Corn", description: "Double topping", price: 90, image: farmhouseImg },
+      { name: "Onion & Corn", description: "Double topping", price: 90, image: onionCornPizzaImg },
       { name: "Onion & Capsicum", description: "Double topping", price: 90, image: gardenFreshImg },
       { name: "Onion & Paneer", description: "Double topping", price: 100, image: tandooriPaneerPizzaImg },
       { name: "Corn & Paneer", description: "Double topping", price: 100, image: tikkiCrushImg },
