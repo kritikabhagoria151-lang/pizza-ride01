@@ -27,6 +27,7 @@ import paneerWrapNewImg from "@/assets/menu-wrap-paneer.jpg";
 import tandooriPastaNewImg from "@/assets/menu-pasta-tandoori-new.jpg";
 import mixSaucePastaImg from "@/assets/menu-pasta-mix-sauce.jpg";
 import makhaniPastaNewImg from "@/assets/menu-pasta-makhani-new.jpg";
+import coldCoffeeNewImg from "@/assets/menu-drink-cold-coffee-new.png";
 import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import signaturePizzaImg from "@/assets/feature-pizza.avif";
@@ -186,7 +187,7 @@ const categories: Category[] = [
       { name: "Vanilla Shake", description: "Classic smooth vanilla milkshake.", price: 90, image: vanillaShakeImg },
       { name: "Choco Oreo Shake", description: "Crushed Oreos blended in chocolate shake.", price: 90, badge: "Fan Fav", image: chocoOreoShakeImg },
       { name: "Black Current Shake", description: "Refreshing black currant flavoured milkshake.", price: 90, image: blackCurrantImg },
-      { name: "Cold Coffee", description: "Chilled creamy cold coffee blended to perfection.", price: 120, image: coldCoffeeImg },
+      { name: "Cold Coffee", description: "Chilled creamy cold coffee blended to perfection.", price: 120, image: coldCoffeeNewImg },
       { name: "Soft Drink", description: "Chilled soft drink — Pepsi, 7Up, Mirinda & more.", price: 30, image: orangeJuiceImg },
     ],
   },
