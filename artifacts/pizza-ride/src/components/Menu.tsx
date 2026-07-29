@@ -24,6 +24,7 @@ import cheeseGrillSandwichImg from "@/assets/menu-sandwich-cheese-grill.jpg";
 import alooTikkiWrapImg from "@/assets/menu-wrap-aloo-tikki.jpg";
 import cheeseSpicyWrapImg from "@/assets/menu-wrap-cheese-spicy.jpg";
 import paneerWrapNewImg from "@/assets/menu-wrap-paneer.jpg";
+import tandooriPastaNewImg from "@/assets/menu-pasta-tandoori-new.jpg";
 import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import signaturePizzaImg from "@/assets/feature-pizza.avif";
@@ -158,7 +159,7 @@ const categories: Category[] = [
     items: [
       { name: "Red Sauce Pasta", description: "Penne in rich spiced tomato red sauce.", price: 109, image: redSauceImg },
       { name: "White Sauce Pasta", description: "Creamy béchamel white sauce pasta.", price: 109, image: whiteSauceImg },
-      { name: "Tandoori Sauce Pasta", description: "Smoky tandoori flavoured sauce pasta.", price: 119, badge: "Chef's Pick", image: tandooriPastaImg },
+      { name: "Tandoori Sauce Pasta", description: "Smoky tandoori flavoured sauce pasta.", price: 119, badge: "Chef's Pick", image: tandooriPastaNewImg },
       { name: "Makhani Sauce Pasta", description: "Rich makhani sauce — buttery and aromatic.", price: 119, image: makhaniPastaImg },
       { name: "Mix Sauce Pasta", description: "Best of all sauces mixed together.", price: 149, badge: "Loaded", image: mixSauceImg },
     ],
