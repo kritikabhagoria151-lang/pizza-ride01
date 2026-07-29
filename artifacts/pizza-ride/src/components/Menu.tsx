@@ -22,6 +22,7 @@ import cheeseCornPizzaImg from "@/assets/menu-pizza-cheese-corn.jpg";
 import doubleCheeseImg from "@/assets/menu-pizza-double-cheese.jpg";
 import cheeseGrillSandwichImg from "@/assets/menu-sandwich-cheese-grill.jpg";
 import alooTikkiWrapImg from "@/assets/menu-wrap-aloo-tikki.jpg";
+import cheeseSpicyWrapImg from "@/assets/menu-wrap-cheese-spicy.jpg";
 import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import signaturePizzaImg from "@/assets/feature-pizza.avif";
@@ -145,7 +146,7 @@ const categories: Category[] = [
     emoji: "🌯",
     items: [
       { name: "Allo Tikki Wrap", description: "Spiced potato tikki in a soft wrap with chutneys.", price: 60, image: alooTikkiWrapImg },
-      { name: "Cheese Spicy Wrap", description: "Spicy filling with melted cheese in a fresh wrap.", price: 90, image: cheeseWrapImg },
+      { name: "Cheese Spicy Wrap", description: "Spicy filling with melted cheese in a fresh wrap.", price: 90, image: cheeseSpicyWrapImg },
       { name: "Paneer Wrap", description: "Soft paneer with mint chutney, onions, and veggies.", price: 110, image: paneerWrapImg },
     ],
   },
