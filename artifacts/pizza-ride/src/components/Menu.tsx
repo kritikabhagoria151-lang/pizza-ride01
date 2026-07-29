@@ -20,6 +20,7 @@ import paneerCornPizzaImg from "@/assets/menu-pizza-paneer-corn.jpg";
 import singleCheeseImg from "@/assets/menu-pizza-single-cheese.jpg";
 import cheeseCornPizzaImg from "@/assets/menu-pizza-cheese-corn.jpg";
 import doubleCheeseImg from "@/assets/menu-pizza-double-cheese.jpg";
+import cheeseGrillSandwichImg from "@/assets/menu-sandwich-cheese-grill.jpg";
 import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import signaturePizzaImg from "@/assets/feature-pizza.avif";
@@ -134,7 +135,7 @@ const categories: Category[] = [
     items: [
       { name: "Veg Grill Sandwich", description: "Grilled with cheese, cucumber, tomato, and green chutney.", price: 70, image: vegGrillSandwichImg },
       { name: "Spicy Paneer Sandwich", description: "Spicy paneer stuffing with fresh veggies in toasted bread.", price: 90, image: spicySandwichImg },
-      { name: "Cheese Grill Sandwich", description: "Simple, delicious cheese grilled sandwich.", price: 90, image: eggCheeseSandwichImg },
+      { name: "Cheese Grill Sandwich", description: "Simple, delicious cheese grilled sandwich.", price: 90, image: cheeseGrillSandwichImg },
     ],
   },
   {
