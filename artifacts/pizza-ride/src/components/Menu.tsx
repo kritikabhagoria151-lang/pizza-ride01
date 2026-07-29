@@ -163,7 +163,7 @@ const categories: Category[] = [
       { name: "White Sauce Pasta", description: "Creamy béchamel white sauce pasta.", price: 109, image: whiteSauceImg },
       { name: "Tandoori Sauce Pasta", description: "Smoky tandoori flavoured sauce pasta.", price: 119, badge: "Chef's Pick", image: tandooriPastaNewImg },
       { name: "Makhani Sauce Pasta", description: "Rich makhani sauce — buttery and aromatic.", price: 119, image: makhaniPastaNewImg },
-      { name: "Mix Sauce Pasta", description: "Best of all sauces mixed together.", price: 149, badge: "Loaded", image: mixSaucePastaImg },
+      { name: "Mix Sauce Pasta", description: "Best of all sauces mixed together.", price: 149, badge: "Loaded", image: makhaniPastaNewImg },
     ],
   },
   {
