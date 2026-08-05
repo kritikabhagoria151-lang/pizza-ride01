@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import galleryPizzaVideo from "@/assets/gallery-pizza-video.mp4";
 import galleryBurgerImg from "@/assets/gallery-burger-new.jpg";
-import galleryShakeImg from "@/assets/gallery-shake.jpg";
+import galleryShakeImg from "@/assets/gallery-shake-new.jpg";
 import galleryFriesImg from "@/assets/gallery-fries.jpg";
 
 type GalleryItem = {
