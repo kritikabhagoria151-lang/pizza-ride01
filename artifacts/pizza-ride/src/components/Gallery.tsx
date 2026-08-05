@@ -1,11 +1,21 @@
 import { motion } from "framer-motion";
-import galleryPizzaImg from "@/assets/gallery-pizza.avif";
+import galleryPizzaVideo from "@/assets/gallery-pizza-video.mp4";
 import galleryBurgerImg from "@/assets/gallery-burger.webp";
 import galleryShakeImg from "@/assets/gallery-shake.jpg";
 import galleryFriesImg from "@/assets/gallery-fries.jpg";
 
-const photos = [
-  { src: galleryPizzaImg, alt: "Fresh Pizza", label: "🍕 Pizzas", sub: "Wood-fired perfection", span: "lg:col-span-2", delay: 0 },
+type GalleryItem = {
+  alt: string;
+  label: string;
+  sub: string;
+  span: string;
+  delay: number;
+  video?: string;
+  src?: string;
+};
+
+const photos: GalleryItem[] = [
+  { video: galleryPizzaVideo, alt: "Fresh Pizza", label: "🍕 Pizzas", sub: "Wood-fired perfection", span: "lg:col-span-2", delay: 0 },
   { src: galleryBurgerImg, alt: "Juicy Burger", label: "🍔 Burgers", sub: "Stacked & loaded", span: "", delay: 0.1 },
   { src: galleryShakeImg, alt: "Creamy Shake", label: "🥤 Shakes", sub: "Thick & creamy", span: "", delay: 0.2 },
   { src: galleryFriesImg, alt: "French Fries", label: "🍟 Fries", sub: "Crispy golden sides", span: "lg:col-span-3", delay: 0.3 },
@@ -72,11 +82,22 @@ export default function Gallery() {
               className={`rounded-3xl overflow-hidden relative group cursor-pointer ${photo.span}`}
               style={{ willChange: "transform" }}
             >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
+              {photo.video ? (
+                <video
+                  src={photo.video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              ) : (
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              )}
 
               {/* Default overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition-opacity duration-500 group-hover:opacity-0" />

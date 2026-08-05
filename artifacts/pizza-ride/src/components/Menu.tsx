@@ -28,6 +28,7 @@ import tandooriPastaNewImg from "@/assets/menu-pasta-tandoori-new.jpg";
 import mixSaucePastaImg from "@/assets/menu-pasta-mix-sauce.jpg";
 import makhaniPastaNewImg from "@/assets/menu-pasta-makhani-new.jpg";
 import coldCoffeeNewImg from "@/assets/menu-drink-cold-coffee-new.png";
+import vegPocketNewImg from "@/assets/menu-sides-veg-pocket-new.png";
 import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import signaturePizzaImg from "@/assets/feature-pizza.avif";
@@ -200,7 +201,7 @@ const categories: Category[] = [
       { name: "Peri Peri Fries", description: "Fries tossed in bold peri-peri spice.", price: 69, image: periPeriFriesImg },
       { name: "Masala Fries", description: "Fries dusted with chaat masala.", price: 69, image: masalaFriesImg },
       { name: "Cheese Peri Peri Fries", description: "Peri peri fries topped with cheese sauce.", price: 99, badge: "Popular", image: cheeseFriesImg },
-      { name: "Veg Pocket", description: "Crispy pocket filled with spiced veggies.", price: 59, image: vegPocketImg },
+      { name: "Veg Pocket", description: "Crispy pocket filled with spiced veggies.", price: 59, image: vegPocketNewImg },
       { name: "Paneer Pocket", description: "Crispy pocket with gooey paneer filling.", price: 89, image: paneerPocketImg },
       { name: "Cheese Dip", description: "Creamy cheese dipping sauce.", price: 30, image: cheeseDipImg },
       { name: "Spice Dip", description: "Spicy tangy dipping sauce.", price: 30, image: spiceDipImg },
