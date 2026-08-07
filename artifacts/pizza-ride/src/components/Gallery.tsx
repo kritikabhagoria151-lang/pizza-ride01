@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import galleryPizzaVideo from "@/assets/gallery-pizza-video.mp4";
 import galleryBurgerImg from "@/assets/gallery-burger-new.jpg";
 import galleryShakeImg from "@/assets/gallery-shake-new.jpg";
-import galleryFriesImg from "@/assets/gallery-fries.jpg";
 
 type GalleryItem = {
   alt: string;
@@ -18,7 +17,6 @@ const photos: GalleryItem[] = [
   { video: galleryPizzaVideo, alt: "Fresh Pizza", label: "🍕 Pizzas", sub: "Wood-fired perfection", span: "lg:col-span-2", delay: 0 },
   { src: galleryBurgerImg, alt: "Juicy Burger", label: "🍔 Burgers", sub: "Stacked & loaded", span: "", delay: 0.1 },
   { src: galleryShakeImg, alt: "Creamy Shake", label: "🥤 Shakes", sub: "Thick & creamy", span: "", delay: 0.2 },
-  { src: galleryFriesImg, alt: "French Fries", label: "🍟 Fries", sub: "Crispy golden sides", span: "lg:col-span-3", delay: 0.3 },
 ];
 
 export default function Gallery() {
