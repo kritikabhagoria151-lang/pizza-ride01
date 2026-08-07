@@ -113,10 +113,6 @@ export default function Gallery() {
                 </p>
               </div>
 
-              {/* Default label */}
-              <span className="absolute bottom-4 left-4 text-white font-display font-black text-lg drop-shadow-lg group-hover:opacity-0 transition-opacity duration-300">
-                {photo.label}
-              </span>
             </motion.div>
           ))}
         </div>
