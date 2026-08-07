@@ -100,19 +100,6 @@ export default function Gallery() {
               {/* Default overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition-opacity duration-500 group-hover:opacity-0" />
 
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center flex-col gap-2">
-                <motion.p
-                  initial={false}
-                  className="text-white font-display font-black text-2xl drop-shadow-lg translate-y-3 group-hover:translate-y-0 transition-transform duration-400"
-                >
-                  {photo.label}
-                </motion.p>
-                <p className="text-white/90 text-sm font-medium translate-y-3 group-hover:translate-y-0 transition-transform duration-500 delay-50">
-                  {photo.sub}
-                </p>
-              </div>
-
             </motion.div>
           ))}
         </div>
