@@ -1,8 +1,9 @@
 import { Link } from "wouter";
-import { Pizza, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import pizzaRideLogo from "@/assets/pizza-ride-logo.jpeg";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,9 +45,13 @@ export default function Navbar() {
               <motion.div
                 whileHover={{ rotate: [0, -12, 12, -6, 0], scale: 1.1 }}
                 transition={{ duration: 0.5 }}
-                className="bg-primary text-primary-foreground p-2 rounded-full"
+                className="h-10 w-10 overflow-hidden rounded-full border-2 border-primary/20 bg-primary shadow-sm"
               >
-                <Pizza size={24} />
+                <img
+                  src={pizzaRideLogo}
+                  alt="Pizza Ride logo"
+                  className="h-full w-full object-cover"
+                />
               </motion.div>
               <span className="font-display font-bold text-2xl tracking-tight text-foreground">
                 Pizza Ride
