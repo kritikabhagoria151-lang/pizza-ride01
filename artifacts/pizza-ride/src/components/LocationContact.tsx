@@ -7,11 +7,11 @@ const contactItems = [
   {
     icon: MapPin,
     color: "bg-primary/10 text-primary",
-    title: "Samalkha Location",
+    title: "Jurasi Saraf Khas Location",
     content: (
       <p className="text-muted-foreground">
-        NH-44, Near PIET College<br />
-        Samalkha, Haryana 132101, India
+        6279+3QG, Jurasi Saraf Khas<br />
+        Haryana, India
       </p>
     ),
   },
@@ -151,16 +151,23 @@ export default function LocationContact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative h-full min-h-[400px] rounded-3xl overflow-hidden border-4 border-card shadow-lg"
           >
-            <div className="absolute inset-0 bg-secondary/10 z-0" />
+             <iframe
+               title="Pizza Ride location map"
+               src="https://www.google.com/maps?q=6279%2B3QG%20Jurasi%20Saraf%20Khas%2C%20Haryana&output=embed"
+               className="absolute inset-0 h-full w-full border-0"
+               loading="lazy"
+               referrerPolicy="no-referrer-when-downgrade"
+             />
+             <div className="absolute inset-0 bg-secondary/10 z-0 pointer-events-none" />
             <div
-              className="absolute inset-0 opacity-20"
+               className="absolute inset-0 opacity-20 pointer-events-none"
               style={{
                 backgroundImage:
                   "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)",
                 backgroundSize: "24px 24px",
               }}
             />
-            <div className="absolute inset-0 flex items-center justify-center z-10 flex-col gap-4 p-8 text-center bg-background/50 backdrop-blur-sm">
+             <div className="absolute inset-0 flex items-center justify-center z-10 flex-col gap-4 p-8 text-center bg-background/50 backdrop-blur-sm pointer-events-none">
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
@@ -169,18 +176,22 @@ export default function LocationContact() {
                 <MapPin size={40} />
               </motion.div>
               <h3 className="font-display font-black text-3xl text-foreground drop-shadow-md">
-                Samalkha, Haryana
+                6279+3QG, Jurasi Saraf Khas
               </h3>
               <p className="text-foreground font-medium max-w-sm">
-                We're right in the heart of town. Drop by for a fresh slice or let us bring the heat to your door.
+                Find Pizza Ride at Jurasi Saraf Khas, Haryana. Drop by for a fresh slice or let us bring the heat to your door.
               </p>
-              <motion.button
+              <motion.a
+                href="https://www.google.com/maps/search/?api=1&query=6279%2B3QG%20Jurasi%20Saraf%20Khas%2C%20Haryana"
+                target="_blank"
+                rel="noreferrer"
+                onClick={(event) => event.stopPropagation()}
                 whileHover={{ scale: 1.06, y: -2 }}
                 whileTap={{ scale: 0.96 }}
-                className="mt-4 bg-foreground text-background px-6 py-3 rounded-full font-bold shadow-md transition-colors"
+                className="pointer-events-auto mt-4 bg-foreground text-background px-6 py-3 rounded-full font-bold shadow-md transition-colors"
               >
                 Get Directions
-              </motion.button>
+              </motion.a>
             </div>
           </motion.div>
 
