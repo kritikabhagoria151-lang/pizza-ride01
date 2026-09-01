@@ -1,0 +1,79 @@
+[14:27:12.763] [32mINFO[39m (7976): [36mServer listening[39m
+    [35mport[39m: 3000
+[14:27:18.024] [33mWARN[39m (7976): [36mPrimary model failed, trying fallback model[39m
+    err: {
+      "type": "Error",
+      "message": "Groq llama-3.3-70b-versatile failed (401): {\"error\":{\"message\":\"Invalid API Key\",\"type\":\"invalid_request_error\",\"code\":\"invalid_api_key\"}}\n",
+      "stack":
+          Error: Groq llama-3.3-70b-versatile failed (401): {"error":{"message":"Invalid API Key","type":"invalid_request_error","code":"invalid_api_key"}}
+          
+              at callGroq (C:\Users\lenovo\Documents\Default Project\pizza-ride01\pizza-ride01-main\artifacts\api-server\src\routes\chat.ts:131:11)
+              at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+              at async <anonymous> (C:\Users\lenovo\Documents\Default Project\pizza-ride01\pizza-ride01-main\artifacts\api-server\src\routes\chat.ts:161:15)
+    }
+[14:27:18.219] [31mERROR[39m (7976): [36mAll Groq models failed[39m
+    [35merr2[39m: {}
+[14:27:18.223] [32mINFO[39m (7976): [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": 1,
+      "method": "POST",
+      "url": "/api/chat"
+    }
+    [35mres[39m: {
+      "statusCode": 502
+    }
+    [35mresponseTime[39m: 603
+    err: {
+      "type": "Error",
+      "message": "failed with status code 502",
+      "stack":
+          Error: failed with status code 502
+              at onResFinished (C:\Users\lenovo\Documents\Default Project\pizza-ride01\pizza-ride01-main\node_modules\.pnpm\pino-http@10.5.0\node_modules\pino-http\logger.js:115:39)
+              at ServerResponse.onResponseComplete (C:\Users\lenovo\Documents\Default Project\pizza-ride01\pizza-ride01-main\node_modules\.pnpm\pino-http@10.5.0\node_modules\pino-http\logger.js:178:14)
+              at ServerResponse.emit (node:events:521:24)
+              at onFinish (node:_http_outgoing:1079:10)
+              at callback (node:internal/streams/writable:764:21)
+              at afterWrite (node:internal/streams/writable:708:5)
+              at afterWriteTick (node:internal/streams/writable:694:10)
+              at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    }
+[15:10:41.031] [32mINFO[39m (7976): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 2,
+      "method": "GET",
+      "url": "/"
+    }
+    [35mres[39m: {
+      "statusCode": 404
+    }
+    [35mresponseTime[39m: 23
+[15:10:56.524] [32mINFO[39m (7976): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 3,
+      "method": "GET",
+      "url": "/"
+    }
+    [35mres[39m: {
+      "statusCode": 404
+    }
+    [35mresponseTime[39m: 10
+[15:11:49.489] [32mINFO[39m (7976): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 4,
+      "method": "GET",
+      "url": "/"
+    }
+    [35mres[39m: {
+      "statusCode": 404
+    }
+    [35mresponseTime[39m: 6
+[15:11:55.523] [32mINFO[39m (7976): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 5,
+      "method": "GET",
+      "url": "/"
+    }
+    [35mres[39m: {
+      "statusCode": 404
+    }
+    [35mresponseTime[39m: 3

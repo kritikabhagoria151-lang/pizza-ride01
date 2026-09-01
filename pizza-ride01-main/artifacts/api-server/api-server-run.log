@@ -1,0 +1,22 @@
+[10:41:34.147] [32mINFO[39m (5680): [36mServer listening[39m
+    [35mport[39m: 3000
+[10:41:43.951] [32mINFO[39m (5680): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 1,
+      "method": "POST",
+      "url": "/api/chat"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 1041
+[10:41:56.517] [32mINFO[39m (5680): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 2,
+      "method": "GET",
+      "url": "/"
+    }
+    [35mres[39m: {
+      "statusCode": 404
+    }
+    [35mresponseTime[39m: 22

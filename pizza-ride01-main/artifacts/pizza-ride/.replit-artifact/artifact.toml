@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Pizza Ride"
+version = "1.0.0"
+id = "artifacts/pizza-ride"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21586
+
+[services.development]
+run = "pnpm --filter @workspace/pizza-ride run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/pizza-ride", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/pizza-ride/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21586"
+BASE_PATH = "/"
