@@ -111,29 +111,35 @@ const FALLBACK_REPLIES = [
   "Oops! Mere wires mein thoda Short Circuit ho gaya 😅 Dobara message karo yaar, main ready hoon! 🍕🔥",
 ];
 
+const MODELS = ["openai/gpt-oss-20b", "groq/compound", "groq/compound-mini"];
+
 async function callGroq(model: string, messages: { role: string; content: string }[]) {
-  const groqApiKey = process.env.GROQ_API_KEY;
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${groqApiKey}`,
+      Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       model,
       messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
       temperature: 0.85,
-      max_tokens: 600,
+      max_tokens: 900,
     }),
   });
-  if (!response.ok) {
-    const errText = await response.text();
-    throw new Error(`Groq ${model} failed (${response.status}): ${errText.slice(0, 300)}`);
-  }
   const data = (await response.json()) as {
-    choices: { message: { content: string } }[];
+    choices?: { message: { content?: string } }[];
+    error?: { message?: string };
   };
-  return data.choices?.[0]?.message?.content;
+  if (!response.ok || !data.choices) {
+    const errMsg = data.error?.message ?? JSON.stringify(data).slice(0, 200);
+    throw new Error(`Groq ${model} failed (${response.status}): ${errMsg}`);
+  }
+  const content = data.choices[0]?.message?.content;
+  if (typeof content !== "string" || content.trim() === "") {
+    throw new Error(`Groq ${model} returned an empty reply`);
+  }
+  return content;
 }
 
 function pickFallback(): string {
@@ -141,7 +147,14 @@ function pickFallback(): string {
 }
 
 function cleanReply(text: string): string {
-  return text.replace(/\u{1F355}/gu, "");
+  let out = text.replace(/\u{1F355}/gu, "");
+  const thinkingMarker = /Here's a thinking process|Here's my thinking|Thinking:/i;
+  const finalMarker = /Here's my (?:final )?response|Final (?:Response|Answer)|Answer:/i;
+  if (thinkingMarker.test(out)) {
+    const match = out.match(finalMarker);
+    out = match ? out.slice(match.index + match[0].length) : out.replace(thinkingMarker, "");
+  }
+  return out.trim();
 }
 
 chatRouter.post("/chat", async (req, res) => {
@@ -161,20 +174,22 @@ chatRouter.post("/chat", async (req, res) => {
     }
 
     let reply: string | undefined;
-    try {
-      reply = await callGroq("openai/gpt-oss-120b", messages);
-    } catch (err) {
-      logger.warn({ err }, "Primary model failed, trying fallback model");
+    for (const model of MODELS) {
       try {
-        reply = await callGroq("qwen/qwen3.8-27b", messages);
-      } catch (err2) {
-        logger.error({ err2 }, "All Groq models failed");
-        res.status(502).json({ error: "AI service error", fallback: pickFallback() });
-        return;
+        reply = await callGroq(model, messages);
+        break;
+      } catch (err) {
+        logger.warn({ err, model }, "Groq model failed, trying the next one");
       }
     }
 
-    res.json({ reply: cleanReply(reply ?? pickFallback()) });
+    if (!reply) {
+      logger.error("All Groq models failed");
+      res.status(502).json({ error: "AI service error", fallback: pickFallback() });
+      return;
+    }
+
+    res.json({ reply: cleanReply(reply) });
   } catch (err) {
     logger.error({ err }, "Chat endpoint error");
     res.status(500).json({ error: "Internal server error", fallback: pickFallback() });
