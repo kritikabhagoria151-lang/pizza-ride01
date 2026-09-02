@@ -1,0 +1,8 @@
+{
+  "framework": "vite",
+  "buildCommand": "pnpm install --frozen-lockfile && pnpm --filter @workspace/pizza-ride run build",
+  "outputDirectory": "artifacts/pizza-ride/dist/public",
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://pizza-ride01.onrender.com/api/:path*" }
+  ]
+}
