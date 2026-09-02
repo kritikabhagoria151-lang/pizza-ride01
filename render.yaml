@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: pizza-ride
+    runtime: node
+    plan: free
+    rootDir: pizza-ride01-main
+    buildCommand: pnpm install --frozen-lockfile && NODE_ENV=production pnpm --filter @workspace/api-server run build && NODE_ENV=production pnpm --filter @workspace/pizza-ride run build
+    startCommand: node ./artifacts/api-server/dist/index.mjs
+    healthCheckPath: /api/healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GROQ_API_KEY
+        sync: false
+      - key: SESSION_SECRET
+        sync: false
