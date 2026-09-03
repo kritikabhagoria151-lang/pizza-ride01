@@ -27,8 +27,8 @@ import paneerWrapNewImg from "@/assets/menu-wrap-paneer.jpg";
 import tandooriPastaNewImg from "@/assets/menu-pasta-tandoori-new.jpg";
 import mixSaucePastaImg from "@/assets/menu-pasta-mix-sauce.jpg";
 import makhaniPastaNewImg from "@/assets/menu-pasta-makhani-new.jpg";
-import coldCoffeeNewImg from "@/assets/menu-drink-cold-coffee-new.png";
-import vegPocketNewImg from "@/assets/menu-sides-veg-pocket-new.png";
+import coldCoffeeNewImg from "@/assets/menu-drink-cold-coffee-new.jpg";
+import vegPocketNewImg from "@/assets/menu-sides-veg-pocket-new.jpg";
 import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import signaturePizzaImg from "@/assets/feature-pizza.avif";
@@ -234,6 +234,7 @@ function ItemCard({ item, index }: { item: MenuItem; index: number }) {
         <motion.img
           src={item.image}
           alt={item.name}
+          loading="lazy"
           whileHover={{ scale: 1.15, rotate: 2 }}
           transition={{ duration: 0.5 }}
           className="w-full h-full object-cover"
