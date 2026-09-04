@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Mic, MicOff, Volume2, VolumeX, Loader2 } from "lucide-react";
-const robotLogo = "/images/robot.jpg";
+const robotLogo = "/images/robot.png";
 
 type Message = { role: "user" | "assistant"; content: string };
 
