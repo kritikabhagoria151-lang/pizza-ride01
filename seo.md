@@ -16,6 +16,32 @@
 
 ---
 
+## Current Business Info (for quick reference)
+
+> These are the real details used throughout this guide. If your domain, X
+> handle, or GPS coordinates change later, update them here and in the guide.
+
+| Field          | Value                                                                |
+|----------------|----------------------------------------------------------------------|
+| Live site      | `https://pizza-ride01-main.vercel.app`                               |
+| City / Region  | Samalkha, Haryana, India                                             |
+| Address        | 6279+3QG, Jurasi Saraf Khas, Haryana, India                          |
+| Phone          | +91 72068 87688                                                      |
+| Opening hours  | Mon – Sun, 12:00 PM – 12:00 AM                                       |
+| Cuisine        | Pizzas, Burgers, Sandwiches, Wraps, Pasta, Shakes, Fries (100% Veg)  |
+| GPS latitude   | `YOUR_LATITUDE` — **TODO:** take from Google Maps                   |
+| GPS longitude  | `YOUR_LONGITUDE` — **TODO:** take from Google Maps                  |
+| X (Twitter)    | `@yourhandle` — **TODO:** add your real handle                      |
+
+> **How to get GPS coordinates:** Open Google Maps → right-click your
+> restaurant's location → click the coordinates shown → copy/paste them in
+> every place marked `YOUR_LATITUDE` / `YOUR_LONGITUDE` in this guide.
+>
+> If you later buy a custom domain (e.g. `pizzaride.in`), replace
+> `pizza-ride01-main.vercel.app` everywhere in this guide.
+
+---
+
 ## 1. Current Meta Tags Analysis
 
 The entire app is a **React SPA** served from a single `index.html` at
@@ -145,10 +171,10 @@ Prepare a dedicated **1200×630px** social sharing image:
 - Show the Pizza Ride logo + a hero pizza photo + "Order Now" CTA
 - Add to `index.html`:
   ```html
-  <meta property="og:image" content="https://your-domain.com/images/og-pizza-ride.jpg" />
+  <meta property="og:image" content="https://pizza-ride01-main.vercel.app/images/og-pizza-ride.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta name="twitter:image" content="https://your-domain.com/images/og-pizza-ride.jpg" />
+  <meta name="twitter:image" content="https://pizza-ride01-main.vercel.app/images/og-pizza-ride.jpg" />
   ```
 
 ### 2.4 Canonical URL
@@ -156,7 +182,7 @@ Prepare a dedicated **1200×630px** social sharing image:
 Add a canonical link tag to avoid duplicate content issues across SPA routes:
 
 ```html
-<link rel="canonical" href="https://your-domain.com/" />
+<link rel="canonical" href="https://pizza-ride01-main.vercel.app/" />
 ```
 
 > **Note:** Since this is an SPA, you will need to update the canonical tag
@@ -170,7 +196,7 @@ Add a canonical link tag to avoid duplicate content issues across SPA routes:
 
 - `pizza delivery near me`
 - `order pizza online`
-- `pizza delivery in [your city]`
+- `pizza delivery in Samalkha`
 - `best pizza near me`
 - `pizza home delivery`
 - `online pizza ordering`
@@ -195,13 +221,13 @@ Add a canonical link tag to avoid duplicate content issues across SPA routes:
 
 ### 3.4 Local SEO Keywords
 
-- `pizza delivery in [city name]`
+- `pizza delivery in Samalkha`
 - `pizza restaurant near [landmark]`
-- `best pizza shop in [locality]`
-- `pizza takeaway [city]`
-- `[city] pizza home delivery`
+- `best pizza shop in Samalkha`
+- `pizza takeaway Samalkha`
+- `Samalkha pizza home delivery`
 
-> **Tip:** Replace `[city]` and `[locality]` with the actual business location
+> **Tip:** Replace `Samalkha` and `Samalkha` with the actual business location
 > (e.g., "pizza delivery in Haryana", "pizza shop near Jurasi Saraf Khas").
 
 ### 3.5 Action Keywords for CTA-Rich Pages
@@ -249,27 +275,27 @@ Add a canonical link tag to avoid duplicate content issues across SPA routes:
   <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-      <loc>https://your-domain.com/</loc>
+      <loc>https://pizza-ride01-main.vercel.app/</loc>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
     </url>
     <url>
-      <loc>https://your-domain.com/menu</loc>
+      <loc>https://pizza-ride01-main.vercel.app/menu</loc>
       <changefreq>weekly</changefreq>
       <priority>0.9</priority>
     </url>
     <url>
-      <loc>https://your-domain.com/why-us</loc>
+      <loc>https://pizza-ride01-main.vercel.app/why-us</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
     <url>
-      <loc>https://your-domain.com/gallery</loc>
+      <loc>https://pizza-ride01-main.vercel.app/gallery</loc>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
     </url>
     <url>
-      <loc>https://your-domain.com/location</loc>
+      <loc>https://pizza-ride01-main.vercel.app/location</loc>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
     </url>
@@ -277,7 +303,7 @@ Add a canonical link tag to avoid duplicate content issues across SPA routes:
   ```
 - [ ] Reference the sitemap in `robots.txt`:
   ```
-  Sitemap: https://your-domain.com/sitemap.xml
+  Sitemap: https://pizza-ride01-main.vercel.app/sitemap.xml
   ```
 - [ ] Submit the sitemap to [Google Search Console](https://search.google.com/search-console) and [Bing Webmaster Tools](https://www.bing.com/webmasters).
 
@@ -297,7 +323,7 @@ Allow: /
   Disallow: /api/
   Disallow: /images/robot.png
 
-  Sitemap: https://your-domain.com/sitemap.xml
+  Sitemap: https://pizza-ride01-main.vercel.app/sitemap.xml
   ```
 
 ### 4.5 Internal Linking
@@ -363,8 +389,8 @@ Add to `index.html` (or dynamically per page):
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "Pizza Ride",
-  "image": "https://your-domain.com/images/og-pizza-ride.jpg",
-  "url": "https://your-domain.com",
+  "image": "https://pizza-ride01-main.vercel.app/images/og-pizza-ride.jpg",
+  "url": "https://pizza-ride01-main.vercel.app",
   "telephone": "+91-72068-87688",
   "priceRange": "$$",
   "servesCuisine": ["Pizza", "Burgers", "Fast Food", "Beverages"],
@@ -389,7 +415,7 @@ Add to `index.html` (or dynamically per page):
   ],
   "hasMenu": {
     "@type": "Menu",
-    "url": "https://your-domain.com/menu"
+    "url": "https://pizza-ride01-main.vercel.app/menu"
   },
   "acceptsReservations": "False",
   "delivery": {
@@ -410,10 +436,10 @@ Add to `index.html` (or dynamically per page):
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Pizza Ride",
-  "url": "https://your-domain.com",
+  "url": "https://pizza-ride01-main.vercel.app",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://your-domain.com/menu?search={search_term_string}",
+    "target": "https://pizza-ride01-main.vercel.app/menu?search={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
