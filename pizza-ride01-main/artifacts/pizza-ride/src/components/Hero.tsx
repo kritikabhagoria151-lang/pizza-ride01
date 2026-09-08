@@ -64,13 +64,13 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="absolute top-1/4 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -z-10 translate-x-1/3"
+        className="absolute top-1/4 right-0 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-primary/5 rounded-full blur-[120px] -z-10 translate-x-1/3"
       />
       <motion.div
         initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-        className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[100px] -z-10 -translate-x-1/4"
+        className="absolute bottom-0 left-0 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-secondary/10 rounded-full blur-[100px] -z-10 -translate-x-1/4"
       />
       {/* Moving gradient orb */}
       <motion.div
@@ -156,7 +156,7 @@ export default function Hero() {
 
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-4">
               <motion.a
-                href="#menu"
+                href="/menu"
                 initial={{ opacity: 0, y: -40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -259,7 +259,7 @@ export default function Hero() {
                 transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
                 initial={{ opacity: 0, scale: 0.5, x: 30 }}
                 whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                className="absolute top-10 -right-4 md:-right-10 bg-background p-4 rounded-2xl shadow-xl z-20 border border-border flex items-center gap-3"
+                className="absolute top-10 right-0 md:-right-10 bg-background p-4 rounded-2xl shadow-xl z-20 border border-border flex items-center gap-3"
               >
                 <motion.div
                   animate={{ rotate: [0, 15, -15, 0] }}
@@ -280,7 +280,7 @@ export default function Hero() {
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }}
                 initial={{ opacity: 0, scale: 0.5, x: -30 }}
                 whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                className="absolute bottom-10 -left-4 md:-left-10 bg-background p-4 rounded-2xl shadow-xl z-20 border border-border flex items-center gap-3"
+                className="absolute bottom-10 left-0 md:-left-10 bg-background p-4 rounded-2xl shadow-xl z-20 border border-border flex items-center gap-3"
               >
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}

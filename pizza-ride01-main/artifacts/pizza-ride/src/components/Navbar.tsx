@@ -16,11 +16,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "Menu", href: "#menu" },
-    { name: "Why Us", href: "#why-us" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Location", href: "#location" },
+    { name: "Home", href: "/" },
+    { name: "Menu", href: "/menu" },
+    { name: "Why Us", href: "/why-us" },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Location", href: "/location" },
   ];
 
   return (
@@ -53,7 +53,7 @@ export default function Navbar() {
                   className="h-full w-full object-cover"
                 />
               </motion.div>
-              <span className="font-display font-bold text-2xl tracking-tight text-foreground">
+              <span className="font-display font-bold text-xl sm:text-2xl tracking-tight text-foreground">
                 Pizza Ride
               </span>
             </Link>
@@ -69,13 +69,13 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 + i * 0.07 }}
                 >
-                  <a
+                  <Link
                     href={link.href}
                     className="relative text-sm font-medium hover:text-primary transition-colors uppercase tracking-wider group"
                   >
                     {link.name}
                     <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-primary rounded-full transition-all duration-300 group-hover:w-full" />
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
@@ -127,17 +127,15 @@ export default function Navbar() {
           >
             <nav className="container mx-auto px-4 py-6 flex flex-col gap-1">
               {navLinks.map((link, i) => (
-                <motion.a
+                <Link
                   key={link.name}
                   href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06, duration: 0.3 }}
-                  className="text-lg font-bold hover:text-primary transition-colors py-3 border-b border-border"
                   onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-bold hover:text-primary transition-colors py-3 border-b border-border"
+                  style={{ transitionDelay: i * 0.06 }}
                 >
                   {link.name}
-                </motion.a>
+                </Link>
               ))}
             </nav>
           </motion.div>

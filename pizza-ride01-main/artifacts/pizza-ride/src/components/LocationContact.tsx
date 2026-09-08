@@ -123,7 +123,7 @@ export default function LocationContact() {
               className="bg-card p-6 md:p-8 rounded-3xl border border-border shadow-sm"
             >
               <h4 className="font-bold text-xl text-foreground mb-4">Subscribe for Secret Deals</h4>
-              <form className="flex gap-2" onSubmit={handleSubscribe}>
+              <form className="flex flex-col sm:flex-row gap-3 sm:gap-2" onSubmit={handleSubscribe}>
                 <input
                   type="email"
                   value={email}
@@ -135,7 +135,7 @@ export default function LocationContact() {
                   type="submit"
                   whileHover={{ scale: 1.06 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-foreground text-background px-6 py-3 rounded-xl font-bold hover:bg-foreground/90 transition-colors"
+                  className="bg-foreground text-background px-6 py-3 rounded-xl font-bold hover:bg-foreground/90 transition-colors flex items-center justify-center"
                 >
                   <Send size={20} />
                 </motion.button>
@@ -149,7 +149,7 @@ export default function LocationContact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative h-full min-h-[400px] rounded-3xl overflow-hidden border-4 border-card shadow-lg"
+            className="relative h-full min-h-[280px] sm:min-h-[400px] rounded-3xl overflow-hidden border-4 border-card shadow-lg"
           >
              <iframe
                title="Pizza Ride location map"

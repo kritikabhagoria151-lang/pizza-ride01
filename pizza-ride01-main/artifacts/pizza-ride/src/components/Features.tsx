@@ -35,7 +35,7 @@ export default function Features() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
 
         {/* Photo Grid Row */}
-        <div className="grid grid-cols-3 gap-4 mb-20">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-20">
           {[
             { src: featurePizzaImg, alt: "Fresh Pizza", label: "🍕 Pizzas" },
             { src: featureBurgerImg, alt: "Juicy Burger", label: "🍔 Burgers" },
@@ -56,7 +56,7 @@ export default function Features() {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <span className="absolute bottom-4 left-4 text-white font-display font-black text-lg drop-shadow-lg">
+              <span className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 text-white font-display font-black text-sm sm:text-lg drop-shadow-lg">
                 {photo.label}
               </span>
             </motion.div>
@@ -106,7 +106,7 @@ export default function Features() {
             </p>
 
             <a
-              href="#menu"
+              href="/menu"
               className="inline-flex items-center justify-center bg-foreground text-background hover:bg-foreground/90 px-8 py-4 rounded-full font-bold uppercase tracking-wide transition-transform hover:-translate-y-1 shadow-lg"
             >
               Taste the Difference

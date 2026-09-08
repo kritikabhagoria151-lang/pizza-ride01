@@ -319,7 +319,7 @@ export default function ChatBot() {
         onClick={() => setOpen((o) => !o)}
         whileHover={{ scale: 1.1, rotate: [0, -6, 6, 0] }}
         whileTap={{ scale: 0.92 }}
-        className="fixed bottom-6 right-6 z-50 w-24 h-24 rounded-full bg-primary text-primary-foreground flex items-center justify-center"
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-primary text-primary-foreground flex items-center justify-center"
         style={{
           boxShadow: "0 12px 30px rgba(0,0,0,0.35), 0 4px 8px rgba(0,0,0,0.25), inset 0 -6px 12px rgba(0,0,0,0.25), inset 0 6px 12px rgba(255,255,255,0.35)",
           border: "3px solid rgba(255,255,255,0.4)",
@@ -336,7 +336,7 @@ export default function ChatBot() {
               <img
                 src={robotLogo}
                 alt="Chat"
-                className="w-16 h-16 rounded-full object-cover"
+                className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full object-cover"
                 style={{
                   filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.4))",
                   border: "2px solid rgba(255,255,255,0.5)",
@@ -355,7 +355,7 @@ export default function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 32, scale: 0.93 }}
             transition={{ duration: 0.28, ease: "easeOut" }}
-            className="fixed bottom-28 right-6 z-50 w-[340px] sm:w-[380px] bg-background border border-border rounded-3xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-28 right-6 z-50 w-[340px] max-w-[calc(100vw-3rem)] sm:w-[380px] bg-background border border-border rounded-3xl shadow-2xl flex flex-col overflow-hidden"
             style={{ maxHeight: "calc(100vh - 180px)" }}
           >
             <div className="bg-primary text-primary-foreground px-5 py-4 flex items-center gap-3 shrink-0">
