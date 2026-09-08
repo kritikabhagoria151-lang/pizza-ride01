@@ -34,6 +34,193 @@ function pick(arr: string[]): string {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+function detectUserLang(text: string): "hi-IN" | "en-IN" {
+  if (/[\u0900-\u097F]/.test(text)) return "hi-IN";
+  if (/(yaar|haiy|hai|karo|karke|chahiye|kitna|kya|kaise|batao|poochho|achha|sabse|bhai|nhi|nahi|aur|mast|maza|aana|jao|sunao|dekha|wala|kab)/i.test(text)) return "hi-IN";
+  return "en-IN";
+}
+
+function pickVoice(lang: string): SpeechSynthesisVoice | null {
+  const voices = window.speechSynthesis.getVoices();
+  return (
+    voices.find((v) => v.lang === lang && /google|neha|madhur|swara/i.test(v.name)) ||
+    voices.find((v) => v.lang === lang) ||
+    null
+  );
+}
+
+function detectLang(input: string): "hi" | "hinglish" | "en" {
+  if (/[\u0900-\u097F]/.test(input)) return "hi";
+  if (/(yaar|hai|nahi|nhi|karo|kya|kaise|batao|chahiye|kitna|acha|akcha|mast|bhai|saath|dekh|mangwana)/i.test(input)) return "hinglish";
+  return "en";
+}
+
+function langForText(text: string): "hi-IN" | "en-IN" {
+  if (/[\u0900-\u097F]/.test(text)) return "hi-IN";
+  if (/(yaar|hai|nahi|nhi|karo|kaise|batao|chahiye|kitna|bhai|mast|dekh|mangwana)/i.test(text)) return "hi-IN";
+  return "en-IN";
+}
+
+function getEnglishReply(input: string): string {
+  const q = input.toLowerCase();
+
+  if (/^(hi|hello|hey|namaste|namaskar|hii|helo|sup|yo)\b/.test(q)) {
+    return pick([
+      "Hey there! How are you? I'm PizzaBot - Pizza Ride's friend! Tell me what you need - menu, prices, or just a chat?",
+      "Hello friend! What's up? I'm PizzaBot - I know everything about our pizzas, burgers, pasta and more!",
+      "Hi! Welcome! I'm PizzaBot - your friendly assistant! Just ask me anything!",
+    ]);
+  }
+
+  if (/kaise ho|kaisa hai|kya haal|kya chal|how are you|what.?up/.test(q)) {
+    return "I'm doing great, thanks! The kitchen is busy making fresh pizzas! How about you? Feel like ordering something today?";
+  }
+
+  if (/tumhara naam|kaun ho|tum kaun|naam kya|who are you/.test(q)) {
+    return "I'm PizzaBot - Pizza Ride's own assistant! I know our full menu, prices, and I'm always ready to help you!";
+  }
+
+  if (/thank|shukriya|dhanyavad|thanks|meherbani/.test(q)) {
+    return pick([
+      "No need to thank me! Helping you is my job. Come back anytime!",
+      "We're friends - no formalities! What else can I get for you?",
+      "You're welcome! Just drop by whenever you're craving a pizza!",
+    ]);
+  }
+
+  if (/bye|goodbye|tata|chalo|nikal|ja raha|phir milte/.test(q)) {
+    return pick([
+      "Bye! Do visit Pizza Ride - you're always welcome! Take care!",
+      "See you soon! Whenever you crave pizza, just walk in!",
+      "Not goodbye, but see you later! We'll be waiting!",
+    ]);
+  }
+
+  if (/poora menu|full menu|sab items|saare items|complete list|dikhao sab|pura menu|sab dikhao|menu/.test(q)) {
+    return "Here is our full menu!\n\n PIZZAS (59-449):\nTomato 59 | Onion 70 | Capsicum 70 | Corn 80\nOnion & Corn 90 | Onion & Capsicum 90\nOnion & Paneer 100 | Corn & Paneer 100\nSingle Cheese 110 | Cheese & Corn 130 | Double Cheese 150\nFarm House 160/310/400 | Tandoori Paneer 160/310/400\nZesty Tangy 160/310/400 | Makhani 160/310/400\nClassical 210/340/450 | Spicy Paneer 210/340/450\nDelight Extra Cheese 210/340/450 | Tikki Crush 210/340/450\nPizza Ride Special 259/349/449\n\n BURGERS:\nAloo Tikki 40 | Veggi 50 | Cheese Spicy 70 | Paneer 70 | Jumbo 99\n\n SANDWICH:\nVeg Grill 70 | Spicy Paneer 90 | Cheese Grill 90\n\n WRAPS:\nAloo Tikki 60 | Cheese Spicy 90 | Paneer 110\n\n PASTA:\nRed Sauce 109 | White Sauce 109 | Tandoori 119 | Makhani 119 | Mix Sauce 149\n\n GARLIC BREAD:\nPlain 81 | Veg Loaded 110 | Laden 120\n\n SHAKES & DRINKS:\nStrawberry/Butterscotch/Vanilla 90 | Choco Oreo 90 | Black Current 90 | Cold Coffee 120 | Soft Drink 30\n\n FRIES & SIDES:\nSalted 65 | Peri Peri 69 | Masala 69 | Cheese Peri Peri 99\nVeg Pocket 59 | Paneer Pocket 89 | Dips 30 | Paneer Salad 100\n";
+  }
+
+  if (/pizza|pizze/.test(q)) {
+    if (/best|recommend|suggestion|kaunsa|konsa|popular|bestseller|accha|sahi|batao/.test(q)) {
+      return "You must try these!\n\n Farm House - 160\nOur bestseller! Onion, Capsicum, Corn, Mushroom - loaded with fresh veggies.\n\n Makhani Pizza - 160\nOur local favorite! Makhani sauce, Capsicum, Paneer - buttery goodness!\n\n Tikki Crush - 210\nMushroom, Jalapeno, Paneer, Red Paprika - you'll want it again and again!\n\n Pizza Ride Special - 259\nOur signature! All veggies + loaded cheese - only at our place!\n\nMy advice - try Farm House first, then the Special!";
+    }
+    if (/price|rate|kitna|kitne|cost|charge|menga|sasta/.test(q)) {
+      return "Here are the pizza prices!\n\n Budget: Tomato 59 | Onion 70 | Capsicum 70 | Corn 80 | Onion & Corn 90 | Single Cheese 110\n\n Mid: Cheese & Corn 130 | Double Cheese 150 | Farm House 160 | Tandoori 160 | Zesty Tangy 160 | Makhani 160\n\n Premium: Classical 210 | Spicy Paneer 210 | Delight 210 | Tikki Crush 210 | Pizza Ride Special 259\n\n Regular / Medium (+150) / Large (+240)\n\nCheapest 59, most loaded 259!";
+    }
+    if (/farm.?house/.test(q)) {
+      return "This is our KING!\n\n FARM HOUSE - 160 (Reg) / 310 (Med) / 400 (Large)\n\nWhat's in it: Onion, Capsicum, Corn, Mushroom - all fresh veggies!\nWhy special: Our bestseller! People keep coming back.\n\nTry it once - you'll be hooked!";
+    }
+    if (/tandoori.?paneer/.test(q) && !/pasta/.test(q)) {
+      return " TANDOORI PANEER - 160/310/400\n\nOnion, Paneer, Red Paprika - smoky tandoori flavour!\nSizes: Reg/Med/Large";
+    }
+    if (/zesty|tangy/.test(q)) {
+      return " ZESTY TANGY - 160/310/400\n\nOnion, Corn, Paneer - tangy and zesty taste!\nSomething different, and delicious!";
+    }
+    if (/makhani/.test(q) && !/pasta/.test(q)) {
+      return "Our LOCAL FAV!\n\n MAKHANI - 160/310/400\n\nMakhani Sauce, Capsicum, Paneer - buttery comfort food!";
+    }
+    if (/classical/.test(q)) {
+      return " CLASSICAL - 210/340/450\n\nOnion, Capsicum, Corn, Mushroom, Paneer - everything in one!";
+    }
+    if (/spicy.?paneer/.test(q)) {
+      return " SPICY PANEER - 210/340/450\n\nOnion, Paneer, Red Paprika - it's spicy!\nFor spice lovers - eyes will open wide!";
+    }
+    if (/delight|extra.?cheese/.test(q)) {
+      return " DELIGHT EXTRA CHEESE - 210/340/450\n\nCapsicum, Mushroom, Jalapeno - KING of cheese!\nCheese lover? This is your pizza!";
+    }
+    if (/tikki.?crush/.test(q)) {
+      return " TIKKI CRUSH - 210/340/450\n\nMushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush!\nUnique taste - a must try!";
+    }
+    if (/ride.?special|special/.test(q)) {
+      return " PIZZA RIDE SPECIAL - 259/349/449\n\nOur signature! All veggies + loaded cheese!\nOnly at Pizza Ride - don't forget to try it!";
+    }
+    if (/tomato/.test(q) && !/sauce/.test(q)) {
+      return " TOMATO - 59\n\nOur cheapest pizza! Fresh tomato - just 59!";
+    }
+    if (/double.?cheese/.test(q)) {
+      return " DOUBLE CHEESE - 150\n\nAll veggies + DOUBLE cheese!";
+    }
+    if (/single.?cheese/.test(q)) {
+      return " SINGLE CHEESE - 110\n\nAll veggies + single cheese - budget friendly and tasty!";
+    }
+    if (/cheese.?corn/.test(q)) {
+      return " CHEESE & CORN - 130\n\nCreamy cheese + crunchy corn = GREAT COMBO!";
+    }
+    return "Pizza is our passion!\n\n Budget: Tomato 59 | Onion 70 | Capsicum 70 | Corn 80\n Combos: Onion & Corn 90 | Onion & Capsicum 90 | Paneer combos 100\n Cheese: Single 110 | Cheese & Corn 130 | Double 150\n Special: Farm House 160 | Tandoori 160 | Zesty 160 | Makhani 160 | Classical 210 | Spicy 210 | Tikki Crush 210 | Ride Special 259\n\nWhich one would you like to try?";
+  }
+
+  if (/burger/.test(q)) {
+    if (/price|kitna|kitne/.test(q)) return "Burger prices:\n Aloo Tikki 40 (Budget king!) | Veggi 50 | Cheese Spicy 70 | Paneer 70 | Jumbo 99\nCheapest 40, best 99!";
+    if (/aloo.?tikki|tikki/.test(q)) return " ALOO TIKKI - 40\nCheapest and crispy! Crispy tikki + fresh veggies. Great at just 40!";
+    if (/jumbo|big|bada/.test(q)) return " JUMBO - 99\nOur SHER! Double patty + extra cheese + fully loaded!"; 
+    if (/paneer.?burger/.test(q)) return " PANEER - 70\nFor paneer lovers! Juicy paneer patty + mint mayo. Soft and tasty!";
+    if (/cheese.?spicy|spicy.?burger/.test(q)) return " CHEESE SPICY - 70\nSpicy patty + gooey cheese! For spice lovers!";
+    if (/veggi|veggie/.test(q)) return " VEGGI - 50\nClassic - simple and tasty! Fresh veggie patty.";
+    return "Our burgers are great too!\n Aloo Tikki 40 | Veggi 50 | Cheese Spicy 70 | Paneer 70 | Jumbo 99\nWhich one would you like?";
+  }
+
+  if (/pasta/.test(q)) {
+    if (/price|kitna|kitne/.test(q)) return "Pasta prices:\n Red Sauce 109 | White 109 | Tandoori 119 | Makhani 119 | Mix 149\nStarts at 109!";
+    if (/red.?sauce|tomato.?sauce/.test(q)) return " RED SAUCE - 109\nPenne in spiced tomato red sauce - tangy!";
+    if (/white.?sauce|alfredo/.test(q)) return " WHITE SAUCE - 109\nCreamy bechamel - smooth and comforting!";
+    if (/tandoori/.test(q)) return " TANDOORI - 119 Chef's Pick!\nSmoky tandoori flavour - unique! Try it once!";
+    if (/makhani/.test(q) && !/pizza/.test(q)) return " MAKHANI - 119\nButtery makhani sauce - comfort food!";
+    if (/mix.?sauce|pink.?sauce/.test(q)) return " MIX SAUCE - 149 Loaded!\nCombo of all sauces - best of everything!";
+    return "Fresh pasta!\n Red Sauce 109 | White 109 | Tandoori 119 | Makhani 119 | Mix 149\nWhich one?";
+  }
+
+  if (/sandwich/.test(q)) return "Our sandwiches are super tasty!\n Veg Grill 70 - Cheese, cucumber, tomato, green chutney, grilled!\n Spicy Paneer 90 - Spicy paneer + fresh veggies + toasted bread\n Cheese Grill 90 - Simple and delicious!\nAll crispy! Which one?";
+  if (/wrap|roll/.test(q)) return "Our wraps are great too!\n Aloo Tikki 60 - Spiced tikki + chutneys\n Cheese Spicy 90 - Spicy filling + melted cheese\n Paneer 110 - Soft paneer + mint chutney + veggies\nFresh wraps!";
+  if (/garlic|bread/.test(q)) return "Garlic bread is next level!\n Plain 81 - Soft bread + garlic butter\n Veg Loaded 110 (MUST TRY!) - Veg filling + melted cheese\n Laden 120 - Extra toppings loaded!\nDo try the Veg Loaded!";
+  if (/shake|drink|coffee|cold coffee|beverage|peene|piyo/.test(q)) {
+    if (/price|kitna|kitne/.test(q)) return "Drinks prices:\n Strawberry/Butterscotch/Vanilla/Black Current 90 | Choco Oreo 90 | Cold Coffee 120 | Soft Drink 30\nStarts at 30!";
+    if (/oreo|choco/.test(q)) return " CHOCO OREO - 90\nCrushed Oreos + chocolate shake = HEAVEN!\nA fan favourite for Oreo lovers!";
+    if (/cold.?coffee/.test(q)) return " COLD COFFEE - 120\nChilled, creamy, perfect! Strong and smooth for coffee lovers!";
+    if (/strawberry/.test(q)) return " STRAWBERRY - 90\nFresh strawberry flavour - pink and pretty! Thick and creamy!";
+    if (/butterscotch/.test(q)) return " BUTTERSCOTCH - 90\nSweet and creamy - old school taste!";
+    if (/vanilla/.test(q)) return " VANILLA - 90\nClassic - simple and perfect! Never goes wrong!";
+    if (/black.?currant|currant/.test(q)) return " BLACK CURRENT - 90\nRefreshing and fruity!";
+    if (/soft.?drink|pepsi|cold.?drink|cola/.test(q) && !/coffee/.test(q)) return " SOFT DRINK - 30\nPepsi, 7Up, Mirinda - just 30, chilled!";
+    return "Great drinks!\n Strawberry/Butterscotch/Vanilla 90 | Choco Oreo 90 | Black Current 90 | Cold Coffee 120 | Soft Drink 30\nWhich one?";
+  }
+
+  if (/fries|sides|pocket|dip|salad/.test(q)) {
+    if (/price|kitna|kitne/.test(q)) return "Fries prices:\n Salted 65 | Peri Peri 69 | Masala 69 | Cheese Peri Peri 99 | Veg Pocket 59 | Paneer Pocket 89 | Dips 30 | Salad 100\nStarts at 30!";
+    if (/cheese.?peri|cheese.?fries/.test(q)) return " CHEESE PERI PERI - 99\nPeri peri spice + cheese sauce = GREAT COMBO!";
+    if (/veg.?pocket/.test(q)) return " VEG POCKET - 59\nCrispy pocket + spiced veggies - just 59!";
+    if (/paneer.?pocket/.test(q)) return " PANEER POCKET - 89\nCrispy + gooey paneer!";
+    if (/paneer.?salad/.test(q)) return " PANEER SALAD - 100\nHealthy and tasty! Fresh paneer + veggies.";
+    if (/dip|sauce/.test(q)) return "DIPS - 30 each:\n Cheese | Spice | Tandoori | Chilly\nPairs with any item!";
+    return "We have fries too!\n Salted 65 | Peri Peri 69 | Masala 69 | Cheese Peri Peri 99\n Veg Pocket 59 | Paneer Pocket 89 | Dips 30 | Salad 100\nWhich one?";
+  }
+
+  if (/veg|vegetarian|non.?veg|chicken|mutton|egg|meat/.test(q)) {
+    if (/non.?veg|chicken|mutton|egg|meat/.test(q)) return "Sorry! Pizza Ride is 100% VEGETARIAN!\nOnly fresh veggies, paneer, cheese - but so tasty you won't miss non-veg!";
+    return "Yes! 100% VEGETARIAN!\nFresh veggies, paneer, cheese, herbs - all natural!";
+  }
+
+  if (/price|rate|kitna|kitne|cost|bill|charge|sasta|mehnga/.test(q)) return "Great news - our prices!\n Pizzas 59-449 | Burgers 40-99 | Sandwich 70-90 | Wraps 60-110 | Pasta 109-149 | Garlic 81-120 | Drinks 30-120 | Fries 30-100\n Cheapest: Tomato Pizza 59 | Most popular: Farm House 160\nPocket friendly!";
+  if (/location|address|kahan|kidhar|where|map|direction|route|samalkha|pahunchna|aana|nahi pata/.test(q)) return "We are in Samalkha, Haryana!\nAt the bottom of this website under \"Visit Us\" you'll find Google Maps, address and phone!\nOr search \"Pizza Ride Samalkha\" on Google Maps - you'll find us easily!";
+  if (/time|timing|hours|open|close|kab|kitne baje|shaam|subah|dopahar|din|raat/.test(q)) return "Note down our timing!\n Open: Monday to Sunday, 12:00 PM - 12:00 AM (midnight)\n Open all 7 days!\nFresh hot pizza awaits!";
+  if (/order|delivery|deliver|home delivery|parcel|takeaway|booking|mangwana/.test(q)) return "Ordering is easy!\n1. See the menu\n2. Decide what you want\n3. Walk in or call us\n4. Delivery available in Samalkha!\n5. Takeaway also available!\nFresh and hot - come soon!";
+  if (/contact|phone|number|call|mobile|tele|email/.test(q)) return "Contact details are in the \"Visit Us\" section at the bottom of the website!\n Phone - call us directly\n Address - with the map!\nYou can also order by calling!";
+  if (/offer|discount|coupon|deal|bachat|sasta|free|combo|affordable/.test(q)) return "About offers:\n CHEAP: Tomato Pizza 59 | Aloo Tikki 40 | Veg Pocket 59 | Soft Drink 30 | Dips 30\n BEST VALUE: Pizza Ride Special 259 (3-4 people can easily share!)\nKeep visiting the restaurant for new offers!";
+  if (/review|rating|feedback|kaisa|quality|taste|test|kaisa hai|kaisa lagta/.test(q)) return "We're proud of our feedback!\n 500+ HAPPY CUSTOMERS in Samalkha!\n Most loved: Farm House | Pizza Ride Special | Makhani | Jumbo Burger | Choco Oreo Shake\n\"Fresh ingredients and bold flavours!\" - try and become a fan!";
+  if (/about|about.?us|kya ho|kya hai ye|pizza.?ride/.test(q)) return "About Pizza Ride, from the heart!\n Samalkha, Haryana - our own store!\n 100% Vegetarian | 500+ Happy Customers\n Fresh Ingredients + Bold Flavours | Fast Delivery | Wood-fired pizza\nIt's your city's own pizza place - come try it!";
+  if (/best|recommend|suggestion|kaunsa|konsa|popular|bestseller|accha|sahi|top|batao/.test(q)) return "Here are my TOP 6!\n1. Pizza Ride Special 259 - Only at our place!\n2. Farm House 160 - Our bestseller!\n3. Makhani 160 - Local favorite!\n4. Tikki Crush 210 - Unique taste!\n5. Jumbo Burger 99 - Double patty + cheese!\n6. Choco Oreo Shake 90 - Oreo + Chocolate = HEAVEN!\nIf you haven't tried these, you've missed something!";
+
+  return pick([
+    "Hmm, that's a great question! But I don't have that answer. However, I know all the secrets of our pizzas, burgers, pasta and shakes! Ask me something!",
+    "That's a bit outside my topic - I'm an expert in food and Pizza Ride! Want to hear the menu? Or the prices?",
+    "Interesting! I don't know that... but tell me - have you ever tried Farm House? No?! Then plan it for today!",
+  ]);
+}
+
+function getSmartReply_lang(input: string, lang: "hi" | "hinglish" | "en"): string {
+  if (lang === "en" && !/[\u0900-\u097F]/.test(input)) return getEnglishReply(input);
+  return getSmartReply(input);
+}
+
 function getSmartReply(input: string): string {
   const q = input.toLowerCase();
 
@@ -206,7 +393,7 @@ export default function ChatBot() {
     {
       role: "assistant",
       content:
-        "Arrey hello yaar! Main PizzaBot - tumhara apna dost! Kuch bhi poochho - menu, prices, best pizza, location... ya bas aise hi baat karo, maza aa jaega! Hindi, English, Hinglish - jo bolo!",
+        "Arrey hello yaar! Main PizzaBot - tumhara apna dost! Kuch bhi poochho - menu, prices, best pizza, location... ya bas aise hi baat karo, maza aa jaega! Hindi, English, Hinglish - jo bolo, wahi jawab + awaaz!",
     },
   ]);
   const [input, setInput] = useState("");
@@ -227,9 +414,19 @@ export default function ChatBot() {
     if (open) setTimeout(() => inputRef.current?.focus(), 300);
   }, [open]);
 
-  const speak = useCallback((text: string, index: number) => {
+  useEffect(() => {
+    const load = () => window.speechSynthesis.getVoices();
+    load();
+    window.speechSynthesis.addEventListener?.("voiceschanged", load);
+    return () => window.speechSynthesis.removeEventListener?.("voiceschanged", load);
+  }, []);
+
+  const speak = useCallback((text: string, index: number, lang: "hi-IN" | "en-IN" = "hi-IN") => {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    const voice = pickVoice(lang);
+    if (voice) utterance.voice = voice;
     utterance.rate = 0.95;
     utterance.pitch = 1;
     utterance.onstart = () => setSpeakingIndex(index);
@@ -254,6 +451,8 @@ export default function ChatBot() {
       setInput("");
       setLoading(true);
 
+      const userLang = detectLang(trimmed);
+
       try {
         let reply: string;
         try {
@@ -265,16 +464,16 @@ export default function ChatBot() {
             }),
           });
           const data = await res.json();
-          reply = data.reply ?? data.fallback ?? getSmartReply(trimmed);
+          reply = data.reply ?? data.fallback ?? getSmartReply_lang(trimmed, userLang);
         } catch {
-          reply = getSmartReply(trimmed);
+          reply = getSmartReply_lang(trimmed, userLang);
         }
 
         const botMsg: Message = { role: "assistant", content: reply };
         const finalMessages = [...updatedMessages, botMsg];
         setMessages(finalMessages);
 
-        if (voiceOutput) speak(reply, finalMessages.length - 1);
+        if (voiceOutput) speak(reply, finalMessages.length - 1, langForText(reply));
       } catch {
         setMessages((prev) => [...prev, { role: "assistant", content: "Arrey yaar, network mein thodi dikkat ho gayi. Ek baar dobara bhejo na message!" }]);
       } finally {
@@ -383,7 +582,7 @@ export default function ChatBot() {
                   <div className={`max-w-[78%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${msg.role === "user" ? "bg-primary text-primary-foreground rounded-br-sm" : "bg-card border border-border text-foreground rounded-bl-sm"}`}>
                     <p className="whitespace-pre-wrap">{msg.content}</p>
                     {msg.role === "assistant" && (
-                      <button onClick={() => speakingIndex === i ? stopSpeaking() : speak(msg.content, i)} className="mt-1.5 text-muted-foreground hover:text-primary transition-colors" title={speakingIndex === i ? "Stop" : "Listen"}>
+                      <button onClick={() => speakingIndex === i ? stopSpeaking() : speak(msg.content, i, langForText(msg.content))} className="mt-1.5 text-muted-foreground hover:text-primary transition-colors" title={speakingIndex === i ? "Stop" : "Listen"}>
                         {speakingIndex === i ? <VolumeX size={13} /> : <Volume2 size={13} />}
                       </button>
                     )}
