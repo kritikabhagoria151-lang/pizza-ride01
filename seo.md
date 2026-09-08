@@ -249,9 +249,7 @@ backend pages exist.
    ```tsx
    <motion.a href="/location" className="...">Get Directions →</motion.a>
    ```
-2. **ChatBot quick chips** already point users to menu — add a "Call us" wrap:
-   "Order karna hai? Call **+91 72068 87688** ya [Menu](/menu) dekho."
-3. **Dead placeholder links in `Footer.tsx`** (lines 104–107): Privacy,
+2. **Dead placeholder links in `Footer.tsx`** (lines 104–107): Privacy,
    Terms, Refund all point to `#` and social icons (line 45) point to `#`.
    Point them to real pages/profiles, or remove them (broken links hurt SEO).
 4. **Breadcrumbs** — add a "Home › Menu" breadcrumb on `/menu` for crawl depth.
