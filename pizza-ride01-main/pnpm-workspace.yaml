@@ -3,5 +3,5 @@ packages:
   - 'lib/**'
   - 'scripts'
 
-allowBuilds:
-  esbuild: true
+onlyBuiltDependencies:
+  - esbuild
