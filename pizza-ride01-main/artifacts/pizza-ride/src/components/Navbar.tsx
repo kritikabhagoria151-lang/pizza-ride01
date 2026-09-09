@@ -49,7 +49,7 @@ export default function Navbar() {
               >
                 <img
                   src={pizzaRideLogo}
-                  alt="Pizza Ride logo"
+                  alt="Pizza Ride Logo — Two friends enjoying pizza and cold drink, Fast Fresh Delicious, Samalkha"
                   className="h-full w-full object-cover"
                 />
               </motion.div>

@@ -92,6 +92,7 @@ type MenuItem = {
   sizes?: MenuItemSize[];
   badge?: string;
   image: string;
+  alt?: string;
 };
 type Category = { id: string; label: string; emoji: string; items: MenuItem[] };
 
@@ -101,26 +102,26 @@ const categories: Category[] = [
     label: "Pizzas",
     emoji: "🍕",
     items: [
-      { name: "Farm House", description: "Onion, Capsicum, Corn, Mushroom", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Bestseller", image: farmhouseImg },
-      { name: "Tandoori Paneer", description: "Onion, Paneer, Red Paprika", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: tandooriPaneerPizzaImg },
-      { name: "Zesty Tangy Pizza", description: "Onion, Corn, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: zestyTangyImg },
-      { name: "Makhani Pizza", description: "Makhani Sauce, Capsicum, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Local Fav", image: makhaniPizzaImg },
-      { name: "Classical Pizza", description: "Onion, Capsicum, Corn, Mushroom, Paneer", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: classicalPizzaImg },
-      { name: "Spicy Paneer", description: "Onion, Paneer, Red Paprika", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Spicy 🌶️", image: spicyPaneerPizzaImg },
-      { name: "Delight Extra Cheese", description: "Capsicum, Mushroom, Jalapeno", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: delightCheeseImg },
-      { name: "Tikki Crush Pizza", description: "Mushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Must Try", image: tikkiCrushImg },
-      { name: "Tomato Pizza", description: "Single topping — fresh tomato", price: 59, image: tomatoPizzaImg },
-      { name: "Onion Pizza", description: "Single topping — golden onion", price: 70, image: onionPizzaImg },
-      { name: "Capsicum Pizza", description: "Single topping — crisp capsicum", price: 70, image: capsicumPizzaImg },
-      { name: "Corn Pizza", description: "Single topping — sweet corn", price: 80, image: cornPizzaImg },
-      { name: "Onion & Corn", description: "Double topping", price: 90, image: onionCornPizzaImg },
-      { name: "Onion & Capsicum", description: "Double topping", price: 90, image: gardenFreshImg },
-      { name: "Onion & Paneer", description: "Double topping", price: 100, image: tandooriPaneerPizzaImg },
-      { name: "Corn & Paneer", description: "Double topping", price: 100, image: cornPaneerPizzaImg },
-      { name: "Paneer & Corn", description: "Double topping", price: 100, image: paneerCornPizzaImg },
-      { name: "Single Cheese", description: "Veg Treat — all veggies with single cheese", price: 110, image: singleCheeseImg },
-      { name: "Cheese & Corn", description: "Veg Treat — all veggies with cheese & corn", price: 130, image: cheeseCornPizzaImg },
-      { name: "Double Cheese", description: "Veg Treat — all veggies with double cheese", price: 150, image: doubleCheeseImg },
+      { name: "Farm House", description: "Onion, Capsicum, Corn, Mushroom", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Bestseller", image: farmhouseImg, alt: "Farm House Pizza with Onion Capsicum Corn and Mushroom — Pizza Ride Samalkha, Bestseller, starting from ₹160" },
+      { name: "Tandoori Paneer", description: "Onion, Paneer, Red Paprika", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: tandooriPaneerPizzaImg, alt: "Tandoori Paneer Pizza with Onion Paneer and Red Paprika — Pizza Ride Samalkha, starting from ₹160" },
+      { name: "Zesty Tangy Pizza", description: "Onion, Corn, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], image: zestyTangyImg, alt: "Zesty Tangy Pizza with Onion Corn and Paneer — Pizza Ride Samalkha, starting from ₹160" },
+      { name: "Makhani Pizza", description: "Makhani Sauce, Capsicum, Paneer", price: 160, sizes: [{ label: "Reg", price: 160 }, { label: "Med", price: 310 }, { label: "Large", price: 400 }], badge: "Local Fav", image: makhaniPizzaImg, alt: "Makhani Pizza with Makhani Sauce Capsicum and Paneer — Pizza Ride Samalkha, Local Favourite, starting from ₹160" },
+      { name: "Classical Pizza", description: "Onion, Capsicum, Corn, Mushroom, Paneer", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: classicalPizzaImg, alt: "Classical Pizza with Onion Capsicum Corn Mushroom and Paneer — Pizza Ride Samalkha, starting from ₹210" },
+      { name: "Spicy Paneer", description: "Onion, Paneer, Red Paprika", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Spicy 🌶️", image: spicyPaneerPizzaImg, alt: "Spicy Paneer Pizza with Onion Paneer and Red Paprika — Pizza Ride Samalkha, Spicy, starting from ₹210" },
+      { name: "Delight Extra Cheese", description: "Capsicum, Mushroom, Jalapeno", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], image: delightCheeseImg, alt: "Delight Extra Cheese Pizza with Capsicum Mushroom and Jalapeno — Pizza Ride Samalkha, starting from ₹210" },
+      { name: "Tikki Crush Pizza", description: "Mushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush", price: 210, sizes: [{ label: "Reg", price: 210 }, { label: "Med", price: 340 }, { label: "Large", price: 450 }], badge: "Must Try", image: tikkiCrushImg, alt: "Tikki Crush Pizza with Mushroom Jalapeno Paneer Red Paprika and Tikki Crush — Pizza Ride Samalkha, Must Try, starting from ₹210" },
+      { name: "Tomato Pizza", description: "Single topping — fresh tomato", price: 59, image: tomatoPizzaImg, alt: "Tomato Pizza with single topping fresh tomato — Pizza Ride Samalkha, only ₹59" },
+      { name: "Onion Pizza", description: "Single topping — golden onion", price: 70, image: onionPizzaImg, alt: "Onion Pizza with single topping golden onion — Pizza Ride Samalkha" },
+      { name: "Capsicum Pizza", description: "Single topping — crisp capsicum", price: 70, image: capsicumPizzaImg, alt: "Capsicum Pizza with single topping crisp capsicum — Pizza Ride Samalkha, only ₹70" },
+      { name: "Corn Pizza", description: "Single topping — sweet corn", price: 80, image: cornPizzaImg, alt: "Corn Pizza with single topping sweet corn — Pizza Ride Samalkha, only ₹80" },
+      { name: "Onion & Corn", description: "Double topping", price: 90, image: onionCornPizzaImg, alt: "Onion and Corn Pizza double topping — Pizza Ride Samalkha, only ₹90" },
+      { name: "Onion & Capsicum", description: "Double topping", price: 90, image: gardenFreshImg, alt: "Onion and Capsicum Pizza double topping — Pizza Ride Samalkha, only ₹90" },
+      { name: "Onion & Paneer", description: "Double topping", price: 100, image: tandooriPaneerPizzaImg, alt: "Onion and Paneer Pizza double topping — Pizza Ride Samalkha, only ₹100" },
+      { name: "Corn & Paneer", description: "Double topping", price: 100, image: cornPaneerPizzaImg, alt: "Corn and Paneer Pizza double topping with stretchy cheese — Pizza Ride Samalkha, only ₹100" },
+      { name: "Paneer & Corn", description: "Double topping", price: 100, image: paneerCornPizzaImg, alt: "Paneer and Corn Pizza double topping with fresh herbs — Pizza Ride Samalkha, only ₹100" },
+      { name: "Single Cheese", description: "Veg Treat — all veggies with single cheese", price: 110, image: singleCheeseImg, alt: "Single Cheese Pizza veg treat with all veggies and single cheese — Pizza Ride Samalkha, only ₹110" },
+      { name: "Cheese & Corn", description: "Veg Treat — all veggies with cheese & corn", price: 130, image: cheeseCornPizzaImg, alt: "Cheese and Corn Pizza veg treat with all veggies cheese and corn — Pizza Ride Samalkha, only ₹130" },
+      { name: "Double Cheese", description: "Veg Treat — all veggies with double cheese", price: 150, image: doubleCheeseImg, alt: "Double Cheese Pizza veg treat with all veggies and double cheese — Pizza Ride Samalkha" },
       { name: "Pizza Ride Special", description: "All Veggies with Loaded Cheese", price: 259, sizes: [{ label: "Reg", price: 259 }, { label: "Med", price: 349 }, { label: "Large", price: 449 }], badge: "🌟 Signature", image: signaturePizzaImg },
     ],
   },
@@ -233,7 +234,7 @@ function ItemCard({ item, index }: { item: MenuItem; index: number }) {
       <div className="relative aspect-[4/3] overflow-hidden">
         <motion.img
           src={item.image}
-          alt={item.name}
+          alt={item.alt ?? item.name}
           loading="lazy"
           whileHover={{ scale: 1.15, rotate: 2 }}
           transition={{ duration: 0.5 }}
