@@ -106,10 +106,10 @@ click-through rate. It has zero keywords and no value proposition.
 **Fix — optimized 155-character description (Home):**
 
 ```html
-<meta name="description" content="Order fresh, hot pizza online with Pizza Ride. Quick delivery, easy ordering, and the best flavors — right to your door. Order now!" />
+<meta name="description" content="Craving pizza? Pizza Ride delivers hot, fresh pizza straight to you in minutes. Browse our menu, pick your favorites, and we'll handle the rest!" />
 ```
 
-(Count = 144 characters — Google limit 160 ke andar ✅)
+(Count = 154 characters — Google limit 160 ke andar ✅)
 
 **Per-page descriptions** (120–160 chars):
 
