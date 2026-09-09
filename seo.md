@@ -73,24 +73,13 @@ kare, toh Pizza Ride ki website zahir ho.
 
 ## 1. Title Tag
 
-**Current code** — `pizza-ride01-main/artifacts/pizza-ride/index.html` line 6:
+**Title tag — index.html line 6:**
 
 ```html
 <title>Pizza Ride</title>
 ```
 
-**Analysis:** This single title is served for **every** route (SPA shell). It is
-only 10 characters, contains no keywords, no location, and gives Google no clue
-what the page is about. Every page ranks as "Pizza Ride".
-
-**Fix — 1a. Title tag boilerplate/keywords ke bina:**
-
-```html
-<title>Pizza Ride</title>
-```
-
-**Fix — 1b. Per-page titles** (best done with `react-helmet-async`, see
-point 8 section on SPA) — aapne title sirf **`Pizza Ride`** rakha hai, isliye:
+Per-page title bhi sirf `Pizza Ride`:
 
 | Route | Title |
 |-------|-------|
@@ -99,10 +88,6 @@ point 8 section on SPA) — aapne title sirf **`Pizza Ride`** rakha hai, isliye:
 | `/why-us` | `Pizza Ride` |
 | `/gallery` | `Pizza Ride` |
 | `/location` | `Pizza Ride` |
-
-> Brand ke liye simple, clean title best hai — Google brand naam ko asaan se
-> identify karti hai. (SEO se thoda less informative hoga, lekin user want ke
-> mutabik complete.)
 
 ---
 
