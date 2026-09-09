@@ -83,27 +83,26 @@ kare, toh Pizza Ride ki website zahir ho.
 only 10 characters, contains no keywords, no location, and gives Google no clue
 what the page is about. Every page ranks as "Pizza Ride".
 
-**Fix — 1a. Optimized default title (keyword-focused, exact match "Pizza Ride"):**
+**Fix — 1a. Title tag boilerplate/keywords ke bina:**
 
 ```html
-<title>Pizza Ride — Fast Pizza Delivery in Samalkha | Order Online</title>
+<title>Pizza Ride</title>
 ```
 
-**Fix — 1b. Unique per-page titles** (best done with `react-helmet-async`, see
-point 8 section on SPA). Recommended titles — **"Pizza Ride" keyword BUNDLE**
-(har page title mein `Pizza Ride` aata hai taaki brand keyword consistently
-Google ko mile):
+**Fix — 1b. Per-page titles** (best done with `react-helmet-async`, see
+point 8 section on SPA) — aapne title sirf **`Pizza Ride`** rakha hai, isliye:
 
 | Route | Title |
 |-------|-------|
-| `/` | `Pizza Ride — Fast Pizza Delivery & Online Ordering in Samalkha` |
-| `/menu` | `Pizza Ride Menu — Pizzas, Burgers, Shakes & More in Samalkha` |
-| `/why-us` | `Why Choose Pizza Ride — Fresh Ingredients & Fast Delivery` |
-| `/gallery` | `Pizza Ride Gallery — See Our Delicious Pizzas in Samalkha` |
-| `/location` | `Pizza Ride Location — Store Hours, Address & Contact in Samalkha` |
+| `/` | `Pizza Ride` |
+| `/menu` | `Pizza Ride` |
+| `/why-us` | `Pizza Ride` |
+| `/gallery` | `Pizza Ride` |
+| `/location` | `Pizza Ride` |
 
-Keep titles **50–60 characters** so Google doesn't truncate. Exact-match keyword
-(brand `Pizza Ride`) ko title ke **start mein** rakhna best hai.
+> Brand ke liye simple, clean title best hai — Google brand naam ko asaan se
+> identify karti hai. (SEO se thoda less informative hoga, lekin user want ke
+> mutabik complete.)
 
 ---
 
