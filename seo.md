@@ -119,21 +119,11 @@ Per-page title bhi sirf `Pizza Ride`:
 
 ## 4. Alt Text
 
-**Status: done ✅** — har image pe keyword-rich alt text apply ho chuka hai
-(`src/components/Menu.tsx` aur `Navbar.tsx`):
-
-**Navbar logo (Navbar.tsx):**
+**All images + alt texts:**
 
 ```html
 <img src="logo.png" alt="Pizza Ride Logo — Two friends enjoying pizza and cold drink, Fast Fresh Delicious, Samalkha" />
-```
-
-**Menu images (Menu.tsx)** — ItemCard ab `alt={item.alt ?? item.name}` use karta
-hai; har item ka apna exact alt text set hai:
-
-```html
-<!-- Signature -->
-<img src="pizza-ride-special.jpg" alt="Pizza Ride Special Signature Pizza with all veggies and loaded cheese — Pizza Ride Samalkha, starting from ₹259" />
+<img src="favicon.png" alt="Pizza Ride small logo icon" />
 
 <!-- ROW 1 -->
 <img src="farm-house-pizza.jpg" alt="Farm House Pizza with Onion Capsicum Corn and Mushroom — Pizza Ride Samalkha, Bestseller, starting from ₹160" />
@@ -149,44 +139,46 @@ hai; har item ka apna exact alt text set hai:
 <img src="tomato-pizza.jpg" alt="Tomato Pizza with single topping fresh tomato — Pizza Ride Samalkha, only ₹59" />
 <img src="onion-pizza.jpg" alt="Onion Pizza with single topping golden onion — Pizza Ride Samalkha" />
 
-<!-- Single topping repeats -->
+<!-- ROW 1 -->
 <img src="capsicum-pizza.jpg" alt="Capsicum Pizza with single topping crisp capsicum — Pizza Ride Samalkha, only ₹70" />
 <img src="corn-pizza.jpg" alt="Corn Pizza with single topping sweet corn — Pizza Ride Samalkha, only ₹80" />
 <img src="onion-corn-pizza.jpg" alt="Onion and Corn Pizza double topping — Pizza Ride Samalkha, only ₹90" />
 <img src="onion-capsicum-pizza.jpg" alt="Onion and Capsicum Pizza double topping — Pizza Ride Samalkha, only ₹90" />
 <img src="onion-paneer-pizza.jpg" alt="Onion and Paneer Pizza double topping — Pizza Ride Samalkha, only ₹100" />
+
+<!-- ROW 2 -->
 <img src="corn-paneer-pizza.jpg" alt="Corn and Paneer Pizza double topping with stretchy cheese — Pizza Ride Samalkha, only ₹100" />
 <img src="paneer-corn-pizza.jpg" alt="Paneer and Corn Pizza double topping with fresh herbs — Pizza Ride Samalkha, only ₹100" />
 <img src="single-cheese-pizza.jpg" alt="Single Cheese Pizza veg treat with all veggies and single cheese — Pizza Ride Samalkha, only ₹110" />
 <img src="cheese-corn-pizza.jpg" alt="Cheese and Corn Pizza veg treat with all veggies cheese and corn — Pizza Ride Samalkha, only ₹130" />
 <img src="double-cheese-pizza.jpg" alt="Double Cheese Pizza veg treat with all veggies and double cheese — Pizza Ride Samalkha" />
 
-<!-- Burgers -->
+<img src="pizza-ride-special.jpg" alt="Pizza Ride Special Signature Pizza with all veggies and loaded cheese — Pizza Ride Samalkha, starting from ₹259" />
+
 <img src="allo-tikki-burger.jpg" alt="Allo Tikki Burger with crispy spiced potato tikki patty and fresh veggies — Pizza Ride Samalkha, Budget Pick, only ₹40" />
 <img src="veggi-burger.jpg" alt="Veggi Burger with classic veggie patty and fresh toppings — Pizza Ride Samalkha, only ₹50" />
 <img src="cheese-spicy-burger.jpg" alt="Cheese Spicy Burger with spicy patty loaded with gooey cheese — Pizza Ride Samalkha, only ₹70" />
 <img src="paneer-burger.jpg" alt="Paneer Burger with juicy paneer patty and mint mayo — Pizza Ride Samalkha, only ₹70" />
 <img src="jumbo-burger.jpg" alt="Jumbo Burger with double patty extra cheese fully loaded — Pizza Ride Samalkha, Bestseller, only ₹99" />
 
-<!-- Sandwiches & wraps -->
 <img src="veg-grill-sandwich.jpg" alt="Veg Grill Sandwich with fresh vegetables grilled — Pizza Ride Samalkha, only ₹70" />
 <img src="spicy-paneer-sandwich.jpg" alt="Spicy Paneer Sandwich with paneer and spicy filling — Pizza Ride Samalkha, only ₹90" />
 <img src="cheese-grill-sandwich.jpg" alt="Cheese Grill Sandwich with melted cheese grilled bread — Pizza Ride Samalkha, only ₹90" />
+
 <img src="allo-tikki-wrap.jpg" alt="Allo Tikki Wrap with spiced potato tikki in soft wrap with chutneys — Pizza Ride Samalkha, only ₹60" />
 <img src="cheese-spicy-wrap.jpg" alt="Cheese Spicy Wrap with spicy filling and melted cheese in fresh wrap — Pizza Ride Samalkha, only ₹90" />
 <img src="paneer-wrap.jpg" alt="Paneer Wrap with soft paneer mint chutney onions and veggies — Pizza Ride Samalkha, only ₹110" />
 
-<!-- Pasta -->
 <img src="red-sauce-pasta.jpg" alt="Red Sauce Pasta penne in rich spiced tomato red sauce — Pizza Ride Samalkha, only ₹109" />
 <img src="white-sauce-pasta.jpg" alt="White Sauce Pasta creamy bechamel white sauce pasta — Pizza Ride Samalkha, only ₹109" />
 <img src="tandoori-sauce-pasta.jpg" alt="Tandoori Sauce Pasta smoky tandoori flavoured sauce pasta — Pizza Ride Samalkha, Chefs Pick, only ₹119" />
 <img src="makhani-sauce-pasta.jpg" alt="Makhani Sauce Pasta rich makhani sauce buttery and aromatic — Pizza Ride Samalkha, only ₹119" />
 <img src="mix-sauce-pasta.jpg" alt="Mix Sauce Pasta best of all sauces mixed together — Pizza Ride Samalkha, Loaded, only ₹149" />
 
-<!-- Garlic bread, drinks, sides -->
 <img src="plain-garlic-bread.jpg" alt="Plain Garlic Bread soft bread with garlic butter — Pizza Ride Samalkha, only ₹81" />
 <img src="veg-loaded-garlic-bread.jpg" alt="Veg Loaded Garlic Bread with veg filling and melted cheese — Pizza Ride Samalkha, Must Try, only ₹110" />
 <img src="laden-garlic-bread.jpg" alt="Laden Garlic Bread generously loaded with extra toppings — Pizza Ride Samalkha, only ₹120" />
+
 <img src="strawberry-shake.jpg" alt="Strawberry Shake thick creamy strawberry milkshake with whipped cream — Pizza Ride Samalkha, only ₹90" />
 <img src="butterscotch-shake.jpg" alt="Butterscotch Shake rich butterscotch milkshake with caramel topping — Pizza Ride Samalkha, only ₹90" />
 <img src="vanilla-shake.jpg" alt="Vanilla Shake classic smooth vanilla milkshake — Pizza Ride Samalkha, only ₹90" />
@@ -194,20 +186,26 @@ hai; har item ka apna exact alt text set hai:
 <img src="black-current-shake.jpg" alt="Black Current Shake refreshing black currant flavoured milkshake — Pizza Ride Samalkha, only ₹90" />
 <img src="cold-coffee.jpg" alt="Cold Coffee chilled creamy cold coffee blended to perfection — Pizza Ride Samalkha, only ₹120" />
 <img src="soft-drink.jpg" alt="Soft Drink chilled Pepsi 7Up Mirinda and more — Pizza Ride Samalkha, only ₹30" />
+
+<!-- ROW 1 -->
 <img src="salted-fries.jpg" alt="Salted Fries golden crispy fries with sea salt — Pizza Ride Samalkha, only ₹65" />
 <img src="peri-peri-fries.jpg" alt="Peri Peri Fries tossed in bold peri peri spice — Pizza Ride Samalkha, only ₹69" />
 <img src="masala-fries.jpg" alt="Masala Fries dusted with chaat masala — Pizza Ride Samalkha, only ₹69" />
 <img src="cheese-peri-peri-fries.jpg" alt="Cheese Peri Peri Fries peri peri fries topped with cheese sauce — Pizza Ride Samalkha, Popular, only ₹99" />
 <img src="veg-pocket.jpg" alt="Veg Pocket crispy pocket filled with spiced veggies — Pizza Ride Samalkha, only ₹59" />
+
+<!-- ROW 2 -->
 <img src="paneer-pocket.jpg" alt="Paneer Pocket crispy pocket with gooey paneer filling — Pizza Ride Samalkha, only ₹89" />
 <img src="cheese-dip.jpg" alt="Cheese Dip creamy cheese dipping sauce — Pizza Ride Samalkha, only ₹30" />
 <img src="spice-dip.jpg" alt="Spice Dip spicy tangy dipping sauce — Pizza Ride Samalkha, only ₹30" />
 <img src="tandoori-dip.jpg" alt="Tandoori Dip smoky tandoori dipping sauce — Pizza Ride Samalkha, only ₹30" />
+<img src="chilly-dip.jpg" alt="Chilly Dip hot chilly sauce dip — Pizza Ride Samalkha, only ₹30" />
 <img src="paneer-salad.jpg" alt="Paneer Salad fresh salad with paneer onion cucumber tomato and veggies — Pizza Ride Samalkha, only ₹100" />
-```
 
-> Jis item ke alt aapne nahi diye (jaise Chilly Dip) unke liye fallback
-> `alt={item.name}` use hota hai — koi image bina alt ke nahi hai.
+<img src="pizza-ride-outlet-front.jpg" alt="Pizza Ride restaurant outlet front view with Grill Point signboard on NH-44 Samalkha, contact 7206887688" />
+<img src="pizza-ride-outlet-side.jpg" alt="Pizza Ride restaurant side view with bright red and yellow signboard Samalkha NH-44, contact 7206887688" />
+<img src="pizza-ride-outlet-close.jpg" alt="Pizza Ride restaurant closeup of signboard with logo on NH-44 Samalkha, contact 7206887688" />
+```
 
 ---
 
