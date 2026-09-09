@@ -93,42 +93,13 @@ Per-page title bhi sirf `Pizza Ride`:
 
 ## 2. Meta Description
 
-**Current code** — `index.html` lines 7, 10, 14:
-
-```html
-<meta name="description" content="Pizza Ride — built on Replit. Update this description to reflect the app." />
-```
-
-**Analysis:** This is the default Replit boilerplate and is **visible in Google
-search results** — it says "built on Replit", looks unprofessional, and kills
-click-through rate. It has zero keywords and no value proposition.
-
-**Fix — optimized 155-character description (Home):**
+**Meta description — index.html lines 7, 10, 14:**
 
 ```html
 <meta name="description" content="Craving pizza? Pizza Ride delivers hot, fresh pizza straight to you in minutes. Browse our menu, pick your favorites, and we'll handle the rest!" />
 ```
 
 (Count = 154 characters — Google limit 160 ke andar ✅)
-
-**Per-page descriptions** (120–160 chars):
-
-```html
-<!-- Menu -->
-<meta name="description" content="Explore the full Pizza Ride menu — wood-fired pizzas from ₹59, burgers, shakes, pasta & more. Order online for fast delivery in Samalkha." />
-
-<!-- Why Us -->
-<meta name="description" content="Fresh ingredients, bold flavors, and lightning-fast delivery. 500+ happy customers in Samalkha. See why locals choose Pizza Ride." />
-
-<!-- Gallery -->
-<meta name="description" content="From the fiery oven to the perfect cheese pull — see the mouth-watering pizzas, burgers and shakes at Pizza Ride, Samalkha." />
-
-<!-- Location -->
-<meta name="description" content="Visit Pizza Ride at 6279+3QG, Jurasi Saraf Khas, Haryana. Open Mon–Sun 12 PM–12 AM. Call +91 72068 87688 for delivery or pickup." />
-```
-
-**Also update** the `og:description` (line 10) and `twitter:description`
-(line 14) to match — they both still contain the placeholder text.
 
 ---
 
