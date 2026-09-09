@@ -105,45 +105,15 @@ Per-page title bhi sirf `Pizza Ride`:
 
 ## 3. Heading Hierarchy
 
-**Scan result — no `<h1>` exists on any main page:**
+**Heading structure:**
 
-| File | Headings found | Has H1? |
-|------|----------------|---------|
-| `src/components/Hero.tsx` | Big title is a `<div>` (lines 107–151) | ❌ |
-| `src/components/Features.tsx` | `<h2>` "Why Choose Us", `<h3>`, `<h4>` | ❌ |
-| `src/components/Menu.tsx` | `<h2>` "Our Menu", `<h3>`, `<h4>`, `<h5>` | ❌ |
-| `src/components/Gallery.tsx` | `<h2>` "The Vibe", `<h3>` | ❌ |
-| `src/components/LocationContact.tsx` | `<h2>` "Find Us", `<h3>`, `<h4>` | ❌ |
-| `src/pages/not-found.tsx` | `<h1>` "404 Page Not Found" | ✅ (only this page) |
-
-**Analysis:** The biggest hero headline on the site is a **`<div>`**, not a
-heading — search engines cannot tell what the page is about. Nesting *within*
-components is otherwise correct (`h2 > h3 > h4`). Missing: one `h1` per page.
-
-**Fix 3a — Hero title → `<h1>`** (`Hero.tsx`, line 107):
-
-```tsx
-{/* Before */}
-<div className="text-5xl md:text-7xl font-display font-black leading-[1.05] text-foreground">
-
-{/* After */}
-<h1 className="text-5xl md:text-7xl font-display font-black leading-[1.05] text-foreground">
-  ...words...
-</h1>
+```html
+<body>
+  <h1>Pizza Ride...</h1>
+  <h2>Our Menu</h2>
+  <h3>Veg Pizzas</h3>
+</body>
 ```
-(close with `</h1>` instead of `</div>` at the end of the two line blocks)
-
-**Fix 3b — Add an `<h1>` on the other pages.** Quickest approach: change the
-existing top `<h3>` → `<h1>` on each sub-page so the hierarchy becomes
-`h1 > h2 > ...`:
-
-- `Menu.tsx` line 304: `<h3 className="text-4xl md:text-5xl ...">Fast. Fresh. Delicious.</h3>` → `<h1>`
-- `Features.tsx` line 101: `<h3>Not Your Average Pizza Joint.</h3>` → `<h1>`
-- `Gallery.tsx` line 46: `<h3>Catch the Pizza Ride Energy.</h3>` → `<h1>`
-- `LocationContact.tsx` line 81: `<h3>Drop By or Get It Delivered.</h3>` → `<h1>`
-
-> Rule: exactly **one `h1`** per page, keep it keyword-rich ("Pizza", "Delivery",
-> "Samalkha").
 
 ---
 
