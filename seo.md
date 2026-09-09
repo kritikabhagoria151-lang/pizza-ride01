@@ -4,6 +4,55 @@
 > Current live URL: `https://pizza-ride01-main.vercel.app`
 > Business: Pizza Ride — Samalkha, Haryana, India (100% veg pizza & fast-food delivery)
 
+## 🎯 Focus Keyword: "Pizza Ride"
+
+**Goal:** jab koi browser mein `pizza ride` (aur uske common combinations) search
+kare, toh Pizza Ride ki website zahir ho.
+
+> ⚠️ **Honest note:** koi single meta tag se Google mein **guaranteed #1 rank** 
+> guarantee nahi de sakta. Ranking Google ke algorithm decide karta hai (content,
+> backlinks, Google indexing, competitors). Lekin niche di gayi "Pizza Ride"
+> keyword strategy se rank karne ki **possibility sabse zyada** ho jati hai.
+
+### Search variations hume target karne hain (primary keyword = **Pizza Ride**)
+
+| Search query (log kya type karte hain) | Intent |
+|----------------------------------------|--------|
+| `pizza ride` | Brand |
+| `pizza ride samalkha` | Local |
+| `pizza ride samalkha menu` | Local + menu |
+| `pizza ride menu` | Menu |
+| `pizza in samalkha` | Local delivery |
+| `pizza delivery samalkha` | Local delivery |
+| `vegetarian pizza near me` | Nearby + veg |
+| `pizza shop samalkha haryana` | Local shop |
+
+### "Pizza Ride" keyword hook kahaan-kahaan lagna chahiye
+
+| # | Location | Exact suggestion |
+|---|----------|------------------|
+| 1 | `<title>` (Home) | `Pizza Ride — Pizza Delivery in Samalkha | Order Online` |
+| 2 | Meta description | `"Pizza Ride"` ko 1 baar, naturally phrase mein |
+| 3 | JSON-LD `name`/`menu` | `"name": "Pizza Ride"` pehle se set hai ✅ |
+| 4 | `<h1>` Home (Hero) | Baad wala line "Pizza Ride" ho (abhi `pizza` + emoji text hai) |
+| 5 | `<h2>/<h3>` headings | `Menu.tsx` "Our Menu" + `h2/h3` mein burger/shake also |
+| 6 | Alt text on images | `"Pizza Ride Special pizza"`, `"Pizza Ride Samalkha menu"` |
+| 7 | sitemap URL / canonical | `https://pizza-ride01-main.vercel.app/` (domain mein hi "pizza-ride" hai ✅) |
+| 8 | Google Business Profile (OFFSITE) | Naam: `Pizza Ride` — donc consistent na rakhe |
+| 9 | Footer content | Company Naam `Pizza Ride` har internal page pe same ✅ |
+| 10 | `<h1>` Menu page | `Our Menu — Pizza Ride Samalkha` type |
+
+### Sabse important 3 ke insane (kyunki brand keyword hai):
+
+1. **`pizza ride`** = brand naam — ise **consistently** har jagah same spelling
+   (`Pizza Ride`, alag-alag spelling NO: "PizzaRide", "pizza ridee").
+2. Google Business Profile + Maps listing naam bhi `Pizza Ride` — local search
+   ka #1 signal.
+3. Content mein phrase as a **real sentence** use karo, keyword-stuffing mat
+   karo (Google penalise karta hai).
+
+---
+
 ## Quick Status Checklist
 
 | # | Area | Status |
@@ -34,24 +83,27 @@
 only 10 characters, contains no keywords, no location, and gives Google no clue
 what the page is about. Every page ranks as "Pizza Ride".
 
-**Fix — 1a. Optimized default title:**
+**Fix — 1a. Optimized default title (keyword-focused, exact match "Pizza Ride"):**
 
 ```html
 <title>Pizza Ride — Fast Pizza Delivery in Samalkha | Order Online</title>
 ```
 
 **Fix — 1b. Unique per-page titles** (best done with `react-helmet-async`, see
-point 8 section on SPA). Recommended titles:
+point 8 section on SPA). Recommended titles — **"Pizza Ride" keyword BUNDLE**
+(har page title mein `Pizza Ride` aata hai taaki brand keyword consistently
+Google ko mile):
 
 | Route | Title |
 |-------|-------|
 | `/` | `Pizza Ride — Fast Pizza Delivery & Online Ordering in Samalkha` |
-| `/menu` | `Our Menu — Pizzas, Burgers, Shakes & More | Pizza Ride` |
-| `/why-us` | `Why Choose Us — Fresh Ingredients & Fast Delivery | Pizza Ride` |
-| `/gallery` | `Gallery — See Our Delicious Pizzas | Pizza Ride` |
-| `/location` | `Find Us — Store Location, Hours & Contact | Pizza Ride` |
+| `/menu` | `Pizza Ride Menu — Pizzas, Burgers, Shakes & More in Samalkha` |
+| `/why-us` | `Why Choose Pizza Ride — Fresh Ingredients & Fast Delivery` |
+| `/gallery` | `Pizza Ride Gallery — See Our Delicious Pizzas in Samalkha` |
+| `/location` | `Pizza Ride Location — Store Hours, Address & Contact in Samalkha` |
 
-Keep titles 50–60 characters so Google doesn't truncate.
+Keep titles **50–60 characters** so Google doesn't truncate. Exact-match keyword
+(brand `Pizza Ride`) ko title ke **start mein** rakhna best hai.
 
 ---
 
