@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "packageManager": "pnpm@10.10.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
   "scripts": {
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
     "build:render": "NODE_ENV=production pnpm --filter @workspace/api-server run build && NODE_ENV=production pnpm --filter @workspace/pizza-ride run build",
