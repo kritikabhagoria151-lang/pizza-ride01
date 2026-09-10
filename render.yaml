@@ -4,11 +4,14 @@ services:
     runtime: node
     plan: free
     rootDir: pizza-ride01-main
-    buildCommand: pnpm install --frozen-lockfile && NODE_ENV=production pnpm --filter @workspace/api-server run build && NODE_ENV=production pnpm --filter @workspace/pizza-ride run build
+    preBuildCommand: npm install -g pnpm@10.10.0 && pnpm install --frozen-lockfile
+    buildCommand: NODE_ENV=production pnpm --filter @workspace/api-server run build && NODE_ENV=production pnpm --filter @workspace/pizza-ride run build
     startCommand: node ./artifacts/api-server/dist/index.mjs
     healthCheckPath: /api/healthz
     autoDeploy: true
     envVars:
+      - key: NODE_VERSION
+        value: "20.19.0"
       - key: NODE_ENV
         value: production
       - key: GROQ_API_KEY
