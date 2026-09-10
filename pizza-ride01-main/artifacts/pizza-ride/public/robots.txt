@@ -1,2 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /images/robot.png
+
+Sitemap: https://pizza-ride01-main.vercel.app/sitemap.xml
