@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: pizza-ride
+    name: pizza-ride01
     runtime: node
     plan: free
     rootDir: pizza-ride01-main
