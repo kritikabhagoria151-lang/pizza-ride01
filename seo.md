@@ -211,7 +211,17 @@ Per-page title bhi sirf `Pizza Ride`:
 
 ## 5. Clean URLs
 
-**Current routing** — `src/App.tsx` lines 17–24:
+**Pizza Ride URLs (clean, short, readable — no query strings, no IDs ✅):**
+
+| Page | URL |
+|------|-----|
+| Home | `https://pizza-ride01-main.vercel.app/` |
+| Menu | `https://pizza-ride01-main.vercel.app/menu` |
+| Why Us | `https://pizza-ride01-main.vercel.app/why-us` |
+| Gallery | `https://pizza-ride01-main.vercel.app/gallery` |
+| Location | `https://pizza-ride01-main.vercel.app/location` |
+
+**Routing source** — `src/App.tsx` lines 17–24:
 
 ```tsx
 <Route path="/" component={Home} />
@@ -220,9 +230,6 @@ Per-page title bhi sirf `Pizza Ride`:
 <Route path="/gallery" component={GalleryPage} />
 <Route path="/location" component={LocationPage} />
 ```
-
-**Analysis:** URLs are already **clean, short, readable slugs** — no query
-strings, no IDs. ✅ This is exactly right for SEO.
 
 **Suggested additions:**
 
@@ -233,9 +240,9 @@ strings, no IDs. ✅ This is exactly right for SEO.
 <Route path="/about" component={WhyUs} />
 ```
 
-Keep the canonical hrefs pointing to the primary slug via the canonical tag
-(point 8 SPA section). Avoid nested dynamic paths like `/menu/pizza/123` unless
-backend pages exist.
+> Jab custom domain milega, `pizza-ride01-main.vercel.app` ki jagah
+> `https://pizzaride.in` (ya jo bhi domain ho) use hoga — URLs uske saath
+> same clean sliug rahenge.
 
 ---
 
