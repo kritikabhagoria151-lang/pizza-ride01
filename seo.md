@@ -221,29 +221,6 @@ Per-page title bhi sirf `Pizza Ride`:
 | Gallery | `https://pizza-ride01-main.vercel.app/gallery` |
 | Location | `https://pizza-ride01-main.vercel.app/location` |
 
-**Routing source** — `src/App.tsx` lines 17–24:
-
-```tsx
-<Route path="/" component={Home} />
-<Route path="/menu" component={MenuPage} />
-<Route path="/why-us" component={WhyUs} />
-<Route path="/gallery" component={GalleryPage} />
-<Route path="/location" component={LocationPage} />
-```
-
-**Suggested additions:**
-
-```tsx
-{/* Optional alias routes for higher-intent keywords */}
-<Route path="/order-online" component={MenuPage} />
-<Route path="/contact" component={LocationPage} />
-<Route path="/about" component={WhyUs} />
-```
-
-> Jab custom domain milega, `pizza-ride01-main.vercel.app` ki jagah
-> `https://pizzaride.in` (ya jo bhi domain ho) use hoga — URLs uske saath
-> same clean sliug rahenge.
-
 ---
 
 ## 6. Semantic Tags
