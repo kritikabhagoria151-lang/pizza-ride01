@@ -236,7 +236,7 @@ Per-page title bhi sirf `Pizza Ride`:
 | Footer | `Footer.tsx:16` | `<footer>` | Page ka neeche wala hissa — contact, social links, copyright |
 | Hero | `Hero.tsx:33` | `<section>` | Home page ka sabse pehla bada section (banner/hero) |
 | Features | `Features.tsx:32` | `<section id="why-us">` | "Why Us" wala section — features/benefits |
-| Menu | `Menu.tsx:286` | `<section id="menu">` | Menu wala section — saari pizzas, burgers, etc. |
+| Menu | `Menu.tsx:286` | `<section id="menu">` | Menu wala section — saari pizzas, burgers aur shakes |
 | Gallery | `Gallery.tsx:24` | `<section id="gallery">` | Gallery wala section — photos |
 | LocationContact | `LocationContact.tsx:66` | `<section id="location">` | Location/contact wala section — address, map, phone |
 
