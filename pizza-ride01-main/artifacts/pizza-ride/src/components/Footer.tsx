@@ -1,4 +1,4 @@
-import { Pizza, Instagram, Facebook, Twitter } from "lucide-react";
+import { Pizza, Instagram } from "lucide-react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 
@@ -42,7 +42,7 @@ export default function Footer() {
               Bringing the authentic wood-fired pizza experience to Samalkha. Fresh ingredients, bold flavors, fast delivery.
             </p>
             <div className="flex gap-4">
-              {[Instagram, Facebook, Twitter].map((Icon, i) => (
+              {[Instagram].map((Icon, i) => (
                 <motion.a
                   key={i}
                   href="#"
