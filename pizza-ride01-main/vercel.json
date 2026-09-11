@@ -2,6 +2,9 @@
   "framework": "vite",
   "buildCommand": "pnpm install --frozen-lockfile && pnpm --filter @workspace/pizza-ride run build",
   "outputDirectory": "artifacts/pizza-ride/dist/public",
+  "functions": {
+    "api/index.js": { "runtime": "@vercel/node@3", "maxDuration": 20 }
+  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
