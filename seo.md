@@ -240,6 +240,17 @@ Per-page title bhi sirf `Pizza Ride`:
 
 **Analysis:** Excellent semantic structure already. ✅
 
+**Kaunsa tag kya karta hai:**
+
+| Tag | Matlab |
+|-----|--------|
+| `<nav>` | Navigation/menu hai — Google samajhta hai ki ye site ke links hain |
+| `<header>` | Page ka upar wala hissa hai — logo, menu, banner |
+| `<footer>` | Page ka neeche wala hissa hai — contact, links, copyright |
+| `<main>` | Page ka main content hai — ye sabse important hai |
+| `<section>` | Content ka ek alag section hai — menu, gallery, location |
+| `<article>` | Independent content hai — jaise koi blog post |
+
 **Minor refactors:**
 1. `not-found.tsx` uses generic `<div>` — wrap content in `<main>`:
    ```tsx
