@@ -225,31 +225,34 @@ Per-page title bhi sirf `Pizza Ride`:
 
 ## 6. Semantic Tags
 
-**Scan result — the app already uses semantic elements:**
+**Website ke components mein kaunsa semantic tag hai — saath mein aasan matlab:**
 
-| File | Elements |
-|------|---------|
-| `Navbar.tsx:27` | `<header>` + `<nav>` + `<main>` is in PageLayout |
-| `PageLayout.tsx:8-10` | `<main>{children}</main>` |
-| `Footer.tsx:16` | `<footer>` |
-| `Hero.tsx:33` | `<section>` |
-| `Features.tsx:32` | `<section id="why-us">` |
-| `Menu.tsx:285` | `<section id="menu">` |
-| `Gallery.tsx:24` | `<section id="gallery">` |
-| `LocationContact.tsx:66` | `<section id="location">` |
+| Component | File & line | Tag | Kya hai / kaam |
+|-----------|-------------|-----|----------------|
+| Navbar | `Navbar.tsx:27` | `<header>` | Page ka upar wala hissa — logo, menu, banner. Google samajhta hai ye site ka top hai |
+| Navbar (desktop menu) | `Navbar.tsx:63` | `<nav>` | Navigation/menu hai — Home, Menu, Why Us, Gallery, Location ke links |
+| Navbar (mobile menu) | `Navbar.tsx:128` | `<nav>` | Mobile pe khulne wala menu bhi navigation hai |
+| PageLayout | `PageLayout.tsx:9` | `<main>` | Page ka main content — Navbar ke baad aur Footer se pehle ka hissa |
+| Footer | `Footer.tsx:16` | `<footer>` | Page ka neeche wala hissa — contact, social links, copyright |
+| Hero | `Hero.tsx:33` | `<section>` | Home page ka sabse pehla bada section (banner/hero) |
+| Features | `Features.tsx:32` | `<section id="why-us">` | "Why Us" wala section — features/benefits |
+| Menu | `Menu.tsx:286` | `<section id="menu">` | Menu wala section — saari pizzas, burgers, etc. |
+| Gallery | `Gallery.tsx:24` | `<section id="gallery">` | Gallery wala section — photos |
+| LocationContact | `LocationContact.tsx:66` | `<section id="location">` | Location/contact wala section — address, map, phone |
 
-**Analysis:** Excellent semantic structure already. ✅
-
-**Kaunsa tag kya karta hai:**
+**Har tag ka aasan matlab:**
 
 | Tag | Matlab |
 |-----|--------|
-| `<nav>` | Navigation/menu hai — Google samajhta hai ki ye site ke links hain |
 | `<header>` | Page ka upar wala hissa hai — logo, menu, banner |
+| `<nav>` | Navigation/menu hai — Google samajhta hai ki ye site ke links hain |
+| `<main>` | Page ka main content hai — ye sabse important hissa |
+| `<section>` | Content ka ek alag section hai — jaise Menu, Gallery, Location |
 | `<footer>` | Page ka neeche wala hissa hai — contact, links, copyright |
-| `<main>` | Page ka main content hai — ye sabse important hai |
-| `<section>` | Content ka ek alag section hai — menu, gallery, location |
-| `<article>` | Independent content hai — jaise koi blog post |
+| `<article>` | Independent content hai — jaise koi akela menu item ya blog post |
+
+**Analysis:** Excellent semantic structure already. ✅ — kyunki `<header>`,
+`<nav>`, `<main>`, `<section>`, `<footer>` sab sahi jagah use ho rahe hain.
 
 **Minor refactors:**
 1. `not-found.tsx` uses generic `<div>` — wrap content in `<main>`:
