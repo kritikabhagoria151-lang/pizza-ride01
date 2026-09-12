@@ -1,4 +1,4 @@
-import { Pizza, Instagram, ArrowRight } from "lucide-react";
+import { Pizza, Instagram } from "lucide-react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 
@@ -81,13 +81,9 @@ export default function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors relative group inline-flex items-center gap-2"
+                    className="text-muted-foreground hover:text-primary transition-colors relative group inline-block"
                   >
                     {link.label}
-                    <ArrowRight
-                      size={14}
-                      className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                    />
                     <span className="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full rounded-full" />
                   </Link>
                 </motion.li>
