@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Timer, Leaf, Flame, Heart } from "lucide-react";
 import featurePizzaImg from "@/assets/feature-pizza.avif";
 import featureBurgerImg from "@/assets/feature-burger.webp";
-import featureShakeImg from "@/assets/feature-shake.jpg";
+import featureShakeImg from "@/assets/feature-shake.webp";
 
 const features = [
   {

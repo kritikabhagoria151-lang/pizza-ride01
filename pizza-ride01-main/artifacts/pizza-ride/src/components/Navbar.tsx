@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import pizzaRideLogo from "@/assets/pizza-ride-logo.jpeg";
+import pizzaRideLogo from "@/assets/pizza-ride-logo-nav.webp";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Flame } from "lucide-react";
-import heroImg from "@/assets/pizza-ride-logo.jpg";
+import heroImg from "@/assets/pizza-ride-logo.webp";
 
 const stagger = {
   hidden: {},

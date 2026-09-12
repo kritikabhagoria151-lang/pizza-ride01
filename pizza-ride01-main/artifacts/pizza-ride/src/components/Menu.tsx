@@ -1,88 +1,88 @@
 import { motion } from "framer-motion";
 
 // Pizza images
-import farmhouseImg from "@/assets/menu-farmhouse.jpg";
-import tandooriPaneerPizzaImg from "@/assets/menu-veg-tandoori-paneer.jpg";
-import zestyTangyImg from "@/assets/menu-pizza-zesty-tangy.jpg";
-import makhaniPizzaImg from "@/assets/menu-veg-paneer-makhani.jpg";
-import classicalPizzaImg from "@/assets/menu-veg-veggie-supreme.jpg";
-import spicyPaneerPizzaImg from "@/assets/menu-paneer-tikka.jpg";
-import delightCheeseImg from "@/assets/menu-pizza-delight-cheese.jpg";
-import tikkiCrushImg from "@/assets/menu-pizza-tikki-crush.jpg";
-import margheritaImg from "@/assets/menu-margherita.jpg";
-import tomatoPizzaImg from "@/assets/menu-pizza-tomato.jpg";
-import onionPizzaImg from "@/assets/menu-pizza-onion.jpg";
-import capsicumPizzaImg from "@/assets/menu-pizza-capsicum.jpg";
-import cornPizzaImg from "@/assets/menu-pizza-corn.jpg";
-import onionCornPizzaImg from "@/assets/menu-pizza-onion-corn.png";
-import cornPaneerPizzaImg from "@/assets/menu-pizza-corn-paneer.jpg";
-import paneerCornPizzaImg from "@/assets/menu-pizza-paneer-corn.jpg";
-import singleCheeseImg from "@/assets/menu-pizza-single-cheese.jpg";
-import cheeseCornPizzaImg from "@/assets/menu-pizza-cheese-corn.jpg";
-import doubleCheeseImg from "@/assets/menu-pizza-double-cheese.jpg";
-import cheeseGrillSandwichImg from "@/assets/menu-sandwich-cheese-grill.jpg";
-import alooTikkiWrapImg from "@/assets/menu-wrap-aloo-tikki.jpg";
-import cheeseSpicyWrapImg from "@/assets/menu-wrap-cheese-spicy.jpg";
-import paneerWrapNewImg from "@/assets/menu-wrap-paneer.jpg";
-import tandooriPastaNewImg from "@/assets/menu-pasta-tandoori-new.jpg";
-import mixSaucePastaImg from "@/assets/menu-pasta-mix-sauce.jpg";
-import makhaniPastaNewImg from "@/assets/menu-pasta-makhani-new.jpg";
-import coldCoffeeNewImg from "@/assets/menu-drink-cold-coffee-new.jpg";
-import vegPocketNewImg from "@/assets/menu-sides-veg-pocket-new.jpg";
-import gardenFreshImg from "@/assets/menu-veg-garden-fresh.jpg";
+import farmhouseImg from "@/assets/menu-farmhouse.webp";
+import tandooriPaneerPizzaImg from "@/assets/menu-veg-tandoori-paneer.webp";
+import zestyTangyImg from "@/assets/menu-pizza-zesty-tangy.webp";
+import makhaniPizzaImg from "@/assets/menu-veg-paneer-makhani.webp";
+import classicalPizzaImg from "@/assets/menu-veg-veggie-supreme.webp";
+import spicyPaneerPizzaImg from "@/assets/menu-paneer-tikka.webp";
+import delightCheeseImg from "@/assets/menu-pizza-delight-cheese.webp";
+import tikkiCrushImg from "@/assets/menu-pizza-tikki-crush.webp";
+import margheritaImg from "@/assets/menu-margherita.webp";
+import tomatoPizzaImg from "@/assets/menu-pizza-tomato.webp";
+import onionPizzaImg from "@/assets/menu-pizza-onion.webp";
+import capsicumPizzaImg from "@/assets/menu-pizza-capsicum.webp";
+import cornPizzaImg from "@/assets/menu-pizza-corn.webp";
+import onionCornPizzaImg from "@/assets/menu-pizza-onion-corn.webp";
+import cornPaneerPizzaImg from "@/assets/menu-pizza-corn-paneer.webp";
+import paneerCornPizzaImg from "@/assets/menu-pizza-paneer-corn.webp";
+import singleCheeseImg from "@/assets/menu-pizza-single-cheese.webp";
+import cheeseCornPizzaImg from "@/assets/menu-pizza-cheese-corn.webp";
+import doubleCheeseImg from "@/assets/menu-pizza-double-cheese.webp";
+import cheeseGrillSandwichImg from "@/assets/menu-sandwich-cheese-grill.webp";
+import alooTikkiWrapImg from "@/assets/menu-wrap-aloo-tikki.webp";
+import cheeseSpicyWrapImg from "@/assets/menu-wrap-cheese-spicy.webp";
+import paneerWrapNewImg from "@/assets/menu-wrap-paneer.webp";
+import tandooriPastaNewImg from "@/assets/menu-pasta-tandoori-new.webp";
+import mixSaucePastaImg from "@/assets/menu-pasta-mix-sauce.webp";
+import makhaniPastaNewImg from "@/assets/menu-pasta-makhani-new.webp";
+import coldCoffeeNewImg from "@/assets/menu-drink-cold-coffee-new.webp";
+import vegPocketNewImg from "@/assets/menu-sides-veg-pocket-new.webp";
+import gardenFreshImg from "@/assets/menu-veg-garden-fresh.webp";
 import galleryPizzaImg from "@/assets/gallery-pizza.avif";
 import signaturePizzaImg from "@/assets/feature-pizza.avif";
 
 // Burger images
-import allotikkiBurgerImg from "@/assets/menu-burger-aloo-tikki.jpg";
-import veggiBurgerImg from "@/assets/menu-burger-double-cheese-veg.jpg";
-import cheesyBurgerImg from "@/assets/menu-burger-paneer-zinger.jpg";
-import paneerBurgerImg from "@/assets/menu-burger-paneer.jpg";
-import jumboBurgerImg from "@/assets/menu-burger-bbq-smash.jpg";
+import allotikkiBurgerImg from "@/assets/menu-burger-aloo-tikki.webp";
+import veggiBurgerImg from "@/assets/menu-burger-double-cheese-veg.webp";
+import cheesyBurgerImg from "@/assets/menu-burger-paneer-zinger.webp";
+import paneerBurgerImg from "@/assets/menu-burger-paneer.webp";
+import jumboBurgerImg from "@/assets/menu-burger-bbq-smash.webp";
 
 // Sandwich & wrap images
-import vegGrillSandwichImg from "@/assets/menu-sandwich-veg-grilled.jpg";
-import spicySandwichImg from "@/assets/menu-sandwich-club.jpg";
-import eggCheeseSandwichImg from "@/assets/menu-sandwich-egg-cheese.jpg";
-import allotikkiWrapImg from "@/assets/menu-wrap-paneer-tikka.jpg";
-import cheeseWrapImg from "@/assets/menu-wrap-bbq-chicken.jpg";
-import paneerWrapImg from "@/assets/menu-wrap-shawarma.jpg";
+import vegGrillSandwichImg from "@/assets/menu-sandwich-veg-grilled.webp";
+import spicySandwichImg from "@/assets/menu-sandwich-club.webp";
+import eggCheeseSandwichImg from "@/assets/menu-sandwich-egg-cheese.webp";
+import allotikkiWrapImg from "@/assets/menu-wrap-paneer-tikka.webp";
+import cheeseWrapImg from "@/assets/menu-wrap-bbq-chicken.webp";
+import paneerWrapImg from "@/assets/menu-wrap-shawarma.webp";
 
 // Pasta images
-import redSauceImg from "@/assets/menu-pasta-arrabbiata.jpg";
-import whiteSauceImg from "@/assets/menu-pasta-alfredo.jpg";
-import tandooriPastaImg from "@/assets/menu-pasta-pink-sauce.jpg";
-import makhaniPastaImg from "@/assets/menu-pasta-bolognese.jpg";
-import mixSauceImg from "@/assets/menu-pasta-mac-cheese.jpg";
+import redSauceImg from "@/assets/menu-pasta-arrabbiata.webp";
+import whiteSauceImg from "@/assets/menu-pasta-alfredo.webp";
+import tandooriPastaImg from "@/assets/menu-pasta-pink-sauce.webp";
+import makhaniPastaImg from "@/assets/menu-pasta-bolognese.webp";
+import mixSauceImg from "@/assets/menu-pasta-mac-cheese.webp";
 
 // Garlic bread images
-import plainGarlicImg from "@/assets/menu-garlic-bread-classic.jpg";
-import vegLoadedGarlicImg from "@/assets/menu-garlic-bread-cheese.jpg";
-import ladenGarlicImg from "@/assets/menu-garlic-bread-stuffed.jpg";
+import plainGarlicImg from "@/assets/menu-garlic-bread-classic.webp";
+import vegLoadedGarlicImg from "@/assets/menu-garlic-bread-cheese.webp";
+import ladenGarlicImg from "@/assets/menu-garlic-bread-stuffed.webp";
 
 // Drink images
-import orangeJuiceImg from "@/assets/menu-drink-orange-juice.jpg";
-import strawberryShakeImg from "@/assets/menu-drink-strawberry-shake.jpg";
-import butterscotchShakeImg from "@/assets/menu-drink-butterscotch-shake.jpg";
-import vanillaShakeImg from "@/assets/menu-drink-vanilla-shake.jpg";
-import chocoOreoShakeImg from "@/assets/menu-drink-oreo-shake.jpg";
-import blackCurrantImg from "@/assets/menu-drink-black-currant.jpg";
-import coldCoffeeImg from "@/assets/menu-drink-cold-coffee.jpg";
+import orangeJuiceImg from "@/assets/menu-drink-orange-juice.webp";
+import strawberryShakeImg from "@/assets/menu-drink-strawberry-shake.webp";
+import butterscotchShakeImg from "@/assets/menu-drink-butterscotch-shake.webp";
+import vanillaShakeImg from "@/assets/menu-drink-vanilla-shake.webp";
+import chocoOreoShakeImg from "@/assets/menu-drink-oreo-shake.webp";
+import blackCurrantImg from "@/assets/menu-drink-black-currant.webp";
+import coldCoffeeImg from "@/assets/menu-drink-cold-coffee.webp";
 
 // Fries & sides images
-import vegPocketImg from "@/assets/menu-sides-veg-pocket.jpg";
-import paneerPocketImg from "@/assets/menu-sides-cheese-pocket.jpg";
-import cheeseDipImg from "@/assets/menu-dip-cheese.jpg";
-import spiceDipImg from "@/assets/menu-dip-spice.jpg";
-import tandooriDipImg from "@/assets/menu-dip-tandoori.jpg";
-import chillyDipImg from "@/assets/menu-dip-chilly.jpg";
-import paneerSaladImg from "@/assets/menu-sides-paneer-salad.jpg";
+import vegPocketImg from "@/assets/menu-sides-veg-pocket.webp";
+import paneerPocketImg from "@/assets/menu-sides-cheese-pocket.webp";
+import cheeseDipImg from "@/assets/menu-dip-cheese.webp";
+import spiceDipImg from "@/assets/menu-dip-spice.webp";
+import tandooriDipImg from "@/assets/menu-dip-tandoori.webp";
+import chillyDipImg from "@/assets/menu-dip-chilly.webp";
+import paneerSaladImg from "@/assets/menu-sides-paneer-salad.webp";
 
 // Fries & sides images
-import saltedFriesImg from "@/assets/menu-fries-classic.jpg";
-import periPeriFriesImg from "@/assets/menu-fries-peri-peri.jpg";
-import masalaFriesImg from "@/assets/menu-fries-masala.jpg";
-import cheeseFriesImg from "@/assets/menu-fries-cheese.jpg";
+import saltedFriesImg from "@/assets/menu-fries-classic.webp";
+import periPeriFriesImg from "@/assets/menu-fries-peri-peri.webp";
+import masalaFriesImg from "@/assets/menu-fries-masala.webp";
+import cheeseFriesImg from "@/assets/menu-fries-cheese.webp";
 
 type MenuItemSize = { label: string; price: number };
 type MenuItem = {
