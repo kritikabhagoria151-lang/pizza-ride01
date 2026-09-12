@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -74,6 +74,10 @@ export default function Navbar() {
                     className="relative text-sm font-medium hover:text-primary transition-colors uppercase tracking-wider group"
                   >
                     {link.name}
+                    <ArrowRight
+                      size={12}
+                      className="inline-block ml-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                    />
                     <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-primary rounded-full transition-all duration-300 group-hover:w-full" />
                   </Link>
                 </motion.li>
@@ -131,10 +135,11 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-bold hover:text-primary transition-colors py-3 border-b border-border"
+                  className="text-lg font-bold hover:text-primary transition-colors py-3 border-b border-border flex items-center justify-between"
                   style={{ transitionDelay: i * 0.06 }}
                 >
                   {link.name}
+                  <ArrowRight size={18} className="text-muted-foreground" />
                 </Link>
               ))}
             </nav>
