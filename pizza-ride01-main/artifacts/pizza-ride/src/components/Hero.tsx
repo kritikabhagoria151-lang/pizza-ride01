@@ -265,7 +265,11 @@ export default function Hero() {
               />
               <motion.img
                 src={heroImg}
-                alt="Delicious Pizza"
+                alt="Delicious wood-fired Pizza Ride pizza in Samalkha"
+                width={600}
+                height={600}
+                decoding="async"
+                fetchPriority="high"
                 whileHover={{ scale: 1.05, rotate: 3 }}
                 transition={{ duration: 0.4 }}
                 className="w-full h-full object-cover rounded-full shadow-2xl border-8 border-background relative z-10"

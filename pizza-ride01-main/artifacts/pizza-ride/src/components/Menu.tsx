@@ -237,6 +237,9 @@ function ItemCard({ item, index }: { item: MenuItem; index: number }) {
           src={item.image}
           alt={item.alt ?? item.name}
           loading="lazy"
+          decoding="async"
+          width={400}
+          height={300}
           whileHover={{ scale: 1.15, rotate: 2 }}
           transition={{ duration: 0.5 }}
           className="w-full h-full object-cover"

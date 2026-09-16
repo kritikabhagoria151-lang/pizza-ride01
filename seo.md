@@ -479,17 +479,49 @@ custom domain once you buy one.
 
 ### 11.1 Image size & format
 
-**Current state:** ✅ All images converted to **WebP** — 116 `.webp` files in
-`src/assets/` (originally 112 `.jpg` + 1 `.jpeg` + 1 `.png`), plus
-`public/images/robot.webp`. Two `.avif` files remain (`feature-pizza.avif`,
-`gallery-pizza.avif`).
+**Current state:** ✅ Optimized — **WebP** for all rasters, correct dimensions,
+and lazy/eager loading wired up for Core Web Vitals.
 
-**Done:**
-- Converted every `.jpg`/`.jpeg`/`.png` to WebP (quality 92; PNG logos lossless).
-- All imports updated; original raster files removed.
+**Format:**
+- 116 `.webp` files in `src/assets/` (converted from 112 `.jpg` + 1 `.jpeg` +
+  1 `.png`); `public/images/robot.webp` for the chatbot.
+- 2 `.avif` keep-alive images (`feature-pizza.avif`, `gallery-pizza.avif`) —
+  AVIF is even smaller than WebP and is kept as a modern format.
+- `gallery-pizza-video.mp4` for the video tile.
 
-**Still open:**
-- Add explicit `width`/`height` attributes where possible to reduce layout shift (CLS).
+**Size budget (measured 2026-09-16):**
+
+| Metric | Before | After |
+|--------|-------:|------:|
+| Total (116 files) | 23.2 MB | 11.2 MB |
+| Average per image | 207 KB | 99 KB |
+| Largest image | 345 KB | 166 KB |
+| Images > 200 KB | many | 0 |
+| Images > 900 px | 82 | 0 |
+
+**Resize + re-encode rules (re-encoded from the original JPGs, not re-compressed twice):**
+- Menu cards (`menu-*.webp`) → longest side **800 px**, quality **80**
+  (displayed at ~230 px, so 800 px still covers retina 2×–3×).
+- Gallery + feature (`gallery-*`, `feature-*`) → longest side **1000 px**, quality **82**.
+- Hero logo → **1200 px**, quality **85**; Navbar logo → **256 px**, quality **88**.
+- PNG logos → lossless WebP (keeps transparency, crisp text).
+- `withoutEnlargement` — smaller images are never upscaled.
+
+**HTML attributes (done in components):**
+- `width` + `height` on every content image → browser reserves space, **no layout shift (CLS)**.
+- `loading="lazy"` on below-the-fold menu & gallery images → faster first paint.
+- Hero image uses `fetchPriority="high"` (LCP element) → faster Largest Contentful Paint.
+- `decoding="async"` everywhere → images decode off the main thread.
+
+**Why this helps Google:**
+- All images now sit under the **< 200 KB** guidance, so pages load fast —
+  and **page speed is a ranking factor**.
+- Correct `width`/`height` removes layout shift, improving **CLS**.
+- Fast hero/LCP image improves **LCP**; together these feed into
+  **Core Web Vitals**, which Google uses for ranking.
+
+**Optional next step:** generate full **AVIF** versions + `srcset` for every
+image (further ~20–30% smaller, but more build tooling needed).
 
 ### 11.2 Lazy loading
 

@@ -50,6 +50,9 @@ export default function Navbar() {
                 <img
                   src={pizzaRideLogo}
                   alt="Pizza Ride Logo — Two friends enjoying pizza and cold drink, Fast Fresh Delicious, Samalkha"
+                  width={40}
+                  height={40}
+                  decoding="async"
                   className="h-full w-full object-cover"
                 />
               </motion.div>
