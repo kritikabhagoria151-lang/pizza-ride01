@@ -1,6 +1,9 @@
+# robots.txt — Pizza Ride (https://pizza-ride01-main.vercel.app/)
+# Public site is fully crawlable; only API endpoints are blocked.
+
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /images/robot.webp
 
+# All public pages, submitted via sitemap
 Sitemap: https://pizza-ride01-main.vercel.app/sitemap.xml

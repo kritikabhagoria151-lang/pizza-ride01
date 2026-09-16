@@ -397,16 +397,24 @@ regenerated locally.)
 **Current file** — `pizza-ride01-main/artifacts/pizza-ride/public/robots.txt`:
 
 ```txt
+# robots.txt — Pizza Ride (https://pizza-ride01-main.vercel.app/)
+# Public site is fully crawlable; only API endpoints are blocked.
+
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /images/robot.webp
 
+# All public pages, submitted via sitemap
 Sitemap: https://pizza-ride01-main.vercel.app/sitemap.xml
 ```
 
-**Status:** ✅ Implemented & live at `/robots.txt` — sitemap referenced, API
-path disallowed. (`public/` is copied to the build root by Vite.)
+**Status:** ✅ Implemented & live at `/robots.txt`:
+- `Allow: /` — every public page (/, /menu, /why-us, /gallery, /location) is crawlable.
+- `Disallow: /api/` — keeps the chat/API backend out of the index (it only
+  returns JSON, not content worth ranking).
+- `Sitemap:` line points Google/Bing to all pages at once.
+- No `Crawl-delay` (not supported by Google and unnecessary here).
+- `public/` is copied to the build root by Vite, so the served URL is `/robots.txt`.
 
 ---
 
