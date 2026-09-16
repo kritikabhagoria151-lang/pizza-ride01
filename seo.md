@@ -421,41 +421,56 @@ Sitemap: https://pizza-ride01-main.vercel.app/sitemap.xml
 ## 10. sitemap.xml
 
 **Status:** ✅ Implemented & live — `pizza-ride01-main/artifacts/pizza-ride/public/sitemap.xml`
-covers all 5 routes (verified 200 at `/sitemap.xml`).
+covers all 5 routes (verified 200 at `/sitemap.xml`). Valid XML, correct
+`urlset` namespace, absolute `https` URLs, one `<url>` per indexable page.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pizza-ride01-main.vercel.app/</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://pizza-ride01-main.vercel.app/menu</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pizza-ride01-main.vercel.app/why-us</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pizza-ride01-main.vercel.app/gallery</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://pizza-ride01-main.vercel.app/location</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>
 ```
 
-Then submit it in **Google Search Console** → Sitemaps, and
-**Bing Webmaster Tools**. Replace `pizza-ride01-main.vercel.app` with your
+**Why this is Google-friendly:**
+- `lastmod` — the only signal Google actually uses to decide re-crawl; update it
+  whenever a page's content changes (especially `/menu` prices).
+- `priority` / `changefreq` — harmless; kept for other engines, but Google
+  ignores them.
+- All URLs are clean, absolute, `https`, and match the live routes exactly.
+- Referenced from `robots.txt` (`Sitemap:` line) so crawlers find it
+  automatically.
+
+**Next step:** submit it in **Google Search Console** → Sitemaps (and
+**Bing Webmaster Tools**). Replace `pizza-ride01-main.vercel.app` with your
 custom domain once you buy one.
 
 ---
