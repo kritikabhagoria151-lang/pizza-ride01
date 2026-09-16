@@ -9,19 +9,23 @@ import WhyUs from '@/pages/WhyUs';
 import GalleryPage from '@/pages/GalleryPage';
 import LocationPage from '@/pages/LocationPage';
 import ChatBot from '@/components/ChatBot';
+import Seo from '@/components/Seo';
 
 const queryClient = new QueryClient();
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/menu" component={MenuPage} />
-      <Route path="/why-us" component={WhyUs} />
-      <Route path="/gallery" component={GalleryPage} />
-      <Route path="/location" component={LocationPage} />
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <Seo />
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/menu" component={MenuPage} />
+        <Route path="/why-us" component={WhyUs} />
+        <Route path="/gallery" component={GalleryPage} />
+        <Route path="/location" component={LocationPage} />
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
 }
 

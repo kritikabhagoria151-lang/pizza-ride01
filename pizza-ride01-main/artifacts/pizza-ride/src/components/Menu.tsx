@@ -97,7 +97,7 @@ type MenuItem = {
 };
 type Category = { id: string; label: string; emoji: string; items: MenuItem[] };
 
-const categories: Category[] = [
+export const categories: Category[] = [
   {
     id: "pizzas",
     label: "Pizzas",

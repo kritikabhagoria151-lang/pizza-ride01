@@ -291,15 +291,37 @@ Per-page title bhi sirf `Pizza Ride`:
 
 ## 8. JSON-LD Structured Data
 
-**Current state:** ✅ Implemented in `pizza-ride01-main/artifacts/pizza-ride/index.html`
-`<head>`:
-- `Restaurant` schema — name, image, url, telephone, priceRange, servesCuisine,
-  menu, address, openingHoursSpecification. `aggregateRating` **deliberately
-  excluded** (no verified Google reviews yet — see note below).
-- `WebSite` schema with `SearchAction` (sitelinks searchbox).
+**Status:** ✅ Fully implemented. Structured data is delivered in two layers:
+
+**Layer 1 — Global (static in `index.html` `<head>`):** present for every route
+even before JavaScript runs:
+- `Restaurant` schema (`@id: #restaurant`) — name, image, logo, url, telephone,
+  priceRange, servesCuisine, menu, hasMap, areaServed, currenciesAccepted,
+  paymentAccepted, address (Samalkha, Haryana, IN), openingHoursSpecification.
+  `aggregateRating` **deliberately excluded** (no verified Google reviews yet —
+  see note below).
+- `WebSite` schema (`@id: #website`) with `SearchAction` (sitelinks searchbox),
+  linked to the Restaurant via `publisher`.
 - Canonical + Open Graph + Twitter card meta tags.
 
-**Reference — Restaurant schema applied** (data taken from
+**Layer 2 — Per-route (dynamic in `src/components/Seo.tsx`, no extra deps):**
+because this is a SPA, a `Seo` component reads the current wouter route and
+updates `document.title`, meta description, canonical, OG/Twitter tags and a
+`#route-jsonld` block (`@graph`) on every navigation:
+
+| Route | JSON-LD types | Title |
+|-------|---------------|-------|
+| `/` | `WebPage` | Pizza Ride — Fresh Pizza, Burgers & Shakes in Samalkha |
+| `/menu` | `BreadcrumbList` + `Menu` (all sections + items + `Offer` prices in INR) | Menu — Pizzas, Burgers, Pasta & Shakes |
+| `/why-us` | `BreadcrumbList` + `AboutPage` | Why Choose Us — Fresh Ingredients, Fast Delivery |
+| `/gallery` | `BreadcrumbList` + `ImageGallery` | Gallery — Inside the Pizza Ride Kitchen |
+| `/location` | `BreadcrumbList` + `Restaurant` (address, map, hours, tel) | Location & Contact — Jurasi Saraf Khas, Haryana |
+
+The `/menu` `Menu` schema is generated directly from the live menu data
+(`categories` exported from `Menu.tsx`), so prices and items never drift out of
+sync.
+
+**Reference — global Restaurant schema applied** (data taken from
 `src/components/LocationContact.tsx` lines 6–49):
 
 ```html
@@ -361,32 +383,12 @@ Per-page title bhi sirf `Pizza Ride`:
 ```
 
 **SPA / structured-data note:** because this is a single-page app, `index.html`
-metadata (title, description, JSON-LD) is shared across all routes. The
-**recommended long-term fix** is `react-helmet-async` for per-route metadata:
-
-```bash
-pnpm add react-helmet-async
-```
-
-```tsx
-import { Helmet } from 'react-helmet-async';
-
-export default function MenuPage() {
-  return (
-    <>
-      <Helmet>
-        <title>Our Menu — Pizzas, Burgers, Shakes & More | Pizza Ride</title>
-        <meta name="description" content="Explore the full Pizza Ride menu..." />
-        <link rel="canonical" href="https://pizza-ride01-main.vercel.app/menu" />
-        <script type="application/ld+json">{JSON.stringify(menuSchema)}</script>
-      </Helmet>
-      <PageLayout>...</PageLayout>
-    </>
-  );
-}
-```
-
-Wrap `<App>` with `<HelmetProvider>` in `src/main.tsx`.
+metadata is shared across all routes. This was solved **without adding any
+dependency** — `src/components/Seo.tsx` uses wouter's `useLocation` to update
+title, description, canonical, OG/Twitter tags and a per-route `#route-jsonld`
+block on navigation. (`react-helmet-async` is the common alternative, but was
+avoided to keep the bundle lean and because the pnpm lockfile cannot be
+regenerated locally.)
 
 ---
 

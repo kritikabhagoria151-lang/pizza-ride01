@@ -19,17 +19,24 @@
     {
       "@context": "https://schema.org",
       "@type": "Restaurant",
+      "@id": "https://pizza-ride01-main.vercel.app/#restaurant",
       "name": "Pizza Ride",
       "image": "https://pizza-ride01-main.vercel.app/favicon.svg",
+      "logo": "https://pizza-ride01-main.vercel.app/favicon.svg",
       "url": "https://pizza-ride01-main.vercel.app/",
       "telephone": "+91-72068-87688",
       "priceRange": "₹₹",
       "servesCuisine": ["Pizza", "Burgers", "Sandwiches", "Pasta", "Shakes", "Fast Food"],
       "menu": "https://pizza-ride01-main.vercel.app/menu",
+      "hasMap": "https://www.google.com/maps/search/?api=1&query=6279%2B3QG%20Jurasi%20Saraf%20Khas%2C%20Haryana",
+      "areaServed": { "@type": "City", "name": "Samalkha" },
+      "currenciesAccepted": "INR",
+      "paymentAccepted": "Cash, UPI",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "6279+3QG, Jurasi Saraf Khas",
-        "addressLocality": "Haryana",
+        "addressLocality": "Samalkha",
+        "addressRegion": "Haryana",
         "addressCountry": "IN"
       },
       "openingHoursSpecification": [{
@@ -45,8 +52,10 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": "https://pizza-ride01-main.vercel.app/#website",
       "name": "Pizza Ride",
       "url": "https://pizza-ride01-main.vercel.app/",
+      "publisher": { "@id": "https://pizza-ride01-main.vercel.app/#restaurant" },
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://pizza-ride01-main.vercel.app/menu?search={search_term_string}",
