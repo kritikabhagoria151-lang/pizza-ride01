@@ -269,22 +269,23 @@ Per-page title bhi sirf `Pizza Ride`:
 
 ## 7. Internal Linking
 
-**Current links:**
-- `Navbar.tsx` (lines 18–24, 128–139): links to all 5 routes — ✅
-- `Footer.tsx` (lines 69–90): Quick Links to all pages — ✅
-- `Hero.tsx:170` "View Menu" → `/menu` — ✅
-- `Features.tsx:109` "Taste the Difference" → `/menu` — ✅
+**Implemented (all verified live):**
 
-**Gaps / opportunities:**
-1. **No in-content link to `/location`** anywhere except Nav/Footer. On the Home
-   Hero, add a secondary CTA:
-   ```tsx
-   <motion.a href="/location" className="...">Get Directions →</motion.a>
-   ```
-2. **Dead placeholder links in `Footer.tsx`** (lines 104–107): Privacy,
-   Terms, Refund all point to `#` and social icons (line 45) point to `#`.
-   Point them to real pages/profiles, or remove them (broken links hurt SEO).
-4. **Breadcrumbs** — add a "Home › Menu" breadcrumb on `/menu` for crawl depth.
+| Where | Link | Status |
+|-------|------|--------|
+| `Navbar.tsx` (desktop + mobile) | All 5 routes: Home, Menu, Why Us, Gallery, Location | ✅ |
+| `Footer.tsx` Quick Links | Our Menu, Why Choose Us, Gallery, Contact & Location | ✅ |
+| `Footer.tsx` Visit Us column | Get Directions → `/location`, Order Online → `/menu`, See Our Gallery → `/gallery` | ✅ |
+| `Hero.tsx` primary CTA | "View Menu" → `/menu` | ✅ |
+| `Hero.tsx` secondary CTA | "Get Directions" → `/location` | ✅ |
+| `Features.tsx` primary CTA | "Taste the Difference" → `/menu` | ✅ |
+| `Features.tsx` secondary CTA | "Get Directions" → `/location` | ✅ |
+| `Menu.tsx` bottom CTA | "See Our Gallery" → `/gallery`, "Visit Our Outlet" → `/location` | ✅ |
+| `Gallery.tsx` bottom CTA | "Order From Our Menu" → `/menu`, "Visit Our Outlet" → `/location` | ✅ |
+| `LocationContact.tsx` info link | "Browse the Full Menu" → `/menu` | ✅ |
+| **Breadcrumbs** | Home › Menu, Home › Gallery, Home › Why Us, Home › Location (via `Breadcrumb.tsx`) | ✅ |
+
+**Dead links removed:** Instagram icon (`#`), Privacy/Terms/Refund placeholder links (`#`) — all removed from `Footer.tsx`.
 
 ---
 

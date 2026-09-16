@@ -105,12 +105,20 @@ export default function Features() {
               We started Pizza Ride with one simple mission: to bring proper, high-quality pizza to Samalkha. No cardboard crusts, no stingy toppings. Just big, bold flavors made with passion and delivered fast.
             </p>
 
-            <a
-              href="/menu"
-              className="inline-flex items-center justify-center bg-foreground text-background hover:bg-foreground/90 px-8 py-4 rounded-full font-bold uppercase tracking-wide transition-transform hover:-translate-y-1 shadow-lg"
-            >
-              Taste the Difference
-            </a>
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="/menu"
+                className="inline-flex items-center justify-center bg-foreground text-background hover:bg-foreground/90 px-8 py-4 rounded-full font-bold uppercase tracking-wide transition-transform hover:-translate-y-1 shadow-lg"
+              >
+                Taste the Difference
+              </a>
+              <a
+                href="/location"
+                className="inline-flex items-center justify-center gap-2 border-2 border-primary/30 text-foreground px-8 py-4 rounded-full font-bold uppercase tracking-wide transition-transform hover:-translate-y-1 hover:border-primary hover:text-primary"
+              >
+                Get Directions →
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>

@@ -183,6 +183,24 @@ export default function Hero() {
                   →
                 </motion.span>
               </motion.a>
+
+              <motion.a
+                href="/location"
+                initial={{ opacity: 0, y: -40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 150,
+                  damping: 10,
+                  delay: 0.5,
+                }}
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative inline-flex items-center justify-center gap-2 border-2 border-primary/30 text-foreground px-8 py-4 rounded-full font-bold uppercase tracking-wide text-sm md:text-base hover:border-primary hover:text-primary transition-colors"
+              >
+                <span className="relative z-10">Get Directions</span>
+                <span className="relative z-10">→</span>
+              </motion.a>
             </motion.div>
 
             <motion.div variants={fadeUp} className="flex items-center gap-4 mt-8 pt-8 border-t border-border">

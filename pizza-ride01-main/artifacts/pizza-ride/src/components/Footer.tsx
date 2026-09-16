@@ -1,4 +1,4 @@
-import { Pizza, Instagram } from "lucide-react";
+import { Pizza } from "lucide-react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 
@@ -42,17 +42,12 @@ export default function Footer() {
               Bringing the authentic wood-fired pizza experience to Samalkha. Fresh ingredients, bold flavors, fast delivery.
             </p>
             <div className="flex gap-4">
-              {[Instagram].map((Icon, i) => (
-                <motion.a
-                  key={i}
-                  href="#"
-                  whileHover={{ scale: 1.15, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
-                >
-                  <Icon size={18} />
-                </motion.a>
-              ))}
+              <Link
+                href="/location"
+                className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-2"
+              >
+                Get Directions →
+              </Link>
             </div>
           </motion.div>
 
@@ -99,12 +94,12 @@ export default function Footer() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
-            <h4 className="font-bold text-lg mb-6">Legal</h4>
+            <h4 className="font-bold text-lg mb-6">Visit Us</h4>
             <ul className="space-y-3">
               {[
-                { label: "Privacy Policy", href: "#" },
-                { label: "Terms of Service", href: "#" },
-                { label: "Refund Policy", href: "#" },
+                { label: "Get Directions", href: "/location" },
+                { label: "Order Online", href: "/menu" },
+                { label: "See Our Gallery", href: "/gallery" },
               ].map((link, i) => (
                 <motion.li
                   key={i}
@@ -113,13 +108,13 @@ export default function Footer() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.25 + i * 0.08, duration: 0.4 }}
                 >
-                  <a
+                  <Link
                     href={link.href}
                     className="text-muted-foreground hover:text-primary transition-colors relative group inline-block"
                   >
                     {link.label}
                     <span className="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full rounded-full" />
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>

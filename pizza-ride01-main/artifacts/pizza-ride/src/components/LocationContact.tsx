@@ -1,5 +1,6 @@
 import { MapPin, Phone, Clock, Send, Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
@@ -89,7 +90,7 @@ export default function LocationContact() {
             </motion.h3>
 
             {/* Contact items — staggered */}
-            <div className="space-y-8 mb-10">
+            <div className="space-y-8 mb-4">
               {contactItems.map((item, i) => (
                 <motion.div
                   key={i}
@@ -113,6 +114,13 @@ export default function LocationContact() {
                 </motion.div>
               ))}
             </div>
+
+            <Link
+              href="/menu"
+              className="inline-flex items-center justify-center gap-2 text-primary font-bold uppercase tracking-wide text-sm mb-10 hover:underline"
+            >
+              Browse the Full Menu →
+            </Link>
 
             {/* Subscribe */}
             <motion.div

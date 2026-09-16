@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import galleryPizzaVideo from "@/assets/gallery-pizza-video.mp4";
 import galleryBurgerImg from "@/assets/gallery-burger-new.webp";
 import galleryShakeImg from "@/assets/gallery-shake-new.webp";
@@ -104,6 +105,33 @@ export default function Gallery() {
             </motion.div>
           ))}
         </div>
+
+        {/* Interlinking CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-16 text-center"
+        >
+          <p className="text-muted-foreground text-lg mb-8">
+            Like what you see? Taste it for yourself.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/menu"
+              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-bold uppercase tracking-wide text-sm md:text-base shadow-lg shadow-primary/25 hover:-translate-y-1 transition-transform"
+            >
+              Order From Our Menu →
+            </Link>
+            <Link
+              href="/location"
+              className="inline-flex items-center justify-center gap-2 border-2 border-primary/30 text-foreground px-8 py-4 rounded-full font-bold uppercase tracking-wide text-sm md:text-base hover:border-primary hover:text-primary transition-colors"
+            >
+              Visit Our Outlet →
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
