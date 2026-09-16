@@ -291,10 +291,15 @@ Per-page title bhi sirf `Pizza Ride`:
 
 ## 8. JSON-LD Structured Data
 
-**Current state:** ❌ Zero structured data anywhere in the project (no
-`application/ld+json`, no microdata).
+**Current state:** ✅ Implemented in `pizza-ride01-main/artifacts/pizza-ride/index.html`
+`<head>`:
+- `Restaurant` schema — name, image, url, telephone, priceRange, servesCuisine,
+  menu, address, openingHoursSpecification. `aggregateRating` **deliberately
+  excluded** (no verified Google reviews yet — see note below).
+- `WebSite` schema with `SearchAction` (sitelinks searchbox).
+- Canonical + Open Graph + Twitter card meta tags.
 
-**Fix — add Restaurant schema** to `index.html` in the `<head>` (data taken from
+**Reference — Restaurant schema applied** (data taken from
 `src/components/LocationContact.tsx` lines 6–49):
 
 ```html
@@ -334,9 +339,10 @@ Per-page title bhi sirf `Pizza Ride`:
 > **Note on ratings:** the site claims "500+ happy customers in Samalkha"
 > (`Hero.tsx:217`, `Features.tsx:25`). Only include `aggregateRating` once you
 > have real reviews from a verified source (Google reviews), otherwise Google
-> may flag it. If you don't have reviews yet, remove the `aggregateRating` block.
+> may flag it. **Status: ✅ excluded as recommended** — add it back when real
+> reviews are available.
 
-**Also add `WebSite` schema** for sitelinks searchbox:
+**WebSite schema applied** for sitelinks searchbox:
 
 ```html
 <script type="application/ld+json">
@@ -391,33 +397,21 @@ Wrap `<App>` with `<HelmetProvider>` in `src/main.tsx`.
 ```txt
 User-agent: *
 Allow: /
-```
-
-**Analysis:** File exists ✅ but is minimal — no sitemap reference, no
-protection for API/internal paths.
-
-**Fix — replace the content:**
-
-```txt
-User-agent: *
-Allow: /
 Disallow: /api/
-Disallow: /images/robot.png
+Disallow: /images/robot.webp
 
 Sitemap: https://pizza-ride01-main.vercel.app/sitemap.xml
 ```
 
-(`public/` is copied to the build root by Vite, so the served URL is
-`/robots.txt`.)
+**Status:** ✅ Implemented & live at `/robots.txt` — sitemap referenced, API
+path disallowed. (`public/` is copied to the build root by Vite.)
 
 ---
 
 ## 10. sitemap.xml
 
-**Current state:** ❌ No file matches `**/sitemap*` anywhere in the project.
-Search engines can't discover the sub-pages easily.
-
-**Fix — create `pizza-ride01-main/artifacts/pizza-ride/public/sitemap.xml`:**
+**Status:** ✅ Implemented & live — `pizza-ride01-main/artifacts/pizza-ride/public/sitemap.xml`
+covers all 5 routes (verified 200 at `/sitemap.xml`).
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -460,15 +454,17 @@ custom domain once you buy one.
 
 ### 11.1 Image size & format
 
-**Current state:** ~90 images bundled in `src/assets/` (plus 55+ raw masters in
-`attached_assets/`). Mostly `.jpg`, with a few `.avif`/`.webp`
-(e.g. `feature-pizza.avif`, `feature-burger.webp`, `gallery-pizza.avif`).
+**Current state:** ✅ All images converted to **WebP** — 116 `.webp` files in
+`src/assets/` (originally 112 `.jpg` + 1 `.jpeg` + 1 `.png`), plus
+`public/images/robot.webp`. Two `.avif` files remain (`feature-pizza.avif`,
+`gallery-pizza.avif`).
 
-**Fix:**
-- Convert the remaining `.jpg`/`.png` menu images to **WebP or AVIF**.
-- Target **< 200 KB per image**; the hero + menu cards matter most.
-- Reserved in the layout via `aspect-[4/3]` — add explicit `width`/`height`
-  attributes to prevent layout shift (CLS) where possible.
+**Done:**
+- Converted every `.jpg`/`.jpeg`/`.png` to WebP (quality 92; PNG logos lossless).
+- All imports updated; original raster files removed.
+
+**Still open:**
+- Add explicit `width`/`height` attributes where possible to reduce layout shift (CLS).
 
 ### 11.2 Lazy loading
 
