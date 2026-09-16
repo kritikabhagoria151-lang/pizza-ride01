@@ -611,7 +611,7 @@ export default function ChatBot() {
                     key={chip}
                     onClick={() => sendMessage(chip)}
                     disabled={loading || listening}
-                    className="shrink-0 whitespace-nowrap text-xs bg-secondary/15 hover:bg-primary/15 border border-border rounded-full px-3 py-1.5 transition-colors disabled:opacity-40"
+                    className="shrink-0 whitespace-nowrap inline-flex items-center min-h-[44px] text-xs bg-secondary/15 hover:bg-primary/15 border border-border rounded-full px-4 py-2.5 transition-colors disabled:opacity-40"
                   >
                     {chip}
                   </button>

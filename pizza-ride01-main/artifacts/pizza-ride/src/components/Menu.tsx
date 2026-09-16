@@ -269,7 +269,7 @@ function ItemCard({ item, index }: { item: MenuItem; index: number }) {
             {item.sizes ? `from ₹${item.price}` : `₹${item.price}`}
           </motion.span>
         </div>
-        <p className="text-muted-foreground text-xs flex-grow mb-3">{item.description}</p>
+        <p className="text-muted-foreground text-sm sm:text-xs flex-grow mb-3">{item.description}</p>
         {item.sizes && (
           <div className="flex gap-1 mb-3">
             {item.sizes.map((s) => (

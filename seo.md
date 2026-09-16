@@ -477,6 +477,18 @@ custom domain once you buy one.
 
 ## 11. Speed & Mobile Responsiveness
 
+**Status: all core items done ✅.** Page experience (Core Web Vitals) is a
+direct Google ranking factor, and Google now indexes the **mobile** version of
+the site first. This section covers what was measured and fixed.
+
+**Speed wins implemented:**
+1. **Images** — WebP, correctly sized, all `< 200 KB` (11.2 MB total, down from
+   23.2 MB) — §11.1
+2. **Lazy loading** + `fetchPriority="high"` on the LCP hero image — §11.2
+3. **Fonts** moved out of render-blocking CSS `@import` → `preconnect` + swap — §11.3
+4. **Code splitting** — lazy routes, Home stays eager — §11.4
+5. **Mobile** — 44 px tap targets, readable text sizes, no horizontal scroll — §11.5
+
 ### 11.1 Image size & format
 
 **Current state:** ✅ Optimized — **WebP** for all rasters, correct dimensions,
@@ -523,103 +535,126 @@ and lazy/eager loading wired up for Core Web Vitals.
 **Optional next step:** generate full **AVIF** versions + `srcset` for every
 image (further ~20–30% smaller, but more build tooling needed).
 
-### 11.2 Lazy loading
+### 11.2 Lazy loading & loading hints
 
-**Scan result:**
+**Status:** ✅ Implemented.
 
-| File | `loading="lazy"`? |
-|------|------------------|
-| `Menu.tsx:237` (item images) | ✅ |
-| `Gallery.tsx:96` | ✅ |
-| `LocationContact.tsx:158` (map iframe) | ✅ |
-| `Features.tsx:55` | ✅ |
-| `Hero.tsx:248` (hero image) | ❌ — intentionally not lazy (it's the LCP); **correct**, add `fetchpriority="high"` instead |
+| Element | Strategy | Why |
+|---------|----------|-----|
+| Menu item images | `loading="lazy"` + `decoding="async"` | below the fold, ~80 images |
+| Gallery images | `loading="lazy"` + `decoding="async"` | below the fold |
+| Features images | `loading="lazy"` | below the fold |
+| Map iframe (`LocationContact`) | `loading="lazy"` | heavy third-party frame |
+| Hero image (LCP) | `fetchPriority="high"` + `decoding="async"` (NOT lazy) | it is the Largest Contentful Paint — must load first |
+| All content images | `width` + `height` attributes | reserve space → **no CLS** |
 
-**Fix for hero (LCP):**
+The hero uses `fetchPriority="high"` so the browser fetches it before other
+resources, speeding up LCP:
 
 ```tsx
-<motion.img
-  src={heroImg}
-  alt="Hot wood-fired pizza with melted cheese — Pizza Ride Samalkha"
-  fetchPriority="high"
-  ...
-/>
+<img src={heroImg} alt="…" width={600} height={600} decoding="async" fetchPriority="high" />
 ```
 
 ### 11.3 Fonts (render-blocking)
 
-**Current code** — `src/index.css` line 1 loads two font families via CSS
-`@import`, which blocks rendering:
-
-```css
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Outfit:wght@300;400;500;600;700&display=swap');
-```
-
-**Fix:** move the font load to `index.html` with `preconnect` + `display=swap`
-(removes the blocking CSS import and gets faster render):
+**Status:** ✅ Fixed. The fonts were previously loaded with a CSS
+`@import` inside `src/index.css`, which blocks rendering. They now load from
+`index.html` with `preconnect` + `display=swap`, so text paints immediately in
+a fallback font and swaps when the web fonts arrive:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Outfit:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
 ```
+
+- `preconnect` — opens the connection to Google Fonts early (saves ~100–300 ms).
+- `display=swap` — no invisible text while fonts load (avoids FOIT).
+- Also added `<meta name="theme-color" content="#e63746" />` for a branded
+  mobile browser UI.
 
 ### 11.4 Code splitting
 
-**Current state:** single bundle — all page components are statically imported
-in `App.tsx` (lines 6–10); no `React.lazy`.
-
-**Fix — route-level lazy loading (small win, easy):**
+**Status:** ✅ Implemented. `Home` stays in the main bundle (it is the landing
+page), and the other routes are lazy-loaded so their code is only downloaded
+when the visitor opens that page:
 
 ```tsx
 import { lazy, Suspense } from 'react';
+import Home from '@/pages/Home';
 
 const MenuPage = lazy(() => import('@/pages/MenuPage'));
 const WhyUs = lazy(() => import('@/pages/WhyUs'));
 const GalleryPage = lazy(() => import('@/pages/GalleryPage'));
 const LocationPage = lazy(() => import('@/pages/LocationPage'));
+const NotFound = lazy(() => import('@/pages/not-found'));
 ```
 
-Wrap routes in `<Suspense fallback={null}>`.
+All routes are wrapped in `<Suspense fallback={<RouteFallback />}>` (a light,
+accessible "Loading…" placeholder with `role="status"`).
+
+**Result:** smaller initial JavaScript → faster Time-to-Interactive on mobile.
 
 ### 11.5 Mobile responsiveness
 
-**Status: mostly done ✅.** Previous pass already fixed:
-- `index.html` viewport: `width=device-width, initial-scale=1.0` (zoom enabled ✅)
-- `overflow-x-hidden` on `body` and `PageLayout` (no horizontal scroll ✅)
-- ChatBot FAB + window scale down on mobile ✅
-- Hero blobs responsive, badges no longer clipped ✅
-- Map `min-h-[280px] sm:min-h-[400px]`, subscribe form stacks on mobile ✅
-- Menu grid `grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5` ✅
+**Status: done ✅.** Google's mobile-first indexing means the mobile version is
+what actually gets ranked, so this matters.
 
-**Remaining checks:**
-- Run the [Mobile-Friendly Test](https://search.google.com/test/mobile-friendly)
-  and a Lighthouse audit on the live URL.
-- Verify tap targets ≥ 48×48px on the ChatBot quick chips and menu cards.
-- Body text base size is `text-sm` on several cards — consider `text-base` on
-  mobile for readability (≥16px).
+Implemented:
+- `index.html` viewport: `width=device-width, initial-scale=1.0` (pinch-zoom
+  NOT disabled — accessibility requirement).
+- `overflow-x-hidden` on `body` + `PageLayout` → no horizontal scroll.
+- Responsive layouts across the site: menu grid `grid-cols-2 sm:grid-cols-3
+  lg:grid-cols-4 xl:grid-cols-5`, hero blobs/badges scale, map
+  `min-h-[280px] sm:min-h-[400px]`, subscribe form stacks.
+- ChatBot FAB scales down on mobile; window uses
+  `max-w-[calc(100vw-3rem)]` so it never overflows.
+- **Tap targets ≥ 44×44 px** — ChatBot quick chips now `min-h-[44px]`
+  (were ~28 px tall, below the recommended minimum).
+- **Mobile text legibility** — menu card descriptions are `text-sm` on mobile
+  (≥14 px) and `text-xs` on larger screens.
+
+**Remaining checks (manual, run after deploy):**
+- Google [Mobile-Friendly Test](https://search.google.com/test/mobile-friendly)
+  on the live URL.
+- Lighthouse (mobile) on the live URL — aim for Performance ≥ 90,
+  Accessibility ≥ 95, Best Practices = 100, SEO = 100.
+- Confirm the LCP hero image paints under 2.5 s on a throttled 4G profile.
 
 ---
 
 ## Priority — What To Fix First
 
-| Priority | Fix | Effort |
-|----------|-----|--------|
-| 🔴 1 | Meta description + title (remove "built on Replit") | 5 min |
-| 🔴 2 | Add `<h1>` on all pages (Hero div → h1) | 15 min |
-| 🔴 3 | Create `sitemap.xml` + update `robots.txt` | 15 min |
-| 🔴 4 | Add Restaurant + WebSite JSON-LD to `index.html` | 20 min |
-| 🟡 5 | Improve alt texts (keyword-rich) | 30 min |
-| 🟡 6 | Move fonts to `index.html` with preconnect + swap | 15 min |
-| 🟡 7 | Add canonical tags + per-page meta via `react-helmet-async` | 1–2 hrs |
-| 🟢 8 | Route-level code splitting (`React.lazy`) | 30 min |
-| 🟢 9 | Convert heavy JPGs to WebP/AVIF | 1–2 hrs |
-| 🟢 10 | Fix dead `#` links in Footer (privacy/terms/social) | 20 min |
+All ten original items are now **done**. Remaining work is verification /
+optional polish:
+
+| ✔ | Done | Where |
+|---|------|-------|
+| ✅ | Title + meta description (no "built on Replit") | §1, §2 |
+| ✅ | `<h1>` on all pages | §3 |
+| ✅ | `sitemap.xml` + `robots.txt` | §9, §10 |
+| ✅ | Restaurant + WebSite JSON-LD (global + per-route) | §8 |
+| ✅ | Keyword-rich alt texts | §4 |
+| ✅ | Fonts → `index.html` with preconnect + swap | §11.3 |
+| ✅ | Canonical + per-page meta (custom `Seo.tsx`, no extra dep) | §8 |
+| ✅ | Route-level code splitting (`React.lazy`) | §11.4 |
+| ✅ | Images converted + resized to WebP | §11.1 |
+| ✅ | Dead `#` links removed from Footer | §7 |
+
+**Still to do (manual / off-site):**
+- 🔴 Submit the sitemap in **Google Search Console** + **Bing Webmaster Tools**.
+- 🟡 Run **Lighthouse (mobile)** and **PageSpeed Insights** on the live URL.
+- 🟡 Create and verify a **Google Business Profile** (huge for local SEO).
+- 🟢 Optional: full AVIF + `srcset` for every image.
 
 ---
 
-> **Bottom line:** The site already has clean URLs, semantic tags, good alt
-> text and solid mobile responsiveness. The biggest losses are: placeholder
-> meta text, **zero `<h1>` tags**, **no structured data**, **no sitemap**, and
-> render-blocking fonts. Fixing items 1–4 above takes under an hour and will
-> make the biggest difference to how Google understands and displays Pizza Ride.
+> **Bottom line:** Pizza Ride's on-page SEO is now in good shape — clean URLs,
+> proper headings, rich alt text, valid structured data, a sitemap, a
+> crawl-friendly `robots.txt`, optimized images, non-blocking fonts, code
+> splitting and mobile-friendly tap targets. The next biggest wins are
+> **off-site**: submitting to Search Console and setting up a **Google Business
+> Profile** for the Samalkha location.
