@@ -482,8 +482,7 @@ direct Google ranking factor, and Google now indexes the **mobile** version of
 the site first. This section covers what was measured and fixed.
 
 **Speed wins implemented:**
-1. **Images** — WebP, correctly sized, all `< 200 KB` (11.2 MB total, down from
-   23.2 MB) — §11.1
+1. **Images** — all converted to **WebP**, full-resolution originals kept — §11.1
 2. **Lazy loading** + `fetchPriority="high"` on the LCP hero image — §11.2
 3. **Fonts** moved out of render-blocking CSS `@import` → `preconnect` + swap — §11.3
 4. **Code splitting** — lazy routes, Home stays eager — §11.4
@@ -491,49 +490,42 @@ the site first. This section covers what was measured and fixed.
 
 ### 11.1 Image size & format
 
-**Current state:** ✅ Optimized — **WebP** for all rasters, correct dimensions,
-and lazy/eager loading wired up for Core Web Vitals.
+**Current state:** ✅ **WebP** for all rasters, at their **original full size** —
+original dimensions and quality kept (per client request).
 
 **Format:**
 - 116 `.webp` files in `src/assets/` (converted from 112 `.jpg` + 1 `.jpeg` +
   1 `.png`); `public/images/robot.webp` for the chatbot.
-- 2 `.avif` keep-alive images (`feature-pizza.avif`, `gallery-pizza.avif`) —
-  AVIF is even smaller than WebP and is kept as a modern format.
+- 2 `.avif` files kept (`feature-pizza.avif`, `gallery-pizza.avif`) — modern
+  format, even smaller than WebP.
 - `gallery-pizza-video.mp4` for the video tile.
 
-**Size budget (measured 2026-09-16):**
+**Size (measured 2026-09-18):**
 
-| Metric | Before | After |
-|--------|-------:|------:|
-| Total (116 files) | 23.2 MB | 11.2 MB |
-| Average per image | 207 KB | 99 KB |
-| Largest image | 345 KB | 166 KB |
-| Images > 200 KB | many | 0 |
-| Images > 900 px | 82 | 0 |
+| Metric | Value |
+|--------|------:|
+| Total (116 files) | 23.4 MB |
+| Average per image | ~207 KB |
+| Largest image | 345 KB |
+| Typical dimensions | 1000 × 1000 px, quality 92 |
 
-**Resize + re-encode rules (re-encoded from the original JPGs, not re-compressed twice):**
-- Menu cards (`menu-*.webp`) → longest side **800 px**, quality **80**
-  (displayed at ~230 px, so 800 px still covers retina 2×–3×).
-- Gallery + feature (`gallery-*`, `feature-*`) → longest side **1000 px**, quality **82**.
-- Hero logo → **1200 px**, quality **85**; Navbar logo → **256 px**, quality **88**.
-- PNG logos → lossless WebP (keeps transparency, crisp text).
-- `withoutEnlargement` — smaller images are never upscaled.
+> Note: an earlier pass resized these to 800 px / `< 200 KB` (≈52 % smaller,
+> 11.2 MB) for maximum speed. That was **reverted on request** to keep the
+> original full-resolution images. If page speed ever needs another boost, this
+> is the first thing to re-optimize.
 
-**HTML attributes (done in components):**
+**HTML attributes (kept — these do NOT affect image quality):**
 - `width` + `height` on every content image → browser reserves space, **no layout shift (CLS)**.
 - `loading="lazy"` on below-the-fold menu & gallery images → faster first paint.
 - Hero image uses `fetchPriority="high"` (LCP element) → faster Largest Contentful Paint.
 - `decoding="async"` everywhere → images decode off the main thread.
 
-**Why this helps Google:**
-- All images now sit under the **< 200 KB** guidance, so pages load fast —
-  and **page speed is a ranking factor**.
+**Why this still helps Google:**
+- **WebP** is a small, modern format Google recommends (smaller than JPG at the
+  same quality).
 - Correct `width`/`height` removes layout shift, improving **CLS**.
 - Fast hero/LCP image improves **LCP**; together these feed into
   **Core Web Vitals**, which Google uses for ranking.
-
-**Optional next step:** generate full **AVIF** versions + `srcset` for every
-image (further ~20–30% smaller, but more build tooling needed).
 
 ### 11.2 Lazy loading & loading hints
 
