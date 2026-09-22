@@ -48,7 +48,7 @@ const restaurantSchema = {
   url: `${BASE}/`,
   telephone: "+91-72068-87688",
   priceRange: "₹₹",
-  image: `${BASE}/favicon.svg`,
+  image: `${BASE}/og-image.jpg`,
   servesCuisine: ["Pizza", "Burgers", "Sandwiches", "Pasta", "Shakes", "Fast Food"],
   hasMenu: `${BASE}/menu`,
   address: {
@@ -173,8 +173,10 @@ export default function Seo() {
     setMeta("property", "og:title", data.title);
     setMeta("property", "og:description", data.description);
     setMeta("property", "og:url", url);
+    setMeta("property", "og:image", `${BASE}/og-image.jpg`);
     setMeta("name", "twitter:title", data.title);
     setMeta("name", "twitter:description", data.description);
+    setMeta("name", "twitter:image", `${BASE}/og-image.jpg`);
 
     let script = document.getElementById("route-jsonld") as HTMLScriptElement | null;
     if (!script) {
