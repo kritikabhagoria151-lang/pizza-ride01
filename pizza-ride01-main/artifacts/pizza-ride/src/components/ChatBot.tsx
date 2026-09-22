@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Mic, MicOff, Volume2, VolumeX, Loader2 } from "lucide-react";
+import { X, Send, Mic, MicOff, Volume2, VolumeX, Loader2 } from "lucide-react";
 const robotLogo = "/images/robot.webp";
 
 type Message = { role: "user" | "assistant"; content: string };
@@ -19,8 +19,6 @@ interface SpeechRecognitionInstance extends EventTarget {
   onend: (() => void) | null;
 }
 declare const webkitSpeechRecognition: new () => SpeechRecognitionInstance;
-
-const API_URL = `${window.location.origin}/api/chat`;
 
 const QUICK_CHIPS = [
   "Menu dikhao",
@@ -66,14 +64,14 @@ function getEnglishReply(input: string): string {
 
   if (/^(hi|hello|hey|namaste|namaskar|hii|helo|sup|yo)\b/.test(q)) {
     return pick([
-      "Hey there! How are you? I'm PizzaBot - Pizza Ride's friend! Tell me what you need - menu, prices, or just a chat?",
-      "Hello friend! What's up? I'm PizzaBot - I know everything about our pizzas, burgers, pasta and more!",
-      "Hi! Welcome! I'm PizzaBot - your friendly assistant! Just ask me anything!",
+      "Hello! I'm PizzaBot, Pizza Ride's online assistant. Ask me about our menu, prices, timings or delivery.",
+      "Welcome to Pizza Ride! I can help you with the menu, prices, location and timings.",
+      "Hi there! I'm PizzaBot. What would you like to know about Pizza Ride?",
     ]);
   }
 
   if (/kaise ho|kaisa hai|kya haal|kya chal|how are you|what.?up/.test(q)) {
-    return "I'm doing great, thanks! The kitchen is busy making fresh pizzas! How about you? Feel like ordering something today?";
+    return "I'm doing great, thank you! How can I help you today - the menu, prices, or something else?";
   }
 
   if (/tumhara naam|kaun ho|tum kaun|naam kya|who are you/.test(q)) {
@@ -152,7 +150,7 @@ function getEnglishReply(input: string): string {
   if (/burger/.test(q)) {
     if (/price|kitna|kitne/.test(q)) return "Burger prices:\n Aloo Tikki 40 (Budget king!) | Veggi 50 | Cheese Spicy 70 | Paneer 70 | Jumbo 99\nCheapest 40, best 99!";
     if (/aloo.?tikki|tikki/.test(q)) return " ALOO TIKKI - 40\nCheapest and crispy! Crispy tikki + fresh veggies. Great at just 40!";
-    if (/jumbo|big|bada/.test(q)) return " JUMBO - 99\nOur SHER! Double patty + extra cheese + fully loaded!"; 
+    if (/jumbo|big|bada/.test(q)) return " JUMBO - 99\nDouble patty + extra cheese + fully loaded!"; 
     if (/paneer.?burger/.test(q)) return " PANEER - 70\nFor paneer lovers! Juicy paneer patty + mint mayo. Soft and tasty!";
     if (/cheese.?spicy|spicy.?burger/.test(q)) return " CHEESE SPICY - 70\nSpicy patty + gooey cheese! For spice lovers!";
     if (/veggi|veggie/.test(q)) return " VEGGI - 50\nClassic - simple and tasty! Fresh veggie patty.";
@@ -171,10 +169,10 @@ function getEnglishReply(input: string): string {
 
   if (/sandwich/.test(q)) return "Our sandwiches are super tasty!\n Veg Grill 70 - Cheese, cucumber, tomato, green chutney, grilled!\n Spicy Paneer 90 - Spicy paneer + fresh veggies + toasted bread\n Cheese Grill 90 - Simple and delicious!\nAll crispy! Which one?";
   if (/wrap|roll/.test(q)) return "Our wraps are great too!\n Aloo Tikki 60 - Spiced tikki + chutneys\n Cheese Spicy 90 - Spicy filling + melted cheese\n Paneer 110 - Soft paneer + mint chutney + veggies\nFresh wraps!";
-  if (/garlic|bread/.test(q)) return "Garlic bread is next level!\n Plain 81 - Soft bread + garlic butter\n Veg Loaded 110 (MUST TRY!) - Veg filling + melted cheese\n Laden 120 - Extra toppings loaded!\nDo try the Veg Loaded!";
+  if (/garlic|bread/.test(q)) return "Garlic bread options:\n Plain 81 - Soft bread + garlic butter\n Veg Loaded 110 (must try) - Veg filling + melted cheese\n Laden 120 - Extra toppings\nVeg Loaded zaroor try kariye!";
   if (/shake|drink|coffee|cold coffee|beverage|peene|piyo/.test(q)) {
     if (/price|kitna|kitne/.test(q)) return "Drinks prices:\n Strawberry/Butterscotch/Vanilla/Black Current 90 | Choco Oreo 90 | Cold Coffee 120 | Soft Drink 30\nStarts at 30!";
-    if (/oreo|choco/.test(q)) return " CHOCO OREO - 90\nCrushed Oreos + chocolate shake = HEAVEN!\nA fan favourite for Oreo lovers!";
+    if (/oreo|choco/.test(q)) return " CHOCO OREO - 90\nCrushed Oreos + chocolate shake - classic favourite!";
     if (/cold.?coffee/.test(q)) return " COLD COFFEE - 120\nChilled, creamy, perfect! Strong and smooth for coffee lovers!";
     if (/strawberry/.test(q)) return " STRAWBERRY - 90\nFresh strawberry flavour - pink and pretty! Thick and creamy!";
     if (/butterscotch/.test(q)) return " BUTTERSCOTCH - 90\nSweet and creamy - old school taste!";
@@ -202,17 +200,17 @@ function getEnglishReply(input: string): string {
   if (/price|rate|kitna|kitne|cost|bill|charge|sasta|mehnga/.test(q)) return "Great news - our prices!\n Pizzas 59-449 | Burgers 40-99 | Sandwich 70-90 | Wraps 60-110 | Pasta 109-149 | Garlic 81-120 | Drinks 30-120 | Fries 30-100\n Cheapest: Tomato Pizza 59 | Most popular: Farm House 160\nPocket friendly!";
   if (/location|address|kahan|kidhar|where|map|direction|route|samalkha|pahunchna|aana|nahi pata/.test(q)) return "We are in Samalkha, Haryana!\nAt the bottom of this website under \"Visit Us\" you'll find Google Maps, address and phone!\nOr search \"Pizza Ride Samalkha\" on Google Maps - you'll find us easily!";
   if (/time|timing|hours|open|close|kab|kitne baje|shaam|subah|dopahar|din|raat/.test(q)) return "Note down our timing!\n Open: Monday to Sunday, 12:00 PM - 12:00 AM (midnight)\n Open all 7 days!\nFresh hot pizza awaits!";
-  if (/order|delivery|deliver|home delivery|parcel|takeaway|booking|mangwana/.test(q)) return "Ordering is easy!\n1. See the menu\n2. Decide what you want\n3. Walk in or call us\n4. Delivery available in Samalkha!\n5. Takeaway also available!\nFresh and hot - come soon!";
-  if (/contact|phone|number|call|mobile|tele|email/.test(q)) return "Contact details are in the \"Visit Us\" section at the bottom of the website!\n Phone - call us directly\n Address - with the map!\nYou can also order by calling!";
+  if (/order|delivery|deliver|home delivery|parcel|takeaway|booking|mangwana/.test(q)) return "To place an order:\n1. Browse the Menu section on this website.\n2. Choose what you would like.\n3. Order by phone or visit the store in Samalkha.\nDelivery and takeaway are available.\n\nContact details are in the \"Visit Us\" section.";
+  if (/contact|phone|number|call|mobile|tele|email/.test(q)) return "Our contact details are in the \"Visit Us\" section at the bottom of the page - phone number, address and map.\nYou can call us, and delivery is available in Samalkha.";
   if (/offer|discount|coupon|deal|bachat|sasta|free|combo|affordable/.test(q)) return "About offers:\n CHEAP: Tomato Pizza 59 | Aloo Tikki 40 | Veg Pocket 59 | Soft Drink 30 | Dips 30\n BEST VALUE: Pizza Ride Special 259 (3-4 people can easily share!)\nKeep visiting the restaurant for new offers!";
   if (/review|rating|feedback|kaisa|quality|taste|test|kaisa hai|kaisa lagta/.test(q)) return "We're proud of our feedback!\n 500+ HAPPY CUSTOMERS in Samalkha!\n Most loved: Farm House | Pizza Ride Special | Makhani | Jumbo Burger | Choco Oreo Shake\n\"Fresh ingredients and bold flavours!\" - try and become a fan!";
   if (/about|about.?us|kya ho|kya hai ye|pizza.?ride/.test(q)) return "About Pizza Ride, from the heart!\n Samalkha, Haryana - our own store!\n 100% Vegetarian | 500+ Happy Customers\n Fresh Ingredients + Bold Flavours | Fast Delivery | Wood-fired pizza\nIt's your city's own pizza place - come try it!";
-  if (/best|recommend|suggestion|kaunsa|konsa|popular|bestseller|accha|sahi|top|batao/.test(q)) return "Here are my TOP 6!\n1. Pizza Ride Special 259 - Only at our place!\n2. Farm House 160 - Our bestseller!\n3. Makhani 160 - Local favorite!\n4. Tikki Crush 210 - Unique taste!\n5. Jumbo Burger 99 - Double patty + cheese!\n6. Choco Oreo Shake 90 - Oreo + Chocolate = HEAVEN!\nIf you haven't tried these, you've missed something!";
+  if (/best|recommend|suggestion|kaunsa|konsa|popular|bestseller|accha|sahi|top|batao/.test(q)) return "Here are my TOP 6:\n1. Pizza Ride Special 259 - Only at our place!\n2. Farm House 160 - Our bestseller!\n3. Makhani 160 - Local favorite!\n4. Tikki Crush 210 - Unique taste!\n5. Jumbo Burger 99 - Double patty + cheese!\n6. Choco Oreo Shake 90 - Oreo + Chocolate!\nA good place to start!";
 
   return pick([
-    "Hmm, that's a great question! But I don't have that answer. However, I know all the secrets of our pizzas, burgers, pasta and shakes! Ask me something!",
-    "That's a bit outside my topic - I'm an expert in food and Pizza Ride! Want to hear the menu? Or the prices?",
-    "Interesting! I don't know that... but tell me - have you ever tried Farm House? No?! Then plan it for today!",
+    "I can help you with the Pizza Ride menu, prices, timings or location. What would you like to know?",
+    "That's outside my knowledge - but I can tell you about our full menu, prices and bestsellers!",
+    "Let me know what you need - menu, prices, location or offers - and I'll help you.",
   ]);
 }
 
@@ -226,64 +224,64 @@ function getSmartReply(input: string): string {
 
   if (/^(hi|hello|hey|namaste|namaskar|hii|helo|sup|yo)\b/.test(q)) {
     return pick([
-      "Arrey hello yaar! Kaise ho? Main PizzaBot - Pizza Ride ka dost! Batao kya help karu? Menu, price, ya bas baat karni hai?",
-      "Hey bhai! Kya haal hai? Main PizzaBot - sab bataunga! Pizza, burger, pasta - jo poochna hai poochho!",
-      "Hello hello! Welcome! Main PizzaBot - tumhara friendly assistant! Bolo kya chahiye?",
+      "Hello! Main PizzaBot hoon - Pizza Ride ka online assistant. Menu, prices ya timings - kya jaankari chahiye?",
+      "Namaste! Pizza Ride mein aapka swagat hai. Bataaiye, kya help kar sakta hoon?",
+      "Hi! Main PizzaBot hoon. Menu, prices, location - jo chaahiye, poochhiye.",
     ]);
   }
 
   if (/kaise ho|kaisa hai|kya haal|kya chal|how are you|what.?up/.test(q)) {
-    return "Bilkul first class hoon yaar! Pizza banane ki taiyaari chal rahi hai! Tum batao kaise ho? Kuch order karne ka mann hai kya?";
+    return "Main badhiya hoon, shukriya! Aapko menu, prices ya koi aur jaankari chahiye?";
   }
 
   if (/tumhara naam|kaun ho|tum kaun|naam kya|who are you/.test(q)) {
-    return "Bhai main PizzaBot hoon! Pizza Ride ka apna assistant. Menu jaanta hoon, prices pata hain, aur tumhari help ke liye hamesha ready hoon!";
+    return "Main PizzaBot hoon - Pizza Ride ka online assistant. Menu, prices, timings aur location ke baare mein bata sakta hoon.";
   }
 
   if (/thank|shukriya|dhanyavad|thanks|meherbani/.test(q)) {
     return pick([
-      "Yaar koi shukriya nahi! Tumhari help karna mera kaam hai. Kabhi bhi aana, kabhi bhi poochho!",
-      "Arrey bhai, dost hain hum - shukriya mat bolo! Aur batao kya chahiye!",
-      "Hoye hoye, itna formality! Dost hain na, no shukriya! Bas aate raho!",
+      "Shukriya! Aapka swagat hai. Kisi bhi waqt poochhiye.",
+      "Helping you is my job - koi aur jaankari chahiye?",
+      "Koi baat nahi! Aur kuch jaanna hai?",
     ]);
   }
 
   if (/bye|alvida|goodbye|tata|chalo|nikal|ja raha|chal|phir milte/.test(q)) {
     return pick([
-      "Bye yaar! Aana zaroor - Pizza Ride mein hamesha welcome! Take care!",
-      "Chal bhai, phir milte hain! Jab bhi pizza ka mann kare, seedha aa jana!",
-      "Alvida nahi, phir milte hain! Tumhara wait rahega! Bye!",
+      "Bye! Pizza Ride par phir se aaiye. Have a great day!",
+      "Phir milte hain! Jab bhi pizza ka mann kare, Pizza Ride yaad kariye.",
+      "Thank you for visiting us. Alvida!",
     ]);
   }
 
   if (/poora menu|full menu|sab items|saare items|complete list|dikhao sab|pura menu|sab dikhao/.test(q)) {
-    return "Arrey waah poora menu? Lelo yaar!\n\n PIZZAS (59-449):\nTomato 59 | Onion 70 | Capsicum 70 | Corn 80\nOnion & Corn 90 | Onion & Capsicum 90\nOnion & Paneer 100 | Corn & Paneer 100 | Paneer & Corn 100\nSingle Cheese 110 | Cheese & Corn 130 | Double Cheese 150\nFarm House 160/310/400 * | Tandoori Paneer 160/310/400\nZesty Tangy 160/310/400 | Makhani 160/310/400\nClassical 210/340/450 | Spicy Paneer 210/340/450\nDelight Extra Cheese 210/340/450 | Tikki Crush 210/340/450\nPizza Ride Special 259/349/449\n\n BURGERS:\nAloo Tikki 40 | Veggi 50 | Cheese Spicy 70 | Paneer 70 | Jumbo 99 *\n\n SANDWICH:\nVeg Grill 70 | Spicy Paneer 90 | Cheese Grill 90\n\n WRAPS:\nAloo Tikki 60 | Cheese Spicy 90 | Paneer 110\n\n PASTA:\nRed Sauce 109 | White Sauce 109 | Tandoori 119 | Makhani 119 | Mix Sauce 149\n\n GARLIC BREADS:\nPlain 81 | Veg Loaded 110 | Laden 120\n\n SHAKES & DRINKS:\nStrawberry/Butterscotch/Vanilla 90 | Choco Oreo 90 | Black Current 90 | Cold Coffee 120 | Soft Drink 30\n\n FRIES & SIDES:\nSalted 65 | Peri Peri 69 | Masala 69 | Cheese Peri Peri 99\nVeg Pocket 59 | Paneer Pocket 89 | Dips 30 | Paneer Salad 100\n\nKuch specific chahiye toh bolo!";
+    return "Pura menu le lijiye:\n\n PIZZAS (59-449):\nTomato 59 | Onion 70 | Capsicum 70 | Corn 80\nOnion & Corn 90 | Onion & Capsicum 90\nOnion & Paneer 100 | Corn & Paneer 100 | Paneer & Corn 100\nSingle Cheese 110 | Cheese & Corn 130 | Double Cheese 150\nFarm House 160/310/400 * | Tandoori Paneer 160/310/400\nZesty Tangy 160/310/400 | Makhani 160/310/400\nClassical 210/340/450 | Spicy Paneer 210/340/450\nDelight Extra Cheese 210/340/450 | Tikki Crush 210/340/450\nPizza Ride Special 259/349/449\n\n BURGERS:\nAloo Tikki 40 | Veggi 50 | Cheese Spicy 70 | Paneer 70 | Jumbo 99 *\n\n SANDWICH:\nVeg Grill 70 | Spicy Paneer 90 | Cheese Grill 90\n\n WRAPS:\nAloo Tikki 60 | Cheese Spicy 90 | Paneer 110\n\n PASTA:\nRed Sauce 109 | White Sauce 109 | Tandoori 119 | Makhani 119 | Mix Sauce 149\n\n GARLIC BREADS:\nPlain 81 | Veg Loaded 110 | Laden 120\n\n SHAKES & DRINKS:\nStrawberry/Butterscotch/Vanilla 90 | Choco Oreo 90 | Black Current 90 | Cold Coffee 120 | Soft Drink 30\n\n FRIES & SIDES:\nSalted 65 | Peri Peri 69 | Masala 69 | Cheese Peri Peri 99\nVeg Pocket 59 | Paneer Pocket 89 | Dips 30 | Paneer Salad 100\n\nKuch specific chahiye toh poochhiye!";
   }
 
   if (/pizza|pizze/.test(q)) {
     if (/best|recommend|suggestion|kaunsa|konsa|popular|bestseller|accha|sahi|batao/.test(q)) {
-      return "Yaar ye try karna zaroor!\n\n Farm House - 160\nSabse zyada bikne wala! Onion, Capsicum, Corn, Mushroom - fresh veggies loaded.\n\n Makhani Pizza - 160\nYe hamara Local Fav hai! Makhani sauce, Capsicum, Paneer - buttery masti!\n\n Tikki Crush - 210\nMushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush - ek baar khaoge toh baar baar maangoge!\n\n Pizza Ride Special - 259\nYe hamari jaan hai! All veggies + loaded cheese - sirf hamare yahan!\n\nMere hisaab se - pehle Farm House try karo, phir Special! Dono alag hain!";
+      return "Ye try kariye:\n\n Farm House - 160\nSabse zyada bikne wala! Onion, Capsicum, Corn, Mushroom - fresh veggies loaded.\n\n Makhani Pizza - 160\nMakhani sauce, Capsicum, Paneer - buttery aur tasty!\n\n Tikki Crush - 210\nMushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush - unique maza!\n\n Pizza Ride Special - 259\nAll veggies + loaded cheese - sirf hamare yahan!\n\nShuruaat ke liye Farm House try kariye, phir Special!";
     }
     if (/price|rate|kitna|kitne|cost|charge|menga|sasta/.test(q)) {
-      return "Pizza ke prices sunke khush ho jaoge yaar!\n\n Budget: Tomato 59 | Onion 70 | Capsicum 70 | Corn 80 | Onion & Corn 90 | Single Cheese 110\n\n Mid: Cheese & Corn 130 | Double Cheese 150 | Farm House 160 | Tandoori 160 | Zesty Tangy 160 | Makhani 160\n\n Premium: Classical 210 | Spicy Paneer 210 | Delight 210 | Tikki Crush 210 | Pizza Ride Special 259\n\n Reg / Med (+150) / Large (+240)\n\nSabse sasta 59 aur sabse loaded 259!";
+      return "Pizza ke prices:\n\n Budget: Tomato 59 | Onion 70 | Capsicum 70 | Corn 80 | Onion & Corn 90 | Single Cheese 110\n\n Mid: Cheese & Corn 130 | Double Cheese 150 | Farm House 160 | Tandoori 160 | Zesty Tangy 160 | Makhani 160\n\n Premium: Classical 210 | Spicy Paneer 210 | Delight 210 | Tikki Crush 210 | Pizza Ride Special 259\n\n Reg / Med (+150) / Large (+240)\n\nSabse sasta 59 aur sabse loaded 259!";
     }
     if (/farm.?house/.test(q)) {
-      return "Arrey ye toh hamara RAJA hai!\n\n FARM HOUSE - 160 (Reg) / 310 (Med) / 400 (Large)\n\nKya hai: Onion, Capsicum, Corn, Mushroom - sab fresh veggies!\nKyun khaas: Sabse zyada bikne wala! Log baar baar aate hain.\nSizes: Reg / Med / Large\n\nEk baar try karo, pakka ho jaega!";
+      return " FARM HOUSE - 160 (Reg) / 310 (Med) / 400 (Large)\n\nKya hai: Onion, Capsicum, Corn, Mushroom - sab fresh veggies!\nKyun khaas: Sabse zyada bikne wala!\nSizes: Reg / Med / Large\n\nEk baar try kariye - pakka pasand aayega!";
     }
     if (/tandoori.?paneer/.test(q) && !/pasta/.test(q)) {
-      return " TANDOORI PANEER - 160/310/400\n\nOnion, Paneer, Red Paprika - smoky tandoori flavour!\nMuh mein ghol jaata hai yaar! Sizes: Reg/Med/Large";
+      return " TANDOORI PANEER - 160/310/400\n\nOnion, Paneer, Red Paprika - smoky tandoori flavour!\nSizes: Reg/Med/Large";
     }
     if (/zesty|tangy/.test(q)) {
       return " ZESTY TANGY - 160/310/400\n\nOnion, Corn, Paneer - tangy aur zesty taste!\nThoda different hai, mast hai!";
     }
     if (/makhani/.test(q) && !/pasta/.test(q)) {
-      return "Ye hamara LOCAL FAV hai yaar!\n\n MAKHANI - 160/310/400\n\nMakhani Sauce, Capsicum, Paneer - buttery comfort food!\nMakhani paneer pasand hai toh pakka try karo!";
+      return "Ek LOCAL FAVOURITE!\n\n MAKHANI - 160/310/400\n\nMakhani Sauce, Capsicum, Paneer - buttery comfort food!\nMakhani paneer pasand hai toh zaroor try kariye!";
     }
     if (/classical/.test(q)) {
       return " CLASSICAL - 210/340/450\n\nOnion, Capsicum, Corn, Mushroom, Paneer - sab kuch hai!\nJab sab chahiye ek mein - ye lo!";
     }
     if (/spicy.?paneer/.test(q)) {
-      return " SPICY PANEER - 210/340/450\n\nOnion, Paneer, Red Paprika - teekha hai yaar!\nMirchi wale ho toh ye try karo - aankhein khul jaengi!";
+      return " SPICY PANEER - 210/340/450\n\nOnion, Paneer, Red Paprika - teekha flavour!\nMirchi pasand hai toh ye try kariye!";
     }
     if (/delight|extra.?cheese/.test(q)) {
       return " DELIGHT EXTRA CHEESE - 210/340/450\n\nCapsicum, Mushroom, Jalapeno - CHEESE ka maharaja!\nCheese lover ho? Ye tumhara pizza hai!";
@@ -292,13 +290,13 @@ function getSmartReply(input: string): string {
       return " TIKKI CRUSH - 210/340/450\n\nMushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush!\nUnique taste - Try Must hai!";
     }
     if (/ride.?special|special/.test(q)) {
-      return " PIZZA RIDE SPECIAL - 259/349/449\n\nYaar ye hamari JAAN hai! All veggies + loaded cheese!\nSirf Pizza Ride mein milta hai - ye try karna MAT bhoolna!";
+      return " PIZZA RIDE SPECIAL - 259/349/449\n\nAll veggies + loaded cheese!\nSirf Pizza Ride mein milta hai - zaroor try kariye!";
     }
     if (/tomato/.test(q) && !/sauce/.test(q)) {
       return " TOMATO - 59\n\nSabse sasta pizza! Fresh tomato - sirf 59 mein!";
     }
     if (/double.?cheese/.test(q)) {
-      return " DOUBLE CHEESE - 150\n\nAll veggies + DOUBLE cheese! Ek baar khaoge toh mood ban jaega!";
+      return " DOUBLE CHEESE - 150\n\nAll veggies + DOUBLE cheese! Cheese lovers ke liye perfect!";
     }
     if (/single.?cheese/.test(q)) {
       return " SINGLE CHEESE - 110\n\nAll veggies + single cheese - budget friendly aur tasty!";
@@ -306,17 +304,17 @@ function getSmartReply(input: string): string {
     if (/cheese.?corn/.test(q)) {
       return " CHEESE & CORN - 130\n\nCreamy cheese + crunchy corn = MAST COMBO!";
     }
-    return "Bhai pizza toh hamari jaan hai!\n\n Budget: Tomato 59 | Onion 70 | Capsicum 70 | Corn 80\n Double: Onion & Corn 90 | Onion & Capsicum 90 | Paneer combos 100\n Cheese: Single 110 | Cheese & Corn 130 | Double 150\n Special: Farm House 160 | Tandoori 160 | Zesty 160 | Makhani 160 | Classical 210 | Spicy 210 | Tikki Crush 210 | Ride Special 259\n\nKaunsa try karna hai yaar?";
+    return "Pizza bite kijiye aur zyada details ke liye:\n\n Budget: Tomato 59 | Onion 70 | Capsicum 70 | Corn 80\n Double: Onion & Corn 90 | Onion & Capsicum 90 | Paneer combos 100\n Cheese: Single 110 | Cheese & Corn 130 | Double 150\n Special: Farm House 160 | Tandoori 160 | Zesty 160 | Makhani 160 | Classical 210 | Spicy 210 | Tikki Crush 210 | Ride Special 259\n\nKaunsa try karna hai?";
   }
 
   if (/burger/.test(q)) {
-    if (/price|kitna|kitne/.test(q)) return "Burger ke prices yaar:\n Aloo Tikki 40 (Budget king!) | Veggi 50 | Cheese Spicy 70 | Paneer 70 | Jumbo 99 *\nSabse sasta 40 aur best 99!";
+    if (/price|kitna|kitne/.test(q)) return "Burger ke prices:\n Aloo Tikki 40 (Budget favourite) | Veggi 50 | Cheese Spicy 70 | Paneer 70 | Jumbo 99 *\nSabse sasta 40 aur best 99!";
     if (/aloo.?tikki|tikki/.test(q)) return " ALOO TIKKI - 40\nSabse sasta aur crispy! Crispy tikki + fresh veggies. 40 mein itna accha!";
-    if (/jumbo|big|bada/.test(q)) return " JUMBO - 99 *\nYe hamara SHER hai! Double patty + extra cheese + loaded!\nEk baar kha ke dekho, baaki bhool jaoge!";
+    if (/jumbo|big|bada/.test(q)) return " JUMBO - 99 *\nDouble patty + extra cheese + loaded!\nEk baar try kariye - best burger!";
     if (/paneer.?burger/.test(q)) return " PANEER - 70\nPaneer lovers ke liye! Juicy paneer patty + mint mayo. Soft aur tasty!";
-    if (/cheese.?spicy|spicy.?burger/.test(q)) return " CHEESE SPICY - 70\nSpicy patty + gooey cheese! Teekha hai yaar - spice lovers ke liye!";
+    if (/cheese.?spicy|spicy.?burger/.test(q)) return " CHEESE SPICY - 70\nSpicy patty + gooey cheese! Spice lovers ke liye perfect.";
     if (/veggi|veggie/.test(q)) return " VEGGI - 50\nClassic - simple aur tasty! Fresh veggies ka patty.";
-    return "Yaar burgers bhi mast hai!\n Aloo Tikki 40 | Veggi 50 | Cheese Spicy 70 | Paneer 70 | Jumbo 99 *\nKaunsa try karna hai yaar?";
+    return "Burgers fresh aur tasty:\n Aloo Tikki 40 | Veggi 50 | Cheese Spicy 70 | Paneer 70 | Jumbo 99 *\nKaunsa try karna hai?";
   }
 
   if (/pasta/.test(q)) {
@@ -326,64 +324,64 @@ function getSmartReply(input: string): string {
     if (/tandoori/.test(q)) return " TANDOORI - 119 Chef's Pick!\nSmoky tandoori flavour - unique taste! Ek baar try karo!";
     if (/makhani/.test(q) && !/pizza/.test(q)) return " MAKHANI - 119\nButtery makhani sauce - comfort food hai ye!";
     if (/mix.?sauce|pink.?sauce/.test(q)) return " MIX SAUCE - 149 Loaded!\nSab sauces ka combo - best of everything!";
-    return "Yaar pasta bhi ekdum fresh hai!\n Red Sauce 109 | White 109 | Tandoori 119 | Makhani 119 | Mix 149\nKaunsa try karna hai?";
+    return "Pasta fresh aur tasty:\n Red Sauce 109 | White 109 | Tandoori 119 | Makhani 119 | Mix 149\nKaunsa try karna hai?";
   }
 
-  if (/sandwich/.test(q)) return "Yaar sandwich bohot tasty hai!\n Veg Grill 70 - Cheese, cucumber, tomato, green chutney grilled!\n Spicy Paneer 90 - Spicy paneer + fresh veggies + toasted bread\n Cheese Grill 90 - Simple aur delicious!\nSab crispy hain! Kaunsa?";
+  if (/sandwich/.test(q)) return "Sandwich tasty hain:\n Veg Grill 70 - Cheese, cucumber, tomato, green chutney grilled!\n Spicy Paneer 90 - Spicy paneer + fresh veggies + toasted bread\n Cheese Grill 90 - Simple aur delicious!\nSab crispy hain! Kaunsa?";
 
-  if (/wrap|roll/.test(q)) return "Wraps bhi mast hai yaar!\n Aloo Tikki 60 - Spiced tikki + chutneys\n Cheese Spicy 90 - Spicy filling + melted cheese\n Paneer 110 - Soft paneer + mint chutney + veggies\nFresh wraps - maza aata hai!";
+  if (/wrap|roll/.test(q)) return "Wraps available hain:\n Aloo Tikki 60 - Spiced tikki + chutneys\n Cheese Spicy 90 - Spicy filling + melted cheese\n Paneer 110 - Soft paneer + mint chutney + veggies\nFresh aur mazedar!";
 
-  if (/garlic|bread/.test(q)) return "Garlic bread alag level hai yaar!\n Plain 81 - Soft bread + garlic butter\n Veg Loaded 110 (MUST TRY!) - Veg filling + melted cheese\n Laden 120 - Extra toppings loaded!\nYaar Veg Loaded zaroor try karna!";
+  if (/garlic|bread/.test(q)) return "Garlic bread options:\n Plain 81 - Soft bread + garlic butter\n Veg Loaded 110 (must try) - Veg filling + melted cheese\n Laden 120 - Extra toppings\nVeg Loaded zaroor try kariye!";
 
   if (/shake|drink|coffee|cold coffee|beverage|peene|piyo/.test(q)) {
     if (/price|kitna|kitne/.test(q)) return "Drinks ke prices:\n Strawberry/Butterscotch/Vanilla/Black Current 90 | Choco Oreo 90 | Cold Coffee 120 | Soft Drink 30\n30 se shuru!";
-    if (/oreo|choco/.test(q)) return " CHOCO OREO - 90\nCrushed Oreos + chocolate shake = HEAVEN!\nFan favourite hai yaar - Oreo lovers ke liye BOMB!";
+    if (/oreo|choco/.test(q)) return " CHOCO OREO - 90\nCrushed Oreos + chocolate shake - classic favourite!";
     if (/cold.?coffee/.test(q)) return " COLD COFFEE - 120\nChilled, creamy, perfect! Coffee lovers ke liye strong aur smooth!";
-    if (/strawberry/.test(q)) return " STRAWBERRY - 90\nFresh strawberry flavour - pink aur pretty! Thick aur creamy!";
-    if (/butterscotch/.test(q)) return " BUTTERSCOTCH - 90\nSweet aur creamy - purane zamane ka taste!";
+    if (/strawberry/.test(q)) return " STRAWBERRY - 90\nFresh strawberry flavour - thick aur creamy!";
+    if (/butterscotch/.test(q)) return " BUTTERSCOTCH - 90\nSweet aur creamy - classic taste!";
     if (/vanilla/.test(q)) return " VANILLA - 90\nClassic - simple aur perfect! Kabhi galat nahi ho sakta!";
     if (/black.?currant|currant/.test(q)) return " BLACK CURRENT - 90\nRefreshing aur fruity! Fresh aur mazedaar!";
     if (/soft.?drink|pepsi|cold.?drink|cola/.test(q) && !/coffee/.test(q)) return " SOFT DRINK - 30\nPepsi, 7Up, Mirinda - sirf 30 mein chilled!";
-    return "Drinks bhi acche hain yaar!\n Strawberry/Butterscotch/Vanilla 90 | Choco Oreo 90 | Black Current 90 | Cold Coffee 120 | Soft Drink 30\nKonsa try karna hai?";
+    return "Drinks options:\n Strawberry/Butterscotch/Vanilla 90 | Choco Oreo 90 | Black Current 90 | Cold Coffee 120 | Soft Drink 30\nKonsa try karna hai?";
   }
 
   if (/fries|sides|pocket|dip|salad/.test(q)) {
     if (/price|kitna|kitne/.test(q)) return "Fries ke prices:\n Salted 65 | Peri Peri 69 | Masala 69 | Cheese Peri Peri 99 | Veg Pocket 59 | Paneer Pocket 89 | Dips 30 | Salad 100\n30 se shuru!";
     if (/cheese.?peri|cheese.?fries/.test(q)) return " CHEESE PERI PERI - 99\nPeri peri spice + cheese sauce = MAST COMBO!";
     if (/veg.?pocket/.test(q)) return " VEG POCKET - 59\nCrispy pocket + spiced veggies - sirf 59!";
-    if (/paneer.?pocket/.test(q)) return " PANEER POCKET - 89\nCrispy + gooey paneer! Maza aa jaega!";
+    if (/paneer.?pocket/.test(q)) return " PANEER POCKET - 89\nCrispy + gooey paneer! Mazedar option.";
     if (/paneer.?salad/.test(q)) return " PANEER SALAD - 100\nHealthy aur tasty! Fresh paneer + veggies.";
     if (/dip|sauce/.test(q)) return "DIPS - 30 each:\n Cheese | Spice | Tandoori | Chilly\nKisi bhi item ke saath lagao!";
-    return "Fries bhi hain yaar!\n Salted 65 | Peri Peri 69 | Masala 69 | Cheese Peri Peri 99\n Veg Pocket 59 | Paneer Pocket 89 | Dips 30 | Salad 100\nKaunsa try karna hai?";
+    return "Fries options:\n Salted 65 | Peri Peri 69 | Masala 69 | Cheese Peri Peri 99\n Veg Pocket 59 | Paneer Pocket 89 | Dips 30 | Salad 100\nKaunsa try karna hai?";
   }
 
   if (/veg|vegetarian|non.?veg|chicken|mutton|egg|meat/.test(q)) {
-    if (/non.?veg|chicken|mutton|egg|meat/.test(q)) return "Sorry yaar! Pizza Ride 100% VEGETARIAN hai!\nSirf fresh veggies, paneer, cheese - lekin itna tasty hai ki non-veg ki zaroorat nahi padegi!";
-    return "Haan bhai! 100% VEGETARIAN!\nFresh veggies, paneer, cheese, herbs - sab natural! Pure aur tasty!";
+    if (/non.?veg|chicken|mutton|egg|meat/.test(q)) return "Pizza Ride 100% VEGETARIAN hai!\nFresh veggies, paneer, cheese - itna tasty ki non-veg ki zaroorat nahi padegi!";
+    return "Haan, 100% VEGETARIAN!\nFresh veggies, paneer, cheese, herbs - sab natural! Pure aur tasty!";
   }
 
-  if (/price|rate|kitna|kitne|cost|bill|charge|sasta|mehnga/.test(q)) return "Yaar prices dekh ke khush ho jaoge!\n Pizzas 59-449 | Burgers 40-99 | Sandwich 70-90 | Wraps 60-110 | Pasta 109-149 | Garlic 81-120 | Drinks 30-120 | Fries 30-100\n Sabse sasta: Tomato Pizza 59 | Sabse popular: Farm House 160\nPocket friendly hai yaar!";
+  if (/price|rate|kitna|kitne|cost|bill|charge|sasta|mehnga/.test(q)) return "Prices:\n Pizzas 59-449 | Burgers 40-99 | Sandwich 70-90 | Wraps 60-110 | Pasta 109-149 | Garlic 81-120 | Drinks 30-120 | Fries 30-100\n Sabse sasta: Tomato Pizza 59 | Sabse popular: Farm House 160\nPocket friendly!";
 
-  if (/location|address|kahan|kidhar|where|map|direction|route|samalkha|pahunchna|aana|nahi pata/.test(q)) return "Yaar hum hain Samalkha, Haryana!\nWebsite ke bottom mein \"Visit Us\" mein Google Maps, address, phone sab hai!\nYa Google Maps pe search karo \"Pizza Ride Samalkha\" - seedha aa jaega!";
+  if (/location|address|kahan|kidhar|where|map|direction|route|samalkha|pahunchna|aana|nahi pata/.test(q)) return "Hamara restaurant Samalkha, Haryana mein hai!\nWebsite ke bottom mein \"Visit Us\" section mein Google Maps, address aur phone available hai.\nGoogle Maps par search kariye: \"Pizza Ride Samalkha\".";
 
   if (/time|timing|hours|open|close|kab|kitne baje|shaam|subah|dopahar|din|raat/.test(q)) return "Timing note kar lo!\n Khula hai: Monday to Sunday, 12:00 PM - 12:00 AM (midnight)\n 7 days khula hai!\nFresh hot pizza milega!";
 
-  if (/order|delivery|deliver|home delivery|parcel|takeaway|booking|mangwana/.test(q)) return "Order karna easy hai yaar!\n1. Menu dekho\n2. Decide karo kya chahiye\n3. Seedha aa jao ya phone karo\n4. Delivery Samalkha mein hai!\n5. Takeaway bhi hai!\nFresh aur hot - jaldi aao!";
+  if (/order|delivery|deliver|home delivery|parcel|takeaway|booking|mangwana/.test(q)) return "Order karne ke liye:\n1. Menu section mein item chuniye.\n2. Apni choice decide kijiye.\n3. Phone se ya seedha restaurant aa kar order kariye.\n\nDelivery aur takeaway dono available hain. Contact number aur address website ke \"Visit Us\" section mein hain.";
 
-  if (/contact|phone|number|call|mobile|tele|email/.test(q)) return "Contact sab Website ke bottom mein \"Visit Us\" mein hai!\n Phone - seedha call karo\n Email - message karo\n Address - map ke saath!\nCall karke order bhi kar sakte ho!";
+  if (/contact|phone|number|call|mobile|tele|email/.test(q)) return "Aapke liye contact details website ke \"Visit Us\" section mein hain - phone number, address aur map. Delivery Samalkha mein available hai.";
 
-  if (/offer|discount|coupon|deal|bachat|sasta|free|combo|affordable/.test(q)) return "Offers ki baat? Yaar abhi regular prices hain lekin -\n SASTE: Tomato Pizza 59 | Aloo Tikki 40 | Veg Pocket 59 | Soft Drink 30 | Dips 30\n BEST VALUE: Pizza Ride Special 259 (3-4 log aaram se kha sakte hain!)\nRestaurant pe visit karte raho!";
+  if (/offer|discount|coupon|deal|bachat|sasta|free|combo|affordable/.test(q)) return "Abhi regular prices hain, lekin:\n SASTE - Tomato Pizza 59 | Aloo Tikki 40 | Veg Pocket 59 | Soft Drink 30 | Dips 30\n BEST VALUE - Pizza Ride Special 259 (3-4 log aaram se kha sakte hain)\nNaye offers ke liye restaurant mein visit karte rahiye!";
 
-  if (/review|rating|feedback|kaisa|quality|taste|test|kaisa hai|kaisa lagta/.test(q)) return "Yaar feedback sunke confidence badhta hai!\n 500+ HAPPY CUSTOMERS in Samalkha!\n Sabse zyada pasand: Farm House | Pizza Ride Special | Makhani | Jumbo Burger | Choco Oreo Shake\n\"Fresh ingredients aur bold flavours!\" - try karke dekho, fan ho jaoge!";
+  if (/review|rating|feedback|kaisa|quality|taste|test|kaisa hai|kaisa lagta/.test(q)) return "Pizza Ride par Samalkha mein 500+ khush customers!\n Sabse zyada pasand: Farm House | Pizza Ride Special | Makhani | Jumbo Burger | Choco Oreo Shake\n Fresh ingredients aur bold flavours - try kar ke dekhiye!";
 
-  if (/about|about.?us|kya ho|kya hai ye|pizza.?ride/.test(q)) return "Pizza Ride ke baare mein? Dil se bata raha hoon!\n Samalkha, Haryana - hamari apni dukaan!\n 100% Vegetarian | 500+ Happy Customers\n Fresh Ingredients + Bold Flavours | Fast Delivery | Wood-fired pizza\nApne sheher ka pizza hai yaar - aa ke try karo!";
+  if (/about|about.?us|kya ho|kya hai ye|pizza.?ride/.test(q)) return "Pizza Ride ke baare mein:\n Samalkha, Haryana - hamari apni dukaan!\n 100% Vegetarian | 500+ Happy Customers\n Fresh Ingredients + Bold Flavours | Fast Delivery\nApne sheher ka pizza, aa kar try kariye!";
 
-  if (/best|recommend|suggestion|kaunsa|konsa|popular|bestseller|accha|sahi|top|batao/.test(q)) return "Arrey bhai, ye TOP 6 try karna!\n1. Pizza Ride Special 259 - Sirf hamare yahan!\n2. Farm House 160 - Sabse zyada bikne wala!\n3. Makhani 160 - Local Fav!\n4. Tikki Crush 210 - Unique taste!\n5. Jumbo Burger 99 - Double patty + cheese!\n6. Choco Oreo Shake 90 - Oreo + Chocolate = HEAVEN!\nYe 6 nahi try kiye toh kuch nahi kiya yaar!";
+  if (/best|recommend|suggestion|kaunsa|konsa|popular|bestseller|accha|sahi|top|batao/.test(q)) return "Ye TOP 6 recommend karta hoon:\n1. Pizza Ride Special 259 - Sirf hamare yahan!\n2. Farm House 160 - Sabse zyada bikne wala!\n3. Makhani 160 - Local Favourite!\n4. Tikki Crush 210 - Unique taste!\n5. Jumbo Burger 99 - Double patty + cheese!\n6. Choco Oreo Shake 90 - Oreo + Chocolate!\nYe shuruaat ke liye kafi hain!";
 
   return pick([
-    "Hmm, ye toh mast sawaal hai! Lekin iska jawab mere paas nahi hai yaar. Par pizza, burger, pasta, shakes - in sab ke secrets jaanta hoon! Kuch poochho na?",
-    "Yaar ye mera topic se thoda bahar hai Main toh khana aur Pizza Ride ka expert hoon! Menu sunaun? Ya prices?",
-    "Interesting! Ye mujhe nahi pata tha... lekin ye batao - Farm House try kiya kabhi? Nahi?! Toh aaj hi plan banao!",
+    "Sawai ko main nahi samajh paya. Kripya menu, prices, timings ya location ke baare mein poochhiye.",
+    "Ye mere knowledge se bahar hai. Main Pizza Ride ke menu, prices, best items aur timings ke baare mein bata sakta hoon.",
+    "Kuch aur poochhiye - menu, prices, ya best-sellers? Main help karne ke liye yahan hoon.",
   ]);
 }
 
@@ -393,11 +391,11 @@ export default function ChatBot() {
     {
       role: "assistant",
       content:
-        "Arrey hello yaar! Main PizzaBot - tumhara apna dost! Kuch bhi poochho - menu, prices, best pizza, location... ya bas aise hi baat karo, maza aa jaega! Hindi, English, Hinglish - jo bolo, wahi jawab + awaaz!",
+        "Hello! Main PizzaBot - Pizza Ride ka online assistant. Menu, prices, timings, location ya delivery - jo poochhna ho, poochhiye. Hindi, English ya Hinglish - sab mein jawab aur voice milega!",
     },
   ]);
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [listening, setListening] = useState(false);
   const [voiceOutput, setVoiceOutput] = useState(true);
   const [speakingIndex, setSpeakingIndex] = useState<number | null>(null);
@@ -441,46 +439,24 @@ export default function ChatBot() {
   }, []);
 
   const sendMessage = useCallback(
-    async (text: string) => {
+    (text: string) => {
       const trimmed = text.trim();
-      if (!trimmed || loading) return;
+      if (!trimmed) return;
 
       const userMsg: Message = { role: "user", content: trimmed };
       const updatedMessages = [...messages, userMsg];
       setMessages(updatedMessages);
       setInput("");
-      setLoading(true);
 
-      const userLang = detectLang(trimmed);
+      const reply = getSmartReply_lang(trimmed, detectLang(trimmed));
 
-      try {
-        let reply: string;
-        try {
-          const res = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              messages: updatedMessages.map((m) => ({ role: m.role, content: m.content })),
-            }),
-          });
-          const data = await res.json();
-          reply = data.reply ?? data.fallback ?? getSmartReply_lang(trimmed, userLang);
-        } catch {
-          reply = getSmartReply_lang(trimmed, userLang);
-        }
+      const botMsg: Message = { role: "assistant", content: reply };
+      const finalMessages = [...updatedMessages, botMsg];
+      setMessages(finalMessages);
 
-        const botMsg: Message = { role: "assistant", content: reply };
-        const finalMessages = [...updatedMessages, botMsg];
-        setMessages(finalMessages);
-
-        if (voiceOutput) speak(reply, finalMessages.length - 1, langForText(reply));
-      } catch {
-        setMessages((prev) => [...prev, { role: "assistant", content: "Arrey yaar, network mein thodi dikkat ho gayi. Ek baar dobara bhejo na message!" }]);
-      } finally {
-        setLoading(false);
-      }
+      if (voiceOutput) speak(reply, finalMessages.length - 1, langForText(reply));
     },
-    [messages, loading, voiceOutput, speak]
+    [messages, voiceOutput, speak]
   );
 
   const startListening = useCallback(() => {
@@ -561,7 +537,7 @@ export default function ChatBot() {
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-xl shrink-0"><img src={robotLogo} alt="PizzaBot" className="w-8 h-8 rounded-full object-cover" /></div>
               <div className="flex-1 min-w-0">
                 <p className="font-bold text-base leading-tight">PizzaBot</p>
-                <p className="text-primary-foreground/75 text-xs">Pizza Ride Dost - Online</p>
+                <p className="text-primary-foreground/75 text-xs">Pizza Ride Assistant - Online</p>
               </div>
               <div className="flex gap-2 items-center">
                 <button onClick={() => { if (voiceOutput) stopSpeaking(); setVoiceOutput((v) => !v); }} className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center transition-colors" title={voiceOutput ? "Mute" : "Unmute"}>
@@ -632,7 +608,7 @@ export default function ChatBot() {
                   {loading ? <Loader2 size={17} className="animate-spin" /> : <Send size={17} />}
                 </button>
               </form>
-              <p className="text-center text-[10px] text-muted-foreground mt-2">Voice input - Voice reply - Any language</p>
+              <p className="text-center text-[10px] text-muted-foreground mt-2">Voice input &bull; Voice reply &bull; Hindi / English</p>
             </div>
           </motion.div>
         )}
