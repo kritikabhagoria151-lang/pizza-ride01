@@ -94,7 +94,6 @@ export default function Gallery() {
                 <img
                   src={photo.src}
                   alt={photo.alt}
-                  loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />

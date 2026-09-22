@@ -236,7 +236,6 @@ function ItemCard({ item, index }: { item: MenuItem; index: number }) {
         <motion.img
           src={item.image}
           alt={item.alt ?? item.name}
-          loading="lazy"
           decoding="async"
           width={400}
           height={300}

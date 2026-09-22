@@ -483,9 +483,11 @@ the site first. This section covers what was measured and fixed.
 
 **Speed wins implemented:**
 1. **Images** — all converted to **WebP**, full-resolution originals kept — §11.1
-2. **Lazy loading** + `fetchPriority="high"` on the LCP hero image — §11.2
+2. **Loading hints** — `fetchPriority="high"` on the LCP hero, images eager so
+   nothing ever shows a "loading" look — §11.2
 3. **Fonts** moved out of render-blocking CSS `@import` → `preconnect` + swap — §11.3
-4. **Code splitting** — lazy routes, Home stays eager — §11.4
+4. **Instant navigation** — all pages eager (no code splitting, no loading
+   screen between routes) — §11.4
 5. **Mobile** — 44 px tap targets, readable text sizes, no horizontal scroll — §11.5
 
 ### 11.1 Image size & format
@@ -536,12 +538,17 @@ original dimensions and quality kept (per client request).
 
 | Element | Strategy | Why |
 |---------|----------|-----|
-| Menu item images | `loading="lazy"` + `decoding="async"` | below the fold, ~80 images |
-| Gallery images | `loading="lazy"` + `decoding="async"` | below the fold |
-| Features images | `loading="lazy"` | below the fold |
+| Menu item images | eager (no `loading`) + `decoding="async"` | no blank/loading box when scrolling — image is already there |
+| Gallery images | eager (no `loading`) + `decoding="async"` | image is already there on arrival |
+| Features images | eager (no `loading`) | image is already there on arrival |
 | Map iframe (`LocationContact`) | `loading="lazy"` | heavy third-party frame |
 | Hero image (LCP) | `fetchPriority="high"` + `decoding="async"` (NOT lazy) | it is the Largest Contentful Paint — must load first |
 | All content images | `width` + `height` attributes | reserve space → **no CLS** |
+
+> Customer requirement (2026-09-18): **never show a "loading" look**. So content
+> images are loaded eagerly instead of lazily — they are already downloaded
+> before the visitor scrolls, so nothing ever appears as "loading". This trades
+> a bit of initial data on the Menu page for an always-instant, solid image.
 
 The hero uses `fetchPriority="high"` so the browser fetches it before other
 resources, speeding up LCP:
@@ -573,25 +580,18 @@ a fallback font and swaps when the web fonts arrive:
 
 ### 11.4 Code splitting
 
-**Status:** ✅ Implemented. `Home` stays in the main bundle (it is the landing
-page), and the other routes are lazy-loaded so their code is only downloaded
-when the visitor opens that page:
+**Status:** deliberately **not used** (reverted on 2026-09-18). All pages are
+imported statically, so switching routes is **instant with zero loading screen**:
 
 ```tsx
-import { lazy, Suspense } from 'react';
 import Home from '@/pages/Home';
-
-const MenuPage = lazy(() => import('@/pages/MenuPage'));
-const WhyUs = lazy(() => import('@/pages/WhyUs'));
-const GalleryPage = lazy(() => import('@/pages/GalleryPage'));
-const LocationPage = lazy(() => import('@/pages/LocationPage'));
-const NotFound = lazy(() => import('@/pages/not-found'));
+import MenuPage from '@/pages/MenuPage';
+// ...all pages eagerly imported
 ```
 
-All routes are wrapped in `<Suspense fallback={<RouteFallback />}>` (a light,
-accessible "Loading…" placeholder with `role="status"`).
-
-**Result:** smaller initial JavaScript → faster Time-to-Interactive on mobile.
+The customer explicitly required **no visible "Loading…"** between pages, and
+the site is small enough that the slightly larger initial bundle is the right
+trade-off. This is the opposite of route-splitting, on purpose.
 
 ### 11.5 Mobile responsiveness
 
