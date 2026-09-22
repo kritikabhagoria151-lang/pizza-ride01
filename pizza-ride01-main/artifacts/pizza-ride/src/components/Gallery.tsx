@@ -73,7 +73,7 @@ export default function Gallery() {
           {photos.map((photo, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.92, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               whileHover={{ scale: 1.02 }}

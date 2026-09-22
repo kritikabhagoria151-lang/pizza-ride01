@@ -217,7 +217,7 @@ export const categories: Category[] = [
 function ItemCard({ item, index }: { item: MenuItem; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 120, rotateY: 12, scale: 0.85 }}
+      initial={false}
       whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{

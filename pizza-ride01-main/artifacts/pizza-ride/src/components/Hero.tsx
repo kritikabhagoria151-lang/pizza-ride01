@@ -88,7 +88,7 @@ export default function Hero() {
           {/* Text side */}
           <motion.div
             variants={stagger}
-            initial="hidden"
+            initial={false}
             animate="visible"
             className="flex flex-col gap-6"
           >
