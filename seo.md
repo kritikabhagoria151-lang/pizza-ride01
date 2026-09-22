@@ -504,15 +504,18 @@ original dimensions and quality kept (per client request).
 
 | Metric | Value |
 |--------|------:|
-| Total (116 files) | 23.4 MB |
-| Average per image | ~207 KB |
-| Largest image | 345 KB |
-| Typical dimensions | 1000 × 1000 px, quality 92 |
+| Total (116 files) | 17.3 MB |
+| Average per image | ~151 KB |
+| Largest image | ~305 KB |
+| Typical dimensions | 1000 × 1000 px (original, **unchanged**) |
+| Encoding | WebP, quality 85 (from quality 92) |
 
-> Note: an earlier pass resized these to 800 px / `< 200 KB` (≈52 % smaller,
-> 11.2 MB) for maximum speed. That was **reverted on request** to keep the
-> original full-resolution images. If page speed ever needs another boost, this
-> is the first thing to re-optimize.
+> Image strategy (per client requirement): images are **full original size** —
+> dimensions are identical to the source files (1000 px check-marked, zero
+> blur/crop). They were re-encoded once to WebP quality 85, which keeps the
+> exact same look but makes files ~27 % lighter (23.5 MB → 17.3 MB) so the
+> page loads faster. If speed ever needs another boost, the next step is
+> resizing + AVIF, but that is intentionally skipped to preserve resolution.
 
 **HTML attributes (kept — these do NOT affect image quality):**
 - `width` + `height` on every content image → browser reserves space, **no layout shift (CLS)**.
