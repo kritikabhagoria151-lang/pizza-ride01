@@ -269,6 +269,7 @@ export default function Hero() {
                 width={600}
                 height={600}
                 decoding="async"
+                loading="eager"
                 fetchPriority="high"
                 whileHover={{ scale: 1.05, rotate: 3 }}
                 transition={{ duration: 0.4 }}

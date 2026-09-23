@@ -538,23 +538,33 @@ original dimensions and quality kept (per client request).
 
 | Element | Strategy | Why |
 |---------|----------|-----|
-| Menu item images | eager (no `loading`) + `decoding="async"` | no blank/loading box when scrolling — image is already there |
-| Gallery images | eager (no `loading`) + `decoding="async"` | image is already there on arrival |
-| Features images | eager (no `loading`) | image is already there on arrival |
+| Menu item images | `loading="eager"` + `decoding="async"` + `fetchPriority="high"` for first 6 cards | image already there on arrival, first row paints instantly |
+| Gallery images | `loading="eager"` + `decoding="async"` + `fetchPriority="high"` for first 6 tiles | image is already there on arrival |
+| Features images | `loading="eager"` + `fetchPriority="high"` (top of page, LCP-ish) | visible immediately |
+| Navbar logo | `loading="eager"` + `fetchPriority="high"` | brand shows instantly on every page |
 | Map iframe (`LocationContact`) | `loading="lazy"` | heavy third-party frame |
-| Hero image (LCP) | `fetchPriority="high"` + `decoding="async"` (NOT lazy) | it is the Largest Contentful Paint — must load first |
+| Hero image (LCP) | `fetchPriority="high"` + `loading="eager"` + `decoding="async"` | it is the Largest Contentful Paint — must load first |
 | All content images | `width` + `height` attributes | reserve space → **no CLS** |
 
-> Customer requirement (2026-09-18): **never show a "loading" look**. So content
-> images are loaded eagerly instead of lazily — they are already downloaded
-> before the visitor scrolls, so nothing ever appears as "loading". This trades
-> a bit of initial data on the Menu page for an always-instant, solid image.
+> Customer requirement (2026-09-21): **never show a "loading" look again.**
+> Content images are loaded **eagerly** (`loading="eager"`, never `lazy`) and the
+> first-screen ones carry `fetchPriority="high"`, so on any page (Home, Menu,
+> Gallery) images are requested + painted as soon as the page mounts — no blank
+> box, no fade-in, no "loading" spinner. This trades a bit of initial data on
+> the Menu page for an always-instant image.
+>
+> 🔒 **Hard rule — do not regress:** never add `loading="lazy"` to content
+> images, never re-introduce `React.lazy`/`Suspense`/"Loading…" route fallbacks,
+> and never wrap image containers in `initial={{ opacity: 0 }}` entrance
+> animations. That is exactly what caused the "images/‹page› appear to be
+> loading" complaint. The only allowed lazy element is the third-party Google
+> Maps iframe.
 
 The hero uses `fetchPriority="high"` so the browser fetches it before other
 resources, speeding up LCP:
 
 ```tsx
-<img src={heroImg} alt="…" width={600} height={600} decoding="async" fetchPriority="high" />
+<img src={heroImg} alt="…" width={600} height={600} loading="eager" decoding="async" fetchPriority="high" />
 ```
 
 ### 11.3 Fonts (render-blocking)

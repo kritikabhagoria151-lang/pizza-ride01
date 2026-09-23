@@ -52,6 +52,9 @@ export default function Features() {
               <img
                 src={photo.src}
                 alt={photo.alt}
+                decoding="async"
+                loading="eager"
+                fetchPriority="high"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

@@ -95,6 +95,8 @@ export default function Gallery() {
                   src={photo.src}
                   alt={photo.alt}
                   decoding="async"
+                  loading="eager"
+                  fetchPriority={i < 6 ? "high" : "auto"}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               )}

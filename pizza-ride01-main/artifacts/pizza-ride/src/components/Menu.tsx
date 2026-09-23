@@ -237,6 +237,8 @@ function ItemCard({ item, index }: { item: MenuItem; index: number }) {
           src={item.image}
           alt={item.alt ?? item.name}
           decoding="async"
+          loading="eager"
+          fetchPriority={index < 6 ? "high" : "auto"}
           width={400}
           height={300}
           whileHover={{ scale: 1.15, rotate: 2 }}

@@ -53,6 +53,8 @@ export default function Navbar() {
                   width={40}
                   height={40}
                   decoding="async"
+                  loading="eager"
+                  fetchPriority="high"
                   className="h-full w-full object-cover"
                 />
               </motion.div>
