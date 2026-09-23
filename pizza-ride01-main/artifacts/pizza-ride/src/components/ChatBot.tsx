@@ -214,7 +214,71 @@ function getEnglishReply(input: string): string {
   ]);
 }
 
+const MENU_ITEMS: { re: RegExp; reply: string }[] = [
+  { re: /red.?sauce|tomato.?sauce|रेड ?सॉस|टमाटर ?सॉस/, reply: "RED SAUCE PASTA - 109\n\nPenne in spiced tomato red sauce - teekha aur tangy." },
+  { re: /white.?sauce|alfredo|व्हाइट ?सॉस/, reply: "WHITE SAUCE PASTA - 109\n\nCreamy bechamel sauce - smooth aur comfort food." },
+  { re: /mix.?sauce|pink.?sauce|मिक्स ?सॉस/, reply: "MIX SAUCE PASTA - 149\n\nSab sauces ka combo - best of everything." },
+  { re: /tandoori.*(pasta|पास्ता)|(pasta|पास्ता).*tandoori/, reply: "TANDOORI PASTA - 119\n\nSmoky tandoori flavour - unique taste." },
+  { re: /makhani.*(pasta|पास्ता)|(pasta|पास्ता).*makhani|मखानी ?पास्ता/, reply: "MAKHANI PASTA - 119\n\nButtery makhani sauce - comfort food." },
+  { re: /cheese[ ]?(?:&|and|एंड)[ ]?corn|cheese.?corn|चीज़ ?कॉर्न/, reply: "CHEESE & CORN - 130\n\nCreamy cheese + crunchy corn - best combo!" },
+  { re: /cheese.?peri|चीज़ ?पेरी/, reply: "CHEESE PERI PERI - 99\n\nPeri peri spice + cheese sauce." },
+  { re: /cheese[ ]?spicy|spicy.?burger|चीज़ ?स्पाइसी/, reply: "CHEESE SPICY BURGER - 70\n\nSpicy patty + gooey cheese - spice lovers ke liye." },
+  { re: /double.?cheese|डबल ?चीज़|डबल ?चीज/, reply: "DOUBLE CHEESE PIZZA - 150\n\nVeggies + double cheese - cheese lovers ke liye perfect." },
+  { re: /single.?cheese|सिंगल ?चीज़/, reply: "SINGLE CHEESE PIZZA - 110\n\nVeggies + single cheese - budget friendly." },
+  { re: /black.?current|ब्लैक ?करंट/, reply: "BLACK CURRENT SHAKE - 90\n\nRefreshing aur fruity." },
+  { re: /cold.?coffee|कोल्ड ?कॉफी/, reply: "COLD COFFEE - 120\n\nChilled, creamy aur strong - coffee lovers ke liye." },
+  { re: /butterscotch|बटरस्कॉच/, reply: "BUTTERSCOTCH SHAKE - 90\n\nSweet aur creamy - classic taste." },
+  { re: /oreo|choco|ओरियो|चॉकलेट/, reply: "CHOCO OREO SHAKE - 90\n\nCrushed Oreos + chocolate shake - classic favourite!" },
+  { re: /strawberry|स्ट्रॉबेरी/, reply: "STRAWBERRY SHAKE - 90\n\nFresh strawberry flavour - thick aur creamy." },
+  { re: /vanilla|वनीला|वेनिला/, reply: "VANILLA SHAKE - 90\n\nClassic, simple aur perfect." },
+  { re: /soft.?drink|pepsi|7up|mirinda|cola|सॉफ्ट ?ड्रिंक/, reply: "SOFT DRINK - 30\n\nPepsi, 7Up, Mirinda - chilled, sirf 30 mein." },
+  { re: /veg[ ]?loaded|वेज ?लोडेड/, reply: "VEG LOADED GARLIC BREAD - 110\n\nVeg filling + melted cheese - must try!" },
+  { re: /^.*\bladen\b|लादेन/, reply: "LADEN GARLIC BREAD - 120\n\nExtra toppings loaded." },
+  { re: /^.*\bplain\b|प्लेन/, reply: "PLAIN GARLIC BREAD - 81\n\nSoft bread + garlic butter." },
+  { re: /(?:^|[^a-z])tomato(?:[^a-z]|$)|टमाटर/, reply: "TOMATO PIZZA - 59\n\nFresh tomato - sabse sasta pizza." },
+  { re: /onion[ ]?(?:&|and|एंड)[ ]?corn|प्याज ?कॉर्न/, reply: "ONION & CORN - 90\n\nFresh onion + sweet corn combo." },
+  { re: /onion[ ]?(?:&|and|एंड)[ ]?capsicum/, reply: "ONION & CAPSICUM - 90\n\nFresh veggies combo." },
+  { re: /onion[ ]?(?:&|and|एंड)[ ]?paneer|पनीर.*प्याज/, reply: "ONION & PANEER - 100\n\nOnion + paneer - creamy aur tasty." },
+  { re: /corn[ ]?(?:&|and|एंड)[ ]?paneer/, reply: "CORN & PANEER - 100\n\nCorn + paneer combo." },
+  { re: /spicy.?paneer.*(sandwich|सैंडविच)|(sandwich|सैंडविच).*spicy.?paneer/, reply: "SPICY PANEER SANDWICH - 90\n\nSpicy paneer + fresh veggies + toasted bread." },
+  { re: /tandoori.?paneer|तंदूरी ?पनीर/, reply: "TANDOORI PANEER PIZZA - 160 / 310 / 400\n\nOnion, Paneer, Red Paprika - smoky tandoori flavour." },
+  { re: /spicy.?paneer|स्पाइसी ?पनीर|मसालेदार ?पनीर/, reply: "SPICY PANEER PIZZA - 210 / 340 / 450\n\nOnion, Paneer, Red Paprika - teekha flavour." },
+  { re: /(?:^|[^a-z])makhani(?:[^a-z]|$)|मखानी/, reply: "MAKHANI PIZZA - 160 / 310 / 400\n\nMakhani sauce, Capsicum, Paneer - buttery flavour." },
+  { re: /zesty|tangy|ज़ेस्टी/, reply: "ZESTY TANGY PIZZA - 160 / 310 / 400\n\nOnion, Corn, Paneer - tangy aur zesty taste." },
+  { re: /(?:^|[^a-z])classical(?:[^a-z]|$)|क्लासिकल/, reply: "CLASSICAL PIZZA - 210 / 340 / 450\n\nOnion, Capsicum, Corn, Mushroom, Paneer - sab kuch ek mein." },
+  { re: /delight|extra.?cheese|डिलाइट/, reply: "DELIGHT EXTRA CHEESE PIZZA - 210 / 340 / 450\n\nCapsicum, Mushroom, Jalapeno - zyada cheese ke saath." },
+  { re: /tikki.?crush|टिक्की ?क्रश/, reply: "TIKKI CRUSH PIZZA - 210 / 340 / 450\n\nMushroom, Jalapeno, Paneer, Red Paprika, Tikki Crush - unique taste." },
+  { re: /ride.?special|(?:^|[^a-z])special(?:[^a-z]|$)|स्पेशल/, reply: "PIZZA RIDE SPECIAL - 259 / 349 / 449\n\nAll veggies + loaded cheese - sirf hamare yahan!" },
+  { re: /farm.?house|फार्म ?हाउस/, reply: "FARM HOUSE PIZZA - 160 / 310 / 400\n\nOnion, Capsicum, Corn, Mushroom - sabse zyada bikne wala!" },
+  { re: /aloo.?tikki|आलू ?टिक्की/, reply: "ALOO TIKKI - Burger 40 | Wrap 60\n\nCrispy tikki + fresh veggies." },
+  { re: /jumbo|जंबो/, reply: "JUMBO BURGER - 99\n\nDouble patty + extra cheese + fully loaded!" },
+  { re: /veggi|veggie|वेजी/, reply: "VEGGI BURGER - 50\n\nFresh veggies ka patty - classic aur tasty." },
+  { re: /paneer.*burger|बर्गर.*पनीर/, reply: "PANEER BURGER - 70\n\nJuicy paneer patty + mint mayo." },
+  { re: /veg.?pocket|वेज ?पॉकेट/, reply: "VEG POCKET - 59\n\nCrispy pocket + spiced veggies - sirf 59." },
+  { re: /paneer.?pocket|पनीर ?पॉकेट/, reply: "PANEER POCKET - 89\n\nCrispy + gooey paneer." },
+  { re: /paneer.?salad|पनीर ?सलाद/, reply: "PANEER SALAD - 100\n\nHealthy aur tasty - fresh paneer + veggies." },
+  { re: /peri.?peri|पेरी ?पेरी/, reply: "PERI PERI FRIES - 69 | Cheese Peri Peri 99\n\nSpicy fries option." },
+  { re: /(?:^|[^a-z])masala(?:[^a-z]|$)|मसाला/, reply: "MASALA FRIES - 69\n\nSpiced masala fries - teekha aur crunchy." },
+  { re: /(?:^|[^a-z])salted(?:[^a-z]|$)|सॉल्टेड/, reply: "SALTED FRIES - 65\n\nClassic salted fries." },
+  { re: /(?:^|[^a-z])tandoori(?:[^a-z]|$)|तंदूरी/, reply: "TANDOORI OPTIONS - Tandoori Paneer Pizza 160/310/400 | Tandoori Pasta 119 | Tandoori Dip 30" },
+  { re: /(?:^|[^a-z])corn(?:[^a-z]|$)|कॉर्न/, reply: "CORN PIZZA - 80\n\nSweet corn - simple aur tasty." },
+  { re: /(?:^|[^a-z])onion(?:[^a-z]|$)|प्याज/, reply: "ONION PIZZA - 70\n\nFresh onion - classic topping." },
+  { re: /capsicum|शिमला ?मिर्च/, reply: "CAPSICUM PIZZA - 70\n\nFresh capsicum - crunchy." },
+  { re: /dips?|डिप्स/, reply: "DIPS - 30 each\n\nCheese | Spice | Tandoori | Chilly." },
+  { re: /(?:^|[^a-z])paneer(?:[^a-z]|$)|पनीर/, reply: "PANEER ITEMS:\n Pizza - Onion & Paneer 100 | Corn & Paneer 100 | Tandoori Paneer 160 | Spicy Paneer 210\n Burger 70 | Wrap 110 | Pocket 89 | Salad 100" },
+];
+
+function findItemReply(input: string): string | null {
+  const q = input.toLowerCase();
+  for (const item of MENU_ITEMS) {
+    if (item.re.test(q)) return item.reply;
+  }
+  return null;
+}
+
 function getSmartReply_lang(input: string, lang: "hi" | "hinglish" | "en"): string {
+  const itemReply = findItemReply(input);
+  if (itemReply) return itemReply;
   if (lang === "en" && !/[\u0900-\u097F]/.test(input)) return getEnglishReply(input);
   return getSmartReply(input);
 }
